@@ -1,0 +1,113 @@
+Prestanak rada sistema za rezervaciju karata neke -> svake 
+- izmenjeno
+
+(tačnije slupala se) --- preformulisite, slupala se je suvise neformalno
+-  NASA-ina kosmička letelica (NASA Mars Polar Lander) je usled nedovoljno testiranja 1999-te 
+   prilikom pokušaja sletanja prevelikom brzinom udarila u površinu Marsa i raspala se
+
+izlošenosti radijaciji. --- izloŽenosti
+- izmenjeno
+
+Sa druge strane, kompanije koje razvijaju
+programe čija je primena u manje rizičnim oblastima primenjuju opušteniji vid spe-
+cifikacije, pišu je „na salveti” ako je uopšte i napišu. --- neformalno, preformulisati
+-  Sa druge strane, kompanije koje razvijaju programe čija je primena u manje rizičnim 
+   oblastima primenjuju neformalniji vid specifikacije ili je uopšte ne primenjuju.
+
+izlošenosti radijaciji. [12, 21] --- ubacite citat u tekst, tj pre kraja recenice
+- izmenjeno
+
+finalna verzija izgledati. [19, 21]  --- ubacite citat u tekst, tj pre kraja recenice
+- izmenjeno
+
+treba da radi. Rezultat is --- izmedju ove dve recenice stavite novi pasus
+- dodat novi pasus
+
+Opis proizvoda je dat specifikacijom. --- se zadaje specifikacijom
+- izmenjeno
+
+Za definisanje izgleda i ponašanja proizvoda specifikacija koristi informacije dobijene od klijenta kao i
+obavezne zahteve koje program mora da sadrži a koje klijent nije naveo. --->
+Za formulisanje specifikacije koriste se informacije dobijene od klijenta ali specifikacija obuhvata i zahteve koje program mora da ispuni a 
+koje klijent nije naveo.
+- izmenjeno
+
+Izgled specifikacije može da varira. --- nije ovde u pitanju izgled vec preciznost, dakle Preciznost specifikacije moze da varira.
+- izmenjeno
+
+Ubrzo nakon što je teleskop počeo sa radom otkriveno je da su slike
+koje vraća mutne kao posledica greške u proizvodnji ogledala. Iako je ogledalo za-
+dovoljavalo specifikaciju, specifikacija je bila pogrešna što je dovelo do ogledala koje
+ima visoku preciznost a nisku tačnost.
+Ovo nije jasno. Da li je greska bila u prizvodnji ogledala ili u pogresnoj specifikaciji? Kako se ta dva pojma u ovom slucaju odnose? Malo to razjasniti.
+-  Ubrzo nakon što je teleskop počeo sa radom otkriveno je da su slike koje vraća mutne kao posledica greške u specifikaciji. 
+   Iako je ogledalo zadovoljavalo specifikaciju, specifikacija je bila pogrešna što je dovelo do ogledala koje ima visoku preciznost a nisku tačnost. 
+   Testiranje je u ovom slučaju potvrdilo da ogledalo zadovoljava specifikaciju tj. verifikacija je bila uspešna. Sa druge stranje testiranje nije potvrdilo 
+   da ogledalo zadovoljava zahteve korisnika...
+
+Cena ove greške je bila u novoj svemirskoj misiji 1993-će da
+bi se dodalo korektivno sočivo [21]. --- preformulisati, ć--->t
+- zar ne treba '-će' zbog treće? 
+
+Ova dva pojma je jednostavno objasniti na primeru kupovine polovnog automobila. --->
+Ova dva pojma se slikovito mogu opisati na primeru ....
+- izmenjeno
+
+Zbog toga je svrha testiranja otkrivanje grešaka koje
+program sadrži. [19].   --- ubacite citat u tekst, tj pre kraja recenice
+- izmenjeno
+
+Tek tada se sa sigurnošću može tvrditi da kompajler neće uspešno prevesti neispravan program.
+Tek tada bi se sa sigurnošću moglo tvrditi da kompajler neće uspešno prevesti neispravan program.
+Ovo je samo jedna osobina kompajlera. Postoji veliki broj relevantnih osobina kompajlera koje bi takodje trebalo utvrditi 
+na taj nacin (npr da je zadrzana semantika izvornog programa, npr da ako u programu imamo a+b da je to prevedeno u add a, b a ne u sub a, b)...
+- Tek tada bi se sa sigurnošću moglo tvrditi da kompajler neće uspešno prevesti neispravan program. A ovo je samo jedna osobina kompajlera. 
+  Postoji veliki broj relevantnih osobina kompajlera koje bi takođe trebalo utvrditi na isti način (npr. da je zadržana semantika izvornog programa - 
+  ako u programu imamo $a+b$ da je to prevedeno u $add$ $a, b$ a ne u $sub$ $a, b$)).
+
+Da bi se otkrili svi nedostaci softvera, osoba koja vrši
+testiranje mora da isproba sve moguće kombinacije ulaza. --- zar nije upravo receno da je to nemoguce?
+- obrisana recenica
+
+moguće je da program ne radi kako treba zato što mu nedostaje
+neka putanja (a testiranje ne može da detektuje nedostajuće putanje) --- ovo je neobicna tvrdnja jer neke nedostajuce putanje 
+testiranje moze da otkrije, a neke ne moze.
+- da li je bolje ovako?
+- moguće je da program ne radi kako treba zato što mu nedostaje neka putanja (neke nedostajuće putanje testiranje može da detektuje, a neke ne može)
+
+Razlika u odnosu na strategije testiranja bele kutije je ta da se gleda
+jednostavniji, skript kôd, --- odakle ovaj skript kod ovde i sta to znaci?
+- obrisao sam recenicu. U literaturi se pominjalo kako je testiranje sive kutije pogodno za web strane i verovatno odatle potice
+- Strategije testiranja sive kutije (eng.~gray-box testing) predstavljaju mešavinu prethodnih strategija. 
+  U ovim strategijama se na softver i dalje gleda kao na crnu kutiju s tim što se pored toga ,,zaviri'' u  kod programa tj. 
+  koriste se i specifikacija i programski kod 
+
+Rešenje ovog problema --- dodajte "Delimicno resenje ovog problema..."
+- izmenjeno
+
+Korišćenjem ovih sistema moguće je pouzdano interaktivno dokazati ispravnost programa. --->
+Korišćenjem ovih sistema moguće je pouzdano interaktivno dokazati razne osobine ispravnosti programa.
+- izmenjeno
+
+ali samo pod pretpostavkom neograničenog vremena. ---> ali cesto pod pretpostavkom neogranicenih resursa.
+- izmenjeno
+
+Kvalitet analite --- analize
+- izmenjeno
+
+vanje nastaje sredinom --- je nastalo sredinom....
+- izmenjeno
+
+sa ciljem otkrivanja da li se pomoću softvera mogu narušiti određena svojstva programa.
+sa ciljem otkrivanja da li se u okviru softvera mogu narušiti određena svojstva, npr deljenje nulom ...
+- Simboličko izvršavanje je nastalo sredinom 1970-ih sa ciljem otkrivanja da li se u okviru softvera mogu 
+  narušiti određena svojstva, npr. deljenje nulom, pokušaj dereferenciranja NULL pokazivača...
+
+Za razliku od konkretnog izvršavanja gde se program pokreće sa konkretnim vredno-
+stima ulaza i ima jednu putanju, simboličkim izvršavanjem je moguće istovremeno
+izvršavanje većeg broja potencijalnih putanja (koje nastaju u zavisnosti od vred-
+nosti ulaza). Zbog toga je ključna ideja omogućiti programu da koristi simboličke
+vrednosti [19, 13]. --- sustina je da kada testiranjem prodjete kroz jednu putanju programa, ona je izvrsena samo za te jedne vrednosti. 
+Simbolicki izvrsavanjem kada prodjete kroz jednu putanju programa onda ste je izvrsili za sve moguce vrednosti koje prolaze kroz tu putanju.
+- Kada se testiranjem uz korišćenje konkretnih vrednosti ulaza prođe kroz jednu putanju programa, ona je izvršena samo za te konkretne vrednosti.
+  Nasuprot tome, kada se simboličkim izvršavanjem prođe kroz jednu putanju programa, ona je izvršena za sve moguće vrednosti koje prolaze kroz tu putanju

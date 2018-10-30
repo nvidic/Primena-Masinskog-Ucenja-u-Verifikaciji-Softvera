@@ -1,0 +1,45 @@
+Malo cudna recenica. Nastavlja se do danas, ne do devedesetih. Ako se ovime referise na pad interesovanja za neuronske mreze tokom 
+devedesetih, bilo ga je i pre toga.
+- promenjena recenica
+- Razvoj mašinskog učenja u formi neuronskih mreža nastavlja se, uz uspone i padove interesovanja, sve do danas.
+
+Pre bih rekao da se odlikuje time da su dati ovakvi podaci.
+- Nadgledano učenje se odlikuje datim vrednostima ulaza, ali i datim vrednostima izlaza koji im odgovaraju. 
+  Na osnovu tih podataka potrebno je odrediti vezu koja postoji između ulaza i izlaza.
+
+Ovo treba da bude broj 1.
+- zamenjeno
+
+Nenamerno je los izraz, posto racunar nema namere. Ovo nije tek banalna terminoloska primedba, posto zaista nisam siguran da razumem sta se ovim htelo reci.
+- 
+
+Za outlier predlazem prevod odudarajuci podatak, ali ne insistiram uopste.
+- izmenjeno
+
+Valjda, ako se vrednosti atributa mere na razlicitim skalama. Ovako zvuci cudno. 
+- Ako se vrednosti atributa mere na različitim skalama, jedan atribut može više uticati na ishod klasifikacije a da to nije opravdano.
+
+daje lose klasifikuje je neispravna formulacija. Pretpostalvjam da treba izbaciti daje.
+- izbaceno
+
+Razlog ne mora biti zato sto nije dovoljno treniran. Recimo linearni model ni ne moze da se natrenira da predstavi neke zavisnosti 
+jer nema dovoljnu izrazajnu moc. Ostavio bih na tome da je razlog to sto nije uspeo da nauci pravu strukturu.
+- ...situaciji kada model loše klasifikuje i trening i test podatke zato što nije uspeo da nauči pravu strukturu podataka sa kojima radi.
+
+nezavisnost vrednosti y za dato x! Vidim to pri kraju, ali moze se ne povezati, tako da bih to da vidim i ovde.
+- Logistička regresija pretpostavlja međusobnu nezavisnost vrednosti ciljne promenljive
+  y za date vrednosti atributa x i Bernulijevu raspodelu ciljne promenljive
+  y za date vrednosti atributa x.
+
+Umesto da se princip maksimalne verodostojnosti formulise kao odbacivanje malo verovatnih mogucnosti, bolje ga odmah izraziti u duhu poslednje recenice.
+- Jedan od principa izbora ovih vrednosti, princip maksimalne verodostojnosti, je prihvatanje onih vrednosti parametara 
+za koje su posmatrani podaci visoko verovatni
+
+Ensemble bih preveo kao ansambl. Kao sto je muzicki ansambl na engleskom ensemble. A smisao je isti.
+- promenjeno
+
+Ovo sa polovinom vazi u slucaju binarne klasifikacije, ali ne i u opstem slucaju, zar ne?
+- U tom slučaju bi, za problem binarne klasifikacije, konačna predikcija bila pogrešna samo ako više od polovine baznih klasifikatora pogreši u predikciji.
+
+Sta znaci da se za "ravnotezu" bira izraz F. Kako se ravnoteza bira?
+- Često se kao kompromisno rešenje za broj atributa uzima F...

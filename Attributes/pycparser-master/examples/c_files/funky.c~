@@ -1,0 +1,46 @@
+//#include<stdio.h>
+
+char foo(void)
+{
+	 const char c = 't';
+    return c;
+}
+
+int maxout_in(int paste, char** matrix)
+{
+    char o = foo();
+    return (int) matrix[1][2] * 5 - paste;
+}
+
+int main()
+{
+    auto char* multi = "a multi";
+    // neki komentar
+    int b;
+    b=10;
+    int c;
+    
+    int a = [[1, 3], [5, 17]]
+    
+    c = maxout_in(1, a)
+
+    return 0;
+}
+
+unsigned long long int f1(int i, float f, char c){
+	const char l = c;
+	
+	int j;
+	int x = (i/f);
+	
+	for(j=0; j<i; j++)
+	{
+		++x;
+	}
+	
+	char c2 = c;
+	
+	return 1;
+}
+
+

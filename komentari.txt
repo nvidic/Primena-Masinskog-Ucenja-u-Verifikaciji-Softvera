@@ -1,0 +1,145 @@
+PROMENJENO - treba proveriti da li je novi tekst dobar:
+- o pythonu
+- dodat je tekst o preprilagodjavanju u delu Nadgledano ucenje
+- kasnije u tekstu (poslednji pasus u delu k najblizih suseda) se pominje i pojam potprilagodjavanja pa sam u nastavku recenice objasnio
+Sa druge strane, velika vrednost parametra k vodi ka potprilagođavanju (eng.~model underfitting) - situaciji kada model daje loše 
+klasifikuje i trening i test podatke zato što je nedovoljno treniran i nije uspeo da nauči pravu strukturu podataka.
+- dodate su dve recenice iz novog izvora u prvom pasusu dela Nadgledano ucenje
+- sredjeni pasusi u delu K najblizih suseda i dodati novi izvori
+
+
+----------
+Bilo bi dobro da citirate razne izvore, a ne da se fokusirate bas najvise samo na izvor 12.
+- dodati novi izvori, ne znam da li su dovoljni ili treba jos
+
+Klasifikatori zasnovani na algoritmu k najbližih suseda spadaju u klasifikatore
+zasnovane na instancama...
+Ovaj pasus je vrlo nerazumljiv jer koristi neke pojmove koji ranije nisu uvedeni a koji su ovde nekako pogresnim redosledom polovicno ispricani. 
+Pokusajte malo to da prosirite i bolje objasnite. 
+- promenio sam tekst
+
+preprilagođavanja. --- ovaj pojam nije ranije uveden, a trebalo bi
+- dodao sam tekst o preprilagodjavanju u delu Nadgledano ucenje
+
+u decembru 2008-me ... --- ovde nedostaje nesto sto ce reci sta se desavalo u poslednjih 10 godina... Dakle, nesto tipa "od tada se pajton intenzivno 
+razvija i koristi ... postoji veliki broj biblioteka ... tekuca verzija je.... razlike izmedju 2 i 3..." Nista posebno detaljno, ali bar dve-tri recenice. 
+- prosirio sam ceo pasus
+-Autor Pythona je Holanđanin Gido Van Rosum (hol. Guido Van Rossum). Ideju o Pythonu dobija krajem 1980-ih kada je radio kao programer na 
+Državnom institutu za matematiku i informatiku CWI (Centrum voor Wiskunde en Informatica) u jeziku ABC kojim je inspirisan. 
+Implementaciju započinje decembra 1989-te, a prva verzija jezika (verzija 0.9.0) puštena je 1991-ve. Januara 1994-te izlazi verzija 1.0 
+koja se razvija sve do septembra 2000-te. Unapređena verzija 2.0 (poznata i kao Python 2) izlazi u oktobru 2000-te, a verzija 3.0 (Python 3) 
+u decembru 2008-me. Zanimljivo je da razvoj verzije 2.0 nije zaustavljen izlaskom nove velike verzije 3.0. Razlog za to je činjenica da je Python 3 
+prva distribucija namerno napravljena da bude nekompatibilna sa prethodnim distribucijama. Poslednja i konačna verzija vezana za Python 2 
+je 2.7 iz jula 2010-te, koja je i dalje podržana (poslednja promena desila se u aprilu 2018-te (2.7.15)). Verzija 3.7.0 je najnovijeg datuma (jun 2018-te). 
+Izmene koje Python 3 donosi su brojne, a neke od njih su: print više nije naredba već postaje funkcija, interfejsi poput rečnika i mapa vraćaju poglede i 
+iteratore umesto listi, pojednostavljena su pravila operatora poređenja, napravljene su promene u samoj sintaksi,...
+
+
+[[ 1., 0., 0.],
+ [ 0., 1., 2.]]
+Obe ove ose mi deluju da su duzine 3. Verovatno je greska u tutorijalu? 
+- kako sam ja razumeo, stvar sa nizovima je sledeca:
+- dimenzije numpy nizova se nazivaju osama. konkretan niz iz primera je dvodimenzioni niz, dimenzija (2,3). Jedna osa predstavlja broj elemenata niza (2), 
+a druga broj elemenata svakog pojedinacnog niza (3).
+- [
+   [
+    [ 1.  1.  1.]
+    [ 1.  1.  1.]
+   ]
+
+   [
+    [ 0.  0.  0.]
+    [ 0.  0.  0.]]
+   ]
+- ovo je trodimenzioni niz dimenzija tj. duzina osa (2, 2, 3) : niz ima 2 matrice sa 2 reda i 3 kolone
+
+Novoj instanci će biti pridružena najzastupljenija klasa. --- Ovo mi je malo cudna tvrdnja. Sta znaci najzastupljenija?
+- promenjeno 
+- Dodeljivanje klase nepoznatoj instanci vrši se tako što svaki bazni klasifikator d\^a svoju predikciju klase, 
+nakon čega se novoj instanci pridružuje najzastupljenija klasa. URADJENO
+
+Rezultati dobijeni na ovaj način su bolji od rezultata dobijenih korišćenjem
+samo jednog klasifikatora.
+Da bi grupni klasifikatori zaista davali bolje rezultate od pojedinačnih klasifikatora,
+potrebno je da budu ispunjena dva uslova
+Prethodne dve recenice su malo kontradiktorne: prva kaze da su bolji, a onda druga kaze sta treba da bude ispunjeno da budu bolji --- to treba malo srediti
+- promenjeno
+- Rezultati dobijeni primenom grupnih klasifikatora mogu biti bolji od rezultata dobijenih korišćenjem 
+samo jednog klasifikatora ako su ispunjena sledeća dva uslova
+
+Poželjno bi bilo koristiti model linearne regresije zbog njegove jednostavnosti
+i lake interpretabilnosti, ali na prvi pogled ovo nije moguće jer vrednosti linearnog
+modela pripadaju intervalu --- preformulisati, malo zbunjuje i ima dve poente, razdvojiti ih 
+(jedna poenta je jednotavnost i interpretabilnost, a druga poenta je na prvi pogled nemogucnost koriscenja... razdvojiti to u dve recenice).
+- razdvojeno 
+- Poželjno bi bilo koristiti model linearne regresije zbog njegove jednostavnosti i lake interpretabilnosti. 
+Međutim, na prvi pogled korišćenje linearnog modela nije moguće jer vrednosti linearnog modela pripadaju intervalu [$-\infty$, $\infty$]. URADJENO
+
+nadgledano učenje
+(eng. supervised learning), nenadgledano učenje (eng. unsupervised learning) ili uče-
+nje potkrepljivanjem (eng. reinforcement learning).
+Pominjete sve tri vrste ucenja a u nastavku se fokusirate samo na prvu. Potrebno je to objasniti: 
+"U nastavku teksta opisacemo detaljnije tehnike nadgledanog ucenja zato sto ...  
+Informacije o nenadgledanom ucenju i o ucenju potkrepljivanjem mogu se naci u literaturi \cite{ovde stavite neki citat}." 
+- U nastavku teksta detaljnije su opisane neke tehnike nadgledanog učenja. 
+Detaljnije informacije o nenadgledanom učenju i o učenju potkrepljivanjem nisu potrebne za razumevanje teze i mogu 
+se naći u literaturi \cite{ovde stavite neki citat}. URADJENO
+
+Sto se tice literature, prva dva bloga su onako. Nije mi bas najjasnije kolika je njihva tezina, ali mi se cini da neke te informacije mozete da procitate i 
+na zvanicnom python sajtu, npr kada je koji release izasao, verovatno ima tamo i neka istorija i cini mi se da je adekvatnije da to citirate.
+- prvi blog pise autor pythona
+- na kraju drugog bloga se navodi kao referenca tekst autora pythona: https://legacy.python.org/doc/essays/foreword/
+reference zamenjene sa https://legacy.python.org/doc/essays/foreword/ i https://www.python.org/doc/versions/				URADJENO
+
+oličenog u količini relevantnih podataka”[mladen]. --- popravite citat  URADJENO
+
+prepoznavanje lica na slikama, oblika na slikama, prepoznavanje tumora, --- ove tri stvari spadaju u prepoznavanje oblika, 
+zar ne (lice i tumori su specijalne vrste oblika?)  to bih preformulisala u prepoznavanje razlicitih oblika na slikama (na primer, lica i tumora) URADJENO
+
+slicno i za: autonomno upravljanje vozilima (na primer, automobilima ili letilicama) URADJENO
+
+što ih učenik reši, da --- ovo da treba da ima onu kapicu gore URADJENO
+
+Nakon toga, onda bi nadgledano ucenje moglo da ima svoj section. URADJENO
+
+Cini mi se da ovo nabrajanje ne treba da ide u itemize. Pored svakog navodjenja navedite i izvor. 
+Dakle „Klasifikacija je problem predviđanja kategoričke ciljne promenljive. \cite{izvor}” i isto i za ovo drugo. URADJENO
+
+rastojanje).Algoritam --- nedostaje tacka RAZMAK? URADJENO
+
+izborom. [13] ---> izborom [13]. URADJENO
+ 
+Koristi se i za probleme binarne i višeklasne klasifikacije.
+Koristi se i za probleme binarne i za probleme višeklasne klasifikacije. URADJENO
+
+(eng. machine learning) --- posle tacke, u istoj recenici, koristite ~ umesto blanko da bi razmak bio adkevatan, tj ovako
+(eng.~machine learning) URADJENO
+
+(eng. Ensemble methods) --- malo E URADJENO
+
+bazni klasifikatori ---- veliko b URADJENO
+
+Umesto 
+\begin{enumerate}[1)]
+\item \underline{\textit{Manipulacijom trening podataka}} Ponovnim izborom, u skladu sa izabranom raspodelom, 
+organizujete u 
+
+\begin{description}
+\item[Manipulacijom trening podataka] Ponovnim izborom, u skladu sa izabranom raspodelom,  URADJENO
+....
+Isto i za sledece je bolji description nego itemize URADJENO
+
+
+Sto se tice 6 i 8, to su u principu iste reference, i zapravo 8 je visak. 7 je ok da ostane. URADJENO
+
+Umesto citata 10 i 11, mozda bi mogli da citirate neku od knjiga odavde: 
+https://machinelearningmastery.com/products/
+Tj, ukoliko mozete da naslutite u kojoj bi od tih knjiga tacno taj tekst koji citrate mogao da bude. U stvari, imate na kraju samog bloga link na 
+odgvarajucu knjigu, pa stavite citat na tu knjigu (ista knjiga je u oba slucaja u pitanju).  URADJENO
+
+atibuta --- atributa URADJENO
+
+Ako je broj klasa dovoljno, veliki višeklasni --- pomeriti zarez URADJENO
+
+„Python je interpretirani, ... --- citat mora da ide uz recenicu koja se citira URADJENO
+
