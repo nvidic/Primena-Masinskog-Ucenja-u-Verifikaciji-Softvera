@@ -27,6 +27,7 @@
 
 % linkovi u sadržaju
 \usepackage{hyperref}
+\usepackage{url}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -424,52 +425,43 @@ Ako simboličko izvršavanje pokaže da neka putanja zadovoljava uslove ispravno
 
 Kao skup podataka za obučavanje modela klasifikacije korišćen je jm1.arff korpus podataka koji se nalazi na PROMISE repozitorijumu. PROMISE repozitorijum (eng.~PROMISE Software Engineering Repository) sadrži kolekciju javno dostupnih skupova podataka i alata koji treba da olakšaju istraživačima konstrukciju prediktivnih modela \cite{promise}. 
 
-JM1 datoteka sadrži informacije o C programima, njihovim karakteristikama i o tome da li sadrže grešku ili ne. Sastoji se od 10878 objekata, od kojih svaki ima 22 atributa\footnote{Za potrebe ovog rada korišćeno je 18 atributa.  Izostavljeni su atributi cyclomatic complexity, design complexity, essential complexity i branch count. Ovi atributi su izostavljeni jer za njih nije pronađen jedinstven opis, a izborom atributa je utvrđeno da ne spadaju u 10 najbitnijih atributa pa bi pokušaj njihovog izračunavanja odneo previše vremena ili bio nemoguć a dobit bi bila sitna. Atributi su izostavljani tek nakon što je utvrđeno da njihovo izostavljanje neće značajno uticati na kvalitet modela klasifikacije - model dobijen bez ovih atributa ima preciznost svega 0,02 manju od modela koji koristi sve atribute. Zbog toga je procenjeno da je bolje poboljšavati model na druge načine. }. Dvadeset jedan atribut se odnosi na razne karakteristike koda, a dvadeset drugi je atribut klase ( da li program ima ili nema grešku). 
+JM1 datoteka sadrži informacije o C programima, njihovim karakteristikama i o tome da li sadrže grešku ili ne. Sastoji se od 10878 objekata, od kojih svaki ima 22 atributa\footnote{Za potrebe ovog rada korišćeno je 18 atributa.  Izostavljeni su atributi cyclomatic complexity, design complexity, essential complexity i branch count. Ovi atributi su izostavljeni jer za njih nije pronađen jedinstven opis, a izborom atributa je utvrđeno da ne spadaju u 10 najbitnijih atributa pa bi pokušaj njihovog izračunavanja odneo previše vremena ili bio nemoguć a dobit bi bila sitna. Atributi su izostavljani tek nakon što je utvrđeno da njihovo izostavljanje neće značajno uticati na kvalitet modela klasifikacije - model dobijen bez ovih atributa ima preciznost svega 0,02 manju od modela koji koristi sve atribute. Zbog toga je procenjeno da je bolje poboljšavati model na druge načine. }. Sedamnaest atributa se odnosi na razne karakteristike koda, a osamnaesti je atribut klase ( da li program ima ili nema grešku) REFERENCA: 
 
+\textbf{LOC\_BLANK numeric } Broj praznih linija u izvornom kodu programa
 
-LOC\_BLANK numeric 
+\textbf{LOC\_CODE\_AND\_COMMENT numeric} Broj linija koda i komentara
 
-BRANCH\_COUNT numeric
+\textbf{LOC\_COMMENTS numeric} Broj linija komentara
 
-LOC\_CODE\_AND\_COMMENT numeric
+\textbf{LOC\_EXECUTABLE numeric} Broj izvršivih linija koda
 
-LOC\_COMMENTS numeric
+\textbf{LOC\_TOTAL numeric} Ukupan broj linija koda
 
-CYCLOMATIC\_COMPLEXITY numeric
+\textbf{NUM\_OPERANDS numeric} 
 
-DESIGN\_COMPLEXITY numeric
+\textbf{NUM\_OPERATORS numeric}
 
-ESSENTIAL\_COMPLEXITY numeric
+\textbf{NUM\_UNIQUE\_OPERANDS numeric}
 
-LOC\_EXECUTABLE numeric
+\textbf{NUM\_UNIQUE\_OPERATORS numeric}
 
-HALSTEAD\_CONTENT numeric
+\textbf{HALSTEAD\_CONTENT numeric}
 
-HALSTEAD\_DIFFICULTY numeric
+\textbf{HALSTEAD\_DIFFICULTY numeric}
 
-HALSTEAD\_EFFORT numeric
+\textbf{HALSTEAD\_EFFORT numeric}
 
-HALSTEAD\_ERROR\_EST numeric
+\textbf{HALSTEAD\_ERROR\_EST numeric}
 
-HALSTEAD\_LENGTH numeric
+\textbf{HALSTEAD\_LENGTH numeric}
 
-HALSTEAD\_LEVEL numeric
+\textbf{HALSTEAD\_LEVEL numeric}
 
-HALSTEAD\_PROG\_TIME numeric
+\textbf{HALSTEAD\_PROG\_TIME numeric}
 
-HALSTEAD\_VOLUME numeric
+\textbf{HALSTEAD\_VOLUME numeric}
 
-NUM\_OPERANDS numeric
-
-NUM\_OPERATORS numeric
-
-NUM\_UNIQUE\_OPERANDS numeric
-
-NUM\_UNIQUE\_OPERATORS numeric
-
-LOC\_TOTAL numeric
-
-Defective {Y,N}
+\textbf{Defective \{Y,N\} }
 
 
 
@@ -486,30 +478,39 @@ ARFF (eng.~ attribute-relation file format) predstavlja način reprezentacije sk
 
 
 
-\section{Nalaženje najboljeg algoritma predikcije}
+\section{Nalaženje najboljeg klasifikatora}
 
-izbor izmedju 3 algoritma da se vidi koji je najbolji. svaki se tretira na isti nacin. u daljem tekstu su opisanje transformacije nad podacima i sta je sve radjeno da bi se dobili rezultati. 
+U cilju dobijanja najboljeg modela klasifikacije, konstruisani su klasifikatori zasnovani na algoritmima k najbližih suseda, logistističke regresije i slučajnih šuma. Svaki od klasifikatora tretiran je na isti način. Vršene su brojne transformacije da bi dobijeni klasifikatori davali preciznije rezultate. Nakon izvršenih transformacija, upoređivani su dobijeni rezultati. U nastavku je detaljnije opisan proces razvoja modela klasifikacije.  
 
-%\subsection{Transformacije nad podacima} 
+\subsection{Upoznavanje sa podacima} 
 
-\subsection{Uklanjanje podataka sa nedostajucim vrednostima}
+Da bismo znali šta sa podacima treba da radimo potrebno je da ih analiziramo. Broj podataka i atributi su već poznati. Prvi korak pri upoznavanju koji bi trebalo uraditi je obrada podataka sa nedostajućim vrednostima. Posto takvih podataka nema u korpusu, ovaj korak je preskočen. U slučaju da postoje nedostajuće vrednosti, one se mogu tretirati na neki od načina opisanih u \cite{mitic}. Nakon toga, treba proveriti raspodelu klasa među podacima. Na slici RASPODELA\_KLASA vidi se da su podaci prilično neravnomerno raspoređeni. od 10878 podataka, čak 8776 podataka su podaci koji imaju grešku, a 2102 nema grešku. Ovo može predstavljati problem. Modeli trenirani nad podacima koji imaju ovako velike razlike u zastupljenosti klasa, mogu davati pristrasne rezultate tj. težiti da novim instancama dodele zastupljeniju klasu. U ovom slučaju je to nedopustivo posebno zato što su podaci od interesa programi kod kojih greška postoji. Ovaj problem se može rešiti na nekoliko načina, a ovde je rešen dodavanjem novih instanci (eng.~oversampling) i to je detaljnije opisano u delu \ref{oversampling}. Nekoliko koraka je urađeno pre samog dodavanja novih instanci.  
 
 %			 
 \subsection{Standardizacija}
 %			 ...
+Na slici ATRIBUTI\_INSTANCE vidi se da se opsezi vrednosti atributa dosta razlikuju (ili prikazati jednu instancu ili prosecne vrednosti atributa - moyda bolje ovo prvo). To može dovesti do problema jer će atributi sa ... ISPISATI IZ KNJIGE.
+Zbog toga je potrebno izvršiti normalizaciju podataka kako atributi sa visokim vrednostima ne bi previše uticali na rezultat klasifikacije.  
+
 
 \subsection{Primena modela klasifikacije na podatke}
 
+Primena modela na podatke nakon osnovnih transformacija. One nisu dovoljne. Ovo je ilustracija situacije kada na prvi pogled dobri rezultati nisu uopšte tako dobri. Na slici su prikazani rezultati ...
 
 \subsection{Ocena modela klasifikacije}
 Ovde se radi o 3 modela pa treba porediti rezultate
 
 (tacnost, matrica konfuzije, preciznost, odziv, ... - generalno ono sto bude potrebno)
 
-\subsection{Oversampling} 
+\subsection{Dodavanje novih instanci - Oversampling} \label{oversampling}
 	- uoceno je da je potreban
+	- zasto ne undersampling - premalo podataka 
+
+\subsection{Novi modeli}
 
 \subsection{Izbor atributa}
+
+\subsection{Novi modeli}
 
 \subsection{Zakljucak o najboljem algoritmu}
 Na osnovu prethodnih rezultata, najbolji model klasifikacije zasniva se na algoritmu slucajne sume ...
@@ -624,6 +625,9 @@ Na osnovu prethodnih rezultata, najbolji model klasifikacije zasniva se na algor
 % ------------------------------------------------------------------------------
 % Literatura
 % ------------------------------------------------------------------------------
+
+
+
 \literatura
 
 % ==============================================================================
@@ -652,7 +656,7 @@ Na osnovu prethodnih rezultata, najbolji model klasifikacije zasniva se na algor
 \end{biografija}
 % ------------------------------------------------------------------------------
 
+%\bibliography{rad.bib}{}
+%\bibliographystyle{plain}
 
-\bibliography{rad.bib}{}
-\bibliographystyle{plain}
 \end{document}
