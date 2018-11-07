@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b93290f-e139-4662-9532-490bbbdbb9c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Attributes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Attributes.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sklearn/K Nearest Neighbors/KNN - k Nearest Neighbors.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../sklearn/K Nearest Neighbors/KNN - k Nearest Neighbors.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sklearn/Random Forests/Random Forests.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../sklearn/Random Forests/Random Forests.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teza/rad.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../teza/rad.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teza/rad.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../teza/rad.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teza/rad.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../teza/rad.tex" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,21 +75,21 @@
     <session id="2004602505">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.4" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/attributes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9401">
-              <caret line="554" column="29" selection-start-line="554" selection-start-column="25" selection-end-line="554" selection-end-column="29" />
+            <state relative-caret-position="456">
+              <caret line="1461" column="70" lean-forward="true" selection-start-line="1461" selection-start-column="62" selection-end-line="1461" selection-end-column="70" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -94,10 +97,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="-544">
               <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
@@ -157,8 +160,8 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="25" />
-    <option name="width" value="1368" />
-    <option name="height" value="743" />
+    <option name="width" value="1369" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -183,6 +186,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -194,7 +198,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -292,16 +295,6 @@
     <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/1937003313/builtins.py" />
     <entry file="file:///usr/lib/python3.7/ntpath.py" />
     <entry file="file:///usr/lib/python3.7/typing.py" />
-    <entry file="file://$PROJECT_DIR$/attributes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9401">
-          <caret line="554" column="29" selection-start-line="554" selection-start-column="25" selection-end-line="554" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/c_attributes.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9690">
@@ -314,8 +307,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="-544">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/attributes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="1461" column="70" lean-forward="true" selection-start-line="1461" selection-start-column="62" selection-end-line="1461" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
