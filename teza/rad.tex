@@ -497,7 +497,7 @@ Vršene su brojne transformacije da bi dobijeni klasifikatori davali preciznije 
 
 %Tačnost je bliskost rezultata merenja stvarnoj vrednosti merene veličine. Ako se pri merenju težine tega teškog 10kg dobije rezultat 3.2kg tada rezultat merenja nije tačan \cite{mitic, labwrite}.
 
-Matrica konfuzije je tabelarni prikaz brojeva ispravno i pogrešno klasifikovanih objekata na osnovu kojih se mogu vršiti ocene modela klasifikacije. Slika \ref{fig:matrkonf} prikazuje opšti izgled matrice konfuzije za problem binarne klasifikacije. Svako od polja $f_{ij}$ označava broj objekata klase $i$ koji su klasifikovani kao objekti klase $j$. Na osnovu vrednosti matrice mogu se izračunati ukupan broj tačnih predviđanja ($f_{11}+f_{00}$) i ukupan broj pogrešnih predviđanja ($f_{10}+f_{01}$) \cite{mitic}.
+\textit{Matrica konfuzije} je tabelarni prikaz brojeva ispravno i pogrešno klasifikovanih objekata na osnovu kojih se mogu vršiti ocene modela klasifikacije. Slika \ref{fig:matrkonf} prikazuje opšti izgled matrice konfuzije za problem binarne klasifikacije. Svako od polja $f_{ij}$ označava broj objekata klase $i$ koji su klasifikovani kao objekti klase $j$. Na osnovu vrednosti matrice mogu se izračunati ukupan broj tačnih predviđanja ($f_{11}+f_{00}$) i ukupan broj pogrešnih predviđanja ($f_{10}+f_{01}$) \cite{mitic}.
 
 \begin{figure}[!ht]
   \centering
@@ -506,7 +506,7 @@ Matrica konfuzije je tabelarni prikaz brojeva ispravno i pogrešno klasifikovani
   \label{fig:matrkonf}
 \end{figure}
 
- Za poređenje većeg broja modela bilo bi jednostavnije da su vrednosti matrice konfuzije predstavljene jednim brojem. U tu svrhu se mogu koristiti tačnost (eng.~accuracy)  i stopa (odnos) greške (eng.~error rate). Tačnost je broj tačnih predviđanja podeljen ukupnim brojem predviđanja. Odnos greške je broj pogrešnih predviđanja podeljen ukupnim brojem predviđanja. Većina algoritama treba da ostvari najveću tačnost (ili analogno najmanju stopu (odnos) greške) \cite{mitic}.
+ Za poređenje većeg broja modela bilo bi jednostavnije da su vrednosti matrice konfuzije predstavljene jednim brojem. U tu svrhu se mogu koristiti tačnost (eng.~accuracy)  i stopa (odnos) greške (eng.~error rate). \textit{Tačnost} je broj tačnih predviđanja podeljen ukupnim brojem predviđanja. \textit{Odnos greške} je broj pogrešnih predviđanja podeljen ukupnim brojem predviđanja. Većina algoritama treba da ostvari najveću tačnost (ili analogno najmanju stopu (odnos) greške) \cite{mitic}.
 
 $$ \textit{Tačnost} = \frac{f_{11}+f_{00}}{f_{11}+f_{10}+f_{01}+f_{00}} $$
 
@@ -543,7 +543,7 @@ Stvarno negativni (TN - true negative) ili $f_{--}$ je broj objekata koji pripad
 
 %Tačnost (eng.~accuracy)
 
-Metrike koje se sa dosta uspeha koriste kada je potrebno otkriti jednu od klasa su preciznost i odziv. Preciznost (eng.~precision) je procenat stvarno pozitivnih objekata među objektima koji su klasifikovani kao pozitivni. Veća preciznost takođe znači da postoji manji broj lažno pozitivnih objekata. Odziv (eng.~recall) odziv predstavlja procenat pozitivnih objekata koji su ispravno klasifikovani. Visok odziv znači da postoji mali broj lažno negativnih objekata. Preciznost i odziv se mogu sumirati u metriku koja se zove $F_1 mera$ (eng.~F\_1 measure)  \cite{mitic}.
+Metrike koje se sa dosta uspeha koriste kada je potrebno otkriti jednu od klasa su preciznost i odziv. \textit{Preciznost} (eng.~precision) je procenat stvarno pozitivnih objekata među objektima koji su klasifikovani kao pozitivni. Veća preciznost takođe znači da postoji manji broj lažno pozitivnih objekata. \textit{Odziv} (eng.~recall) odziv predstavlja procenat pozitivnih objekata koji su ispravno klasifikovani. Visok odziv znači da postoji mali broj lažno negativnih objekata. Preciznost i odziv se mogu sumirati u metriku koja se zove $F_1\ mera$ (eng.~F\_1 measure)  \cite{mitic}.
 
 $$ \textit{Preciznost} = \frac{TP}{TP+FP} $$
 
@@ -567,10 +567,10 @@ Da bismo znali šta sa podacima treba da radimo potrebno je da ih analiziramo i 
 %			 
 \subsection{Transformacija atributa}
 
-Termin transformacija atributa označava transformaciju koja se primenjuje na sve vrednosti atributa. To znači da će vrednost atributa svakog objekta biti transformisana. Postoje različiti tipovi transformacija, a koji tip će biti korišćen zavisi od prirode podataka. U nekim situacijama je dovoljno primeniti jednostavnu matematičku funkciju na vrednosti atributa $x$ (npr. $x^k$, $\log x$, $\sqrt{x}$, $\left| x \right|$, ...) . U nekim drugim situacijama potrebno je izvršiti normalizaciju ili standardizaciju \footnote{Prema literaturi, često se u oblasti istraživanja podataka ova dva termina koriste kao jedan. Međutim, paket scikit-learn razlikuje normalizaciju i standardizaciju pa će stoga biti razlikovane i u ovoj tezi. Dodatno, u tezi se za transformaciju podataka koristi samo standardizacija pa će ona biti detaljnije objašnjena.}. Cilj normalizacije i standardizacije je da transformacijama skup vrednosti dobije određena svojstva \cite{mitic}.  
+Termin \textit{transformacija atributa} označava transformaciju koja se primenjuje na sve vrednosti atributa. To znači da će vrednost atributa svakog objekta biti transformisana. Postoje različiti tipovi transformacija, a koji tip će biti korišćen zavisi od prirode podataka. U nekim situacijama je dovoljno primeniti jednostavnu matematičku funkciju na vrednosti atributa $x$ (npr. $x^k$, $\log x$, $\sqrt{x}$, $\left| x \right|$, ...) . U nekim drugim situacijama potrebno je izvršiti normalizaciju ili standardizaciju \footnote{Prema literaturi, često se u oblasti istraživanja podataka ova dva termina koriste kao jedan. Međutim, paket scikit-learn razlikuje normalizaciju i standardizaciju pa će stoga biti razlikovane i u ovoj tezi. Dodatno, u tezi se za transformaciju podataka koristi samo standardizacija pa će ona biti detaljnije objašnjena.}. Cilj normalizacije i standardizacije je da transformacijama skup vrednosti dobije određena svojstva \cite{mitic}.  
 
 
-Standardizacija je tehnika transformisanja atributa na taj način što se od svake vrednosti atributa oduzima njegova sredina, a zatim se dobijena vrednost deli standardnom devijacijom atributa. Na ovaj način se dobijaju nove vrednosti atributa, a sam atribut će imati sredinu 0 i standardnu devijaciju 1. 
+\textit{Standardizacija} je tehnika transformisanja atributa na taj način što se od svake vrednosti atributa oduzima njegova sredina, a zatim se dobijena vrednost deli standardnom devijacijom atributa. Na ovaj način se dobijaju nove vrednosti atributa, a sam atribut će imati sredinu 0 i standardnu devijaciju 1. 
 Standardizacija je često neophodna za veliki broj algoritama mašinskog učenja paketa scikit-learn. U slučaju da atributi nemaju raspodelu podataka sličnu normalnoj ili Gausovoj algoritmi mašinskog učenja mogu proizvesti pogrešne rezultate. 
 Standardizacija je često neophodna ako se veći broj promenljivih međusobno kombinuju. Standardizacijom se sprečava uticaj promenljive sa visokim vrednostima atributa na rezultat izračunavanja. Jednostavan ali slikovit primer kada treba primeniti standardizaciju je situacija u kojoj treba porediti dve osobe na osnovu godina i plate. Razlike u platama mogu biti veće od razlika u godinama zato što se njihovi opsezi vrednosti dosta razlikuju (godine su broj manji od 100, a plate se mere u desetinama ili stotinama hiljada). U takvoj situaciji, ukoliko se ove razlike ne uzmu u obzir, na rezultat poređenja će najviše uticati razlike u platama (Euklidsko rastojanje je jedna od metrika kod koje se moraju uzeti u obzir razlike u opsezima atributa) \cite{ sklearn_preprocessing, mlm2, mitic}. 
 
@@ -681,8 +681,13 @@ TODO: ispisati rezultate kros validacije
 
 
 \subsection{Dodavanje novih instanci - Oversampling} \label{oversampling}
-	- uoceno je da je potreban
-	- zasto ne undersampling - premalo podataka 
+% 	- uoceno je da je potreban
+% 	- zasto ne undersampling - premalo podataka 
+
+Jedan od načina rešavanja problema neravnomerne raspodele klasa je \textit{manipulisanje instancama/uzorcima} (eng.~sampling) sa ciljem modifikovanja raspodele instanci. Posledica ovakve modifikacije raspodele je da ređe zastupljena klasa postaje reprezentativna u skupu trening podataka. Manipulacija instancama obuhvata dodavanje novih instanci (eng.~oversampling), uklanjanje postojećih instanci (eng.~undersampling) i kombinaciju prethodne dve tehnike \cite{mitic}. 
+
+\textit{Uklanjanje postojećih instanci} je tehnika transformisanja trening skupa uklanjanjem nekih od podataka koji pripadaju zastupljenijoj klasi originalnog skupa podataka za trening. 
+\textit{Dodavanje novih instanci} je tehnika transformisanja trening skupa dodavanjem novih podataka nastalih na osnovu nekih od podataka koji pripadaju manje zastupljenoj klasi originalnog skupa podataka za trening. U Python-u je dodavanje novih instanci podržano u okviru paketa \textit{imbalanced-learn} koji pruža mogućnost korišćenja četiri metoda dodavanja novih instanci - slučajno dodavanje (RandomOverSampler), SMOTE, SMOTE-NC i ADASYN. RandomOverSampler kreira nove uzorke na osnovu postojećih podataka metodom slučajnog izbora sa zamenom. ADASYIN i SMOTE nove uzorke kreiraju interpolacijom. Fokus ADASYIN-a je na kreiranju podataka koji se nalaze u blizini originalnih podataka pogrešno klasifikovanih od strane algoritma k najbližih suseda. Sa druge strane, SMOTE podjednako tretira sve podatke (bez obzira na to kako su klasifikovani algoritmom k najbližih suseda). SMOTE-NC služi za rad sa skupovima podataka koji sadrže neprekidne i kategoričke atribute. U ovoj tezi korišćen je metod SMOTE \cite{imblearn, mitic}.
 
 \begin{lstlisting}[language=Python, basicstyle=\tiny]
 	from imblearn.over_sampling import SMOTE
