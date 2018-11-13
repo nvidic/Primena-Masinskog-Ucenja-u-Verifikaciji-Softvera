@@ -472,7 +472,7 @@ JM1 datoteka sadrži informacije o C programima, njihovim karakteristikama i o t
 
 \subsection{Format arff}
 % Data Mining Practical Machine Learning Tools and Techniques
-ARFF (eng.~ attribute-relation file format) predstavlja način reprezentacije skupova podataka koji se sastoje od nezavisnih, neuređenih instanci i koji ne uključuju međusobne relacije među instancama. Izgled arff fajla prikazan je na slici \ref{fig:arff}. Linije koje počinju znakom ,,\%'' predstavljaju komentare. Nakon komentara nalaze se naziv relacije i blok koji definiše atribute. Postoje četiri tipa atributa: imenski, brojčani, stringovi i datumi. Pri definiciji imenskih atributa potrebno je osim naziva atributa navesti i skup vrednosti, u vitičastim zagradama, koje atribut uzima. Brojčani atributi moraju da sadrže ključnu reč \textit{numeric}, stringovi \textit{string}, a datumi \textit{date}. Tip datum je zapravo poseban slučaj tipa string koji poštuje datum-vreme format: yyyy-MM-dd-THH:mm:ss (četiri cifre za godinu, po dve za mesec i dan nakon čega sledi ,,T'' i po dve cifre za sate, minute i sekunde). Odlika arff formata je da se klasni atribut eksplicitno ne navodi već je on jedan od navedenih atributa. Posledica ove odlike je da se isti fajl može koristiti da bi se odredilo koliko dobro se predviđa svaki atribut na osnovu ostalih, za pronalaženje pravila pridruživanja (eng.~association rules) ili za klasterovanje. Nakon bloka kojim se definišu atributi slede linije sa podacima, kojima prethodi @data linija. Svaka instanca se navodi u posebnoj liniji, vrednosti atributa su razdvojene zarezima, a nedostajuće vrednosti označene znakom ,,?'' \cite{weka}. 
+ARFF (eng.~ Attribute-Relation File Format) predstavlja način reprezentacije skupova podataka koji se sastoje od nezavisnih, neuređenih instanci i koji ne uključuju međusobne relacije među instancama. Izgled arff fajla prikazan je na slici \ref{fig:arff}. Linije koje počinju znakom ,,\%'' predstavljaju komentare. Nakon komentara nalaze se naziv relacije i blok koji definiše atribute. Postoje četiri tipa atributa: imenski, brojčani, stringovi i datumi. Pri definiciji imenskih atributa potrebno je osim naziva atributa navesti i skup vrednosti, u vitičastim zagradama, koje atribut uzima. Brojčani atributi moraju da sadrže ključnu reč \textit{numeric}, stringovi \textit{string}, a datumi \textit{date}. Tip datum je zapravo poseban slučaj tipa string koji poštuje datum-vreme format: yyyy-MM-dd-THH:mm:ss (četiri cifre za godinu, po dve za mesec i dan nakon čega sledi ,,T'' i po dve cifre za sate, minute i sekunde). Odlika arff formata je da se klasni atribut eksplicitno ne navodi već je on jedan od navedenih atributa. Posledica ove odlike je da se isti fajl može koristiti da bi se odredilo koliko dobro se predviđa svaki atribut na osnovu ostalih, za pronalaženje pravila pridruživanja (eng.~association rules) ili za klasterovanje. Nakon bloka kojim se definišu atributi slede linije sa podacima, kojima prethodi @data linija. Svaka instanca se navodi u posebnoj liniji, vrednosti atributa su razdvojene zarezima, a nedostajuće vrednosti označene znakom ,,?'' \cite{weka}. 
 
 \begin{figure}[!ht]
   \centering
@@ -486,16 +486,24 @@ ARFF (eng.~ attribute-relation file format) predstavlja način reprezentacije sk
 \section{Nalaženje najboljeg klasifikatora}
 
 U cilju dobijanja najboljeg modela klasifikacije, konstruisani su klasifikatori zasnovani na algoritmima k najbližih suseda, logistističke regresije i slučajnih šuma. Svaki od klasifikatora tretiran je na isti način. % \footnote{Uz sitne razlike zarad prilagođavanja konkretnom algoritmu}. 
-Vršene su brojne transformacije da bi dobijeni klasifikatori davali preciznije rezultate. Nakon izvršenih transformacija, upoređivani su dobijeni rezultati. Poređenje klasifikatora vrši se upoređivanjem njihovih svojstava. U nastavku je opisan proces kreiranja i unapređivanja klasifikacionih modela.  
+Vršene su razne transformacije da bi dobijeni klasifikatori davali preciznije rezultate. Nakon izvršenih transformacija, upoređivani su dobijeni rezultati. Poređenje klasifikatora vrši se upoređivanjem njihovih svojstava. U nastavku je opisan proces kreiranja i unapređivanja klasifikacionih modela.  
 %U nastavku su opisana neka od brojnih svojstava klasifikatora na osnovu kojih su klasifikatori upoređivani, dodatni pojmovi korišćeni pri tumačenju rezultata, kao i proces kreiranja i unapređivanja klasifikacionih modela.  
+
+\subsection{Tehnike evaluacije klasifikacionih modela}
+
+Po završetku kreiranja klasifikacionog modela korisno je testirati njegove performanse na skupu podataka koji mu je nepoznat, pri čemu skup podataka sadrži informacije o klasama. Ovakav vid testiranja predstavlja nepristrasnu ocenu generalizacije. Često korišćeni metodi evaluacije su  \cite{mitic, mladen, UMLFTA}: 
+
+\begin{description}
+
+\item[Evaluacija pomoću skupa za testiranje] Evaluacija pomoću skupa za testiranje (eng.~holdout method) je tehnika koja originalni skup podataka deli na dva disjunktna podskupa, za obučavanje i za testiranje klasifikatora (npr. u odnosima 70:30, 60:40). Zatim se klasifikacioni model dobije na osnovu podataka za treniranje, nakon čega se performanse modela ocenjuju na podacima za testiranje. Na ovaj način se na osnovu podataka za testiranje može proceniti tačnost klasifikacije. Ovaj metod ima nekoliko nedostataka: 1) manji broj podataka za obučavanje modela (jer je deo podataka izdvojen za kasnije testiranje modela) zbog čega je moguće dobiti lošiji model nego kada se koriste svi podaci, 2) model može dosta zavisiti od izgleda skupova za treniranje i testiranje i 3) skupovi za treniranje i za testiranje sada zavise jedan od drugog - klasa koja je zastupljenija u jednom skupu automatski je manje zastupljena u drugom.
+
+\item[K-slojna unakrsna validacija] K-slojna unakrsna validacija (eng.~K-fold cross-validation) je tehnika evaluacije klasifikacionih modela koja predstavlja bolji izbor u odnosu na evaluaciju pomoću skupa za testiranje. U opštem slučaju izvodi se tako što se originalni skup podataka deli na $k$ jednakih podskupova (slojeva). Jedan podskup koristi se za testiranje, a svi ostali za treniranje. Dobijenim modelom se izvrše predviđanja na trenutnom sloju. Ovaj postupak se ponavlja u $k$ iteracija tako da se svaki podskup tačno jednom koristi za testiranje. Po završetku svih iteracija potrebno je izračunati ocenu kvaliteta modela na osnovu svih prethodnih predviđanja. 
+
+\end{description}
+
 
 %Neka svojstva klasifikatora i pojmovi korišćeni za tumačenje rezultata
 \subsection{Matrica konfuzije}
-
-% izbaciti ovu tacnost i preciznost?
-%Preciznost predstavlja bliskost dobijenih rezultata prilikom višestrukog ponavljanja merenja koja se vrše pod istim uslovima. Na primer, ako se pri većem broju merenja tega svaki put dobija rezultat 3.2kg mera je precizna čak i ako stvarna težina tega iznosi 10kg \cite{mitic, labwrite}.
-
-%Tačnost je bliskost rezultata merenja stvarnoj vrednosti merene veličine. Ako se pri merenju težine tega teškog 10kg dobije rezultat 3.2kg tada rezultat merenja nije tačan \cite{mitic, labwrite}.
 
 \textit{Matrica konfuzije} je tabelarni prikaz brojeva ispravno i pogrešno klasifikovanih objekata na osnovu kojih se mogu vršiti ocene modela klasifikacije. Slika \ref{fig:matrkonf} prikazuje opšti izgled matrice konfuzije za problem binarne klasifikacije. Svako od polja $f_{ij}$ označava broj objekata klase $i$ koji su klasifikovani kao objekti klase $j$. Na osnovu vrednosti matrice mogu se izračunati ukupan broj tačnih predviđanja ($f_{11}+f_{00}$) i ukupan broj pogrešnih predviđanja ($f_{10}+f_{01}$) \cite{mitic}.
 
@@ -551,11 +559,12 @@ $$ \textit{Odziv} = \frac{TP}{TP+FN} $$
 
 $$ F_1\ mera = \frac{2TP}{2TP+FP+FN}$$
 
+
 \subsection{Upoznavanje sa podacima}  \label{upoznavanje}
 
 \textit{Preprocesiranje podataka} (eng.~data preprocessing) je široka oblast koja obuhvata različite tehnike i strategije koje se koriste zarad dobijanja podataka pogodnijih za rad. Te tehnike i strategije spadaju ili u izbor objekata i atributa za analizu ili u kreiranje novih atributa/menjanje postojećih atributa i ne postoji generalno pravilo kojim redom će se one primenjivati. Na izbor tehnika i strategija utiče priroda podataka sa kojima se radi \cite{mitic}. 
 
-Da bismo znali šta sa podacima treba da radimo potrebno je da ih analiziramo i da se sa njima upoznamo. Broj podataka i atributi su poznati iz dela \ref{kor_podaci}. Jedan od prvih koraka pri upoznavanju koji bi trebalo uraditi je obrada podataka sa nedostajućim vrednostima. Posto takvih podataka nema u korpusu, ovaj korak je preskočen. U slučaju da postoje nedostajuće vrednosti, one se mogu tretirati na neki od načina opisanih u \cite{mitic}. Nakon toga, potrebno je proveriti raspodelu klasa među podacima. Na slici \ref{fig:raspodela} vidi se da su podaci prilično neravnomerno raspoređeni. Podaci koji nemaju grešku su daleko zastupljeniji od podataka koji imaju grešku. Od 10878 podataka, čak 8776 podataka su podaci koji imaju grešku, a 2102 nema grešku i ovo može predstavljati problem. Modeli trenirani nad podacima koji imaju ovako velike razlike u raspodeli klasa, mogu davati pristrasne rezultate tj. težiti da novim instancama dodele zastupljeniju klasu - programa bez greške. U ovom slučaju gde su podaci od interesa programi kod kojih greška postoji to je posebno nedopustivo. Problem neravnomerne raspodele klasa se može rešiti na nekoliko načina. U ovom radu problem je rešen dodavanjem novih instanci (eng.~oversampling) i to je detaljnije opisano u delu \ref{oversampling}. Postoji nekoliko koraka urađenih pre samog dodavanja novih instanci.  
+Da bismo znali šta sa podacima treba da radimo potrebno je da ih analiziramo i da se sa njima upoznamo. Broj podataka i atributi su poznati iz dela \ref{kor_podaci}. Jedan od prvih koraka pri upoznavanju koji bi trebalo uraditi je obrada podataka sa nedostajućim vrednostima. Posto takvih podataka nema u korpusu, ovaj korak je preskočen. U slučaju da postoje nedostajuće vrednosti, one se mogu tretirati na neki od načina opisanih u \cite{mitic}. Nakon toga, potrebno je proveriti raspodelu klasa među podacima. Na slici \ref{fig:raspodela} vidi se da su podaci prilično neravnomerno raspoređeni. Podaci koji nemaju grešku su daleko zastupljeniji od podataka koji imaju grešku. Od 10878 podataka, čak 8776 podataka su podaci koji imaju grešku, a 2102 nema grešku i ovo može predstavljati problem. Modeli trenirani nad podacima koji imaju ovako velike razlike u raspodeli klasa, mogu davati pristrasne rezultate tj. težiti da novim instancama dodele zastupljeniju klasu - programa bez greške. U ovom slučaju gde su podaci od interesa programi kod kojih greška postoji to je posebno nedopustivo. Problem neizbalansiranih klasa se može rešiti na nekoliko načina. U ovom radu problem je rešen dodavanjem novih instanci (eng.~oversampling) i to je detaljnije opisano u delu \ref{oversampling}. Postoji nekoliko koraka urađenih pre samog dodavanja novih instanci.  
 
 \begin{figure}[!ht]
   \centering
@@ -585,9 +594,9 @@ Na slici \ref{fig:atr_opsezi} vidi se da se opsezi vrednosti atributa dosta razl
 
 \subsection{Treniranje modela klasifikacije i njihove ocene}
 
-Nakon osnovnog upoznavanja sa podacima i urađene standardizacije mogu se konstruisati inicijalni modeli klasifikacije za svaki algoritam. Rad sa klasifikacionim modelima u Python-u je prilično jednostavan \cite{sklearn}:
+Nakon osnovnog upoznavanja sa podacima i urađene standardizacije mogu se konstruisati inicijalni modeli klasifikacije za svaki algoritam. Rad sa klasifikacionim modelima u Python-u je prilično jednostavan i gruba skica bi se sastojala od četiri koraka \cite{scikit-learn}:
 
-Na početku je potrebno skup podataka podeliti na skup za trening i skup za testiranje u odnosu 60:40. Za podelu skupa podataka dovoljno je pozvati metod $train\_test\_split$ koji pripada modulu model\_selection u okviru paketa sklearn (scikit-learn). 
+Na početku je potrebno skup podataka podeliti na skup za trening i skup za testiranje (npr. u odnosu 60:40) da bi kasnije bilo moguće proceniti kvalitet modela. Za podelu skupa podataka dovoljno je pozvati metod $train\_test\_split$ koji pripada modulu model\_selection u okviru paketa sklearn (scikit-learn). 
 
 \begin{lstlisting}[language=Python, basicstyle=\tiny]
 	from sklearn.model_selection import train_test_split
@@ -595,7 +604,7 @@ Na početku je potrebno skup podataka podeliti na skup za trening i skup za test
 		train_test_split(X, y, test_size=0.4, random_state=42)
 \end{lstlisting}
 
-Zatim se iz odgovarajućeg paketa učitava i kreira klasifikacioni model. 
+Zatim se iz odgovarajućeg paketa učitava i kreira klasifikacioni model \footnote{U ovoj tezi se prilikom kreiranja klasifikatora zasnovanih na algoritmu k najbližih suseda za vrednosti k uzimaju 3 i 15 (u zavisnosti od situacije). Do ovih vrednosti se došlo konstruisanjem algoritama za vrednosti k = 1..25 i poređenjem tačnosti dobijenih klasifikatora. Izabrane vrednosti k su one za koje su dobijeni modeli imali najveću ili skoro najveću tačnost, a da su neparan broj.}. 
 \begin{lstlisting}[language=Python, basicstyle=\tiny]
 	# from sklearn.neighbors import KNeighborsClassifier
 	# clf = KNeighborsClassifier(n_neighbors=15)
@@ -615,7 +624,7 @@ Konačno, metodom $predict$ se model primeni na test podatke.
 	y_pred = clf.predict(X_test)
 \end{lstlisting}
 
-Na slici \ref{fig:confmatr} mogu se videti tačnosti i matrice konfuzije za svaki od tri klasifikaciona modela. Slika pokazuje da se tačnosti klasifikacionih modela zasnovanih na različitim algoritmima jako malo razlikuju (0.805, 0.810 i 0.804). Pošto je tačnost modela broj u opsegu [0-1] ostvarene tačnosti za svaki od modela su zadovoljavajuće i ako bi se gledala samo preciznost modela sva tri bi mogla da se koriste. Međutim, za sva tri modela se vidi da postoji relativno veliki broj (oko 700) lažno negativnih predviđanja. Ovo nikako ne valja jer klasifikatori treba da otkrivaju programe koji imaju grešku, a kako stvari trenutno stoje oni će veliki broj programa sa greškom klasifikovati kao programe bez greške. Ovo je posledica neravnomerne raspodele klasa (kao što je napomenuto u delu \ref{upoznavanje}). 
+Na slici \ref{fig:confmatr} mogu se videti tačnosti i matrice konfuzije za svaki od tri klasifikaciona modela. Slika pokazuje da se tačnosti klasifikacionih modela zasnovanih na različitim algoritmima jako malo razlikuju (0.805, 0.810 i 0.804). Pošto je tačnost modela broj u opsegu [0-1] ostvarene tačnosti za svaki od modela su zadovoljavajuće i ako bi se gledala samo preciznost modela sva tri bi mogla da se koriste. Međutim, za sva tri modela se vidi da postoji relativno veliki broj (oko 700) lažno negativnih predviđanja. Ovo nikako ne valja jer klasifikatori treba da otkrivaju programe koji imaju grešku, a kako stvari trenutno stoje oni će veliki broj programa sa greškom klasifikovati kao programe bez greške. Ovo je posledica naizbalansiranosti klasa (kao što je napomenuto u delu \ref{upoznavanje}). 
 
 \begin{figure}[!h]
     \centering
@@ -684,10 +693,12 @@ TODO: ispisati rezultate kros validacije
 % 	- uoceno je da je potreban
 % 	- zasto ne undersampling - premalo podataka 
 
-Jedan od načina rešavanja problema neravnomerne raspodele klasa je \textit{manipulisanje instancama/uzorcima} (eng.~sampling) sa ciljem modifikovanja raspodele instanci. Posledica ovakve modifikacije raspodele je da ređe zastupljena klasa postaje reprezentativna u skupu trening podataka. Manipulacija instancama obuhvata dodavanje novih instanci (eng.~oversampling), uklanjanje postojećih instanci (eng.~undersampling) i kombinaciju prethodne dve tehnike \cite{mitic}. 
+Jedan od načina rešavanja problema neizbalansiranih klasa je \textit{manipulisanje instancama/uzorcima} (eng.~sampling) sa ciljem modifikovanja raspodele instanci. Posledica ovakve modifikacije raspodele je da ređe zastupljena klasa postaje reprezentativna u skupu trening podataka. Manipulacija instancama obuhvata dodavanje novih instanci (eng.~oversampling), uklanjanje postojećih instanci (eng.~undersampling) i kombinaciju prethodne dve tehnike \cite{mitic}. 
 
 \textit{Uklanjanje postojećih instanci} je tehnika transformisanja trening skupa uklanjanjem nekih od podataka koji pripadaju zastupljenijoj klasi originalnog skupa podataka za trening. 
 \textit{Dodavanje novih instanci} je tehnika transformisanja trening skupa dodavanjem novih podataka nastalih na osnovu nekih od podataka koji pripadaju manje zastupljenoj klasi originalnog skupa podataka za trening. U Python-u je dodavanje novih instanci podržano u okviru paketa \textit{imbalanced-learn} koji pruža mogućnost korišćenja četiri metoda dodavanja novih instanci - slučajno dodavanje (RandomOverSampler), SMOTE, SMOTE-NC i ADASYN. RandomOverSampler kreira nove uzorke na osnovu postojećih podataka metodom slučajnog izbora sa zamenom. ADASYIN i SMOTE nove uzorke kreiraju interpolacijom. Fokus ADASYIN-a je na kreiranju podataka koji se nalaze u blizini originalnih podataka pogrešno klasifikovanih od strane algoritma k najbližih suseda. Sa druge strane, SMOTE podjednako tretira sve podatke (bez obzira na to kako su klasifikovani algoritmom k najbližih suseda). SMOTE-NC služi za rad sa skupovima podataka koji sadrže neprekidne i kategoričke atribute. U ovoj tezi korišćen je metod SMOTE \cite{imblearn, mitic}.
+
+% za smote ima dodatno u data mining the textbook
 
 \begin{lstlisting}[language=Python, basicstyle=\tiny]
 	from imblearn.over_sampling import SMOTE
@@ -759,9 +770,17 @@ TODO: ispisati rezultate kros validacije
 
 \subsection{Izbor atributa}
 
-nije dao nesto posebno bolje modele. ostavljen je zbog eventualne brzine
+Skupovi podataka mogu da sadrže podatke sa velikim brojem atributa tj. podatke koji imaju visoku dimenzionalnost. Jedan takav primer je matrica terma dokumenata (eng.~document term matrix) čiji su redovi dokumenti, kolone su termi odnosno reči, a u preseku redova i kolona se nalaze vrednosti koje predstavljaju broj pojavljivanja reči u dokumentu. Ove matrice potencijalno mogu imati hiljade ili desetine hiljada atributa \cite{mitic}. 
+
+Postoje brojne prednosti smanjenja dimenzionalnosti: 1)  algoritam mašinskog učenja zahteva manje vremena i memorije, 2) algoritam mašinskog učenja može pružati bolje performanse u slučaju manjih dimenzija jer se smanjenjem dimenzije eliminišu nebitni atributi i umanjuje šum, a takođe se i rešava problem prokletstva dimenzionalnosti \footnote{Prokletstvo dimenzionalnosti (eng.~the curse of dimensionality) je situacija u kojoj analiza podataka postaje sve teža sa porastom dimenzionalnosti.}, 3) dobijeni model je lakši za tumačenje ako je manji broj atributa uključen i 4) vizualizacija podataka je olakšana \cite{mitic}.
+
+Smanjenje dimenzionalnosti često se odnosi na tehnike koje do smanjenja vode pravljenjem novih atributa kombinovanjem postojećih. Do smanjenja dimenzionalnosti može se doći i tako što novi atributi predstavljaju podskup postojećih. Ova tehnika zove se \textit{izbor podskupa atributa} (eng.~feature subset selection) ili kraće \textit{izbor atributa} (eng.~feature selection). Iako deluje da bi se izborom atributa mogle izgubiti bitne informacije ovo nije slučaj ukoliko postoje nevažni i redundantni atributi. Redundantni atributi dupliraju informaciju koja je već postojana u nekom drugom atributu (npr. cena atrikla i porez), dok nevažni atributi ne sadrže informacije od značaja (npr. indeksi studenata prilikom predviđanja ocene na ispitu) \cite{mitic}. 
+
+% nije dao nesto posebno bolje modele. ostavljen je zbog eventualne brzine
 
 \subsection{Konačni izgled modela}
+
+Izbor atributa nije dao nesto posebno bolje modele. ostavljen je zbog eventualne brzine
 
 \begin{figure}[!ht]
     \centering
