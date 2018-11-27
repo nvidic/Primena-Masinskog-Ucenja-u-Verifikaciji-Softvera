@@ -1388,12 +1388,12 @@ def Halstead_metrics(filename):
         if len(colon) - deduct_num:
             operators[':'] = len(colon) - deduct_num
 
-    # apostrophe ;
+    # apostrophe '
     apostrophe = re.findall("\'", file_string)
     if len(apostrophe):
         operators['\''] = len(apostrophe)
 
-    # quotation :
+    # quotation "
     quotation = re.findall("\"", file_string)
     if len(quotation):
         operators['\"'] = len(quotation)
