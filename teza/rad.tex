@@ -418,6 +418,13 @@ Ako simboličko izvršavanje pokaže da neka putanja zadovoljava uslove ispravno
 \chapter{Implementacija}
 % DODATI UVODNI TEKST
 %U ovom delu prikazani su postupak dobijanja najboljeg klasifikacionog modela i 
+% - da li masinsko ucenje moze da ubrza verifikaciju 
+ %  - da li moze sa zadovoljavajucom tacnoscu da pronadje predvidi koji programi imaju gresku
+%- kreirana su 3 modela zasnovana na razlicitim algoritmima da bi se videlo koji daje %zadovoljavajuce/prihvatljive rezultate na trening podacima
+%- najbolji model je primenjen na specificnim programima koriscenim na takmicenju iz verifikacije
+
+Postupak automatizovane verifikacije softvera zahteva veliku količinu vremena i resursa. 
+U želji da se u ovom procesu uštedi na resursima i vremenu izvršavanja korišćena je binarna klasifikacija. Pritom rezultati binarne klasifikacije treba dovoljno tačno da predviđaju da li programi sadrže greške. Na osnovu korpusa podataka za koje je poznato da li sadrže grešku ili ne kreirana su tri klasifikaciona modela, svaki zasnovan na različitom algoritmu. Od dobijenih modela izabran je model koji najviše odgovara podacima tj. model koji daje najtačnije rezultate. Ovaj model je evaluiran na specifičnim programima korišćenim na takmičenju iz verifikacije. 
 
 \section{Korišćeni podaci}
 \label{kor_podaci}
