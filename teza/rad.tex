@@ -855,8 +855,39 @@ Atributi koji se odnose na linije koda programa su računati na različite nači
 
 \section{Primena klasifikacionog modela na izlaz programa za dobijanje atributa}
 
-%- izlaz programa za atribute  
-%- primeni se klasifikator
+Uz poznavanje najboljeg modela klasifikacije (modela zasnovanog na algoritmu slučajne šume) i uz program koji od izvornog koda C programa dobija atribute koji se koriste kao ulaz u klasifikacioni model, moguće je testirati ponašanje modela pri klasifikovanju programa koje model prvi put vidi. Korpus programa koji se koriste za testiranje modela je korpus korišćen na takmičenju u verifikaciji i preuzet je sa \url{https://github.com/sosy-lab/sv-benchmarks/tree/master/c}\footnote{Korpus korišćen u tezi je deo podskupa sa linka.}
+
+Imena korišćenih programa su oblika: ime programa, nakon čega sledi jedan ili više delova \textit{\_false-<svojstvo>} ili \textit{\_true-<svojstvo>} i .c ekstenzija. Na primer, program \textit{cstrcat-alloca\_true-valid-memsafety\_true-termination.c} koji zadovoljava svojstva \textit{valid-memsafety} i \textit{termination}. Postoji nekoliko testiranih svojstava programa \cite{benchmarks}:
+\begin{itemize}
+	\item \textit{unreach-call}: Određeni poziv funkcije mora biti nedostižan u okviru programa.
+	\item \textit{valid-memsafety}, \textit{valid-deref}, \textit{valid-free}, \textit{valid-memtrack}: Određeno svojstvo bezbednosti memorije mora biti zadovoljeno u programu, pri čemu je memsafety konjukncija preostala tri svojstva.
+	\item \textit{valid-memcleanup}: Sva alocirana memorija mora biti dealocirana pre nego što se program završi.
+	\item \textit{no-overflow}: Program ne sme sadržati nedefinisano ponašanje koje je posledica prekoračenja označenih integera.
+	\item \textit{termination}: Program se mora završiti na svakoj od izvršnih putanja.
+\end{itemize}
+
+Na osnovu prethodno definisanih svojstava programa poznato je koji programi sa takmičenja imaju grešku, a koji programi nemaju grešku (programi sa greškom imaju prefiks false ispred makar jednog od svojstava). Poznavanje klasa je neophodna informacija za testiranje performansi modela na novim podacima. Da bi bilo moguće primeniti klasifikacioni model na korpus podataka sa takmičenja, potrebno je transformisati podatke na isti način kao i prilikom obučavanja modela - standardizacijom i izborom atributa. 
+
+Na slici \ref{fig:confmfinal} je prikazana matrica konfuzije dobijena primenom konačnog modela klasifikacije na programe sa takmičenja. Rezultati dobijeni primenom modela na podacima sa takmičenja su lošiji u odnosu na rezultate dobijene na podacima za testiranje. Tačnost modela je oko 20\% lošija. Dodatni problem predstavlja činjenica da je većini programa dodeljena klasa 0 - klasa programa bez greške. Od 199 programa sa greškom samo 21 je ispravno klasifikovan. Svega 43 od 571 programa je označeno kao programi koji sadrže grešku. Nasuprot tome čak 178 programa koji zapravo sadrže grešku označeni su kao programi koji grešku ne sadrže. Kako su programi sa greškom programi od interesa, ovakvo ponašanje je problematično. Nešto detaljnije (ili bar razumljivije) informacije prikazane su na slici \ref{fig:extrafinal} gde se vidi da je i preciznost za obe klase (a posebno za klasu programa sa greškom) lošija u odnosu na preciznost modela primenjenog na podacima za testiranje. Odziv za klasu programa sa greškom iznosi svega 0,11 i to je prilično zabrinjavajuće.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{RF_c_files_confussion_matrix}
+  \caption{Matrica konfuzije dobijena primenom modela zasnovanog na algoritmu slučajne šume na programima sa takmičenja}
+  \label{fig:confmfinal}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{extra_final}
+  \caption{Preciznost, odziv, f1-mera i podrška za model zasnovan na algoritmu slučajne šume primenjen na programima sa takmičenja}
+  \label{fig:extrafinal}
+\end{figure}
+
+
+Ovakvi rezultati, koliko god bili obeshrabrujući, donekle imaju smisla. Veoma je moguće da su programi korišćeni za obučavanje modela ,,pravi'' (ne znam da li je ovo najsrećniji izraz. Iako sam razumeo šta ste hteli da mi kažete, mislim da možemo da očekujemo komentar komisije - a šta su to pravi programi? :)), dok su programi korišćeni u evaluaciji ,,veštački'' (specijalno napravljeni za takmičenje u verifikaciji) i kao takvi sadrže drugačije osobine i konstrukcije koje se ne mogu primeniti na ,,prave'' programe. Pored toga, programi korišćeni za obučavanje atributa su raznovrsni, ali su dati samo u obliku atributa te stoga njihov izgled ostaje nepoznat. Dodatno, za ove programe se može pretpostaviti da su uzeti iz suštinski različitih projekata. 
+
+Nasuprot njima, programi korišćeni za evaluaciju su prilično homogeni. Razlike između programa koji imaju i onih koji nemaju grešku su minimalne, kao na primer da jedan program ima znak < a drugi >. Iz ovakvih razlika se ne može izvesti neki poseban zaključak osim da u slučaju znaka < postoji greška, a u slučaju znaka > greška ne postoji. Takve informacije su besmislene i neupotrebljive. Još jedan razlog za slabije ponašanje modela je priroda korišćenih atributa. Oni se zasnivaju na linijama koda, komentara, broju operatora i broju operanada. Iz tog ugla ne postoji nikakva razlika između dva programa, onog sa greškom i onog bez greške, koji se razlikuju samo po tome što jedan ima karakter <, a drugi karakter >. Navedene razlike su previše suptilne da bi bile uhvaćene metodama mašinskog učenja pa je u takvim situacijama potrebno koristiti sofisticirane alate verifikacije softvera.
 
 
 %---------------------
