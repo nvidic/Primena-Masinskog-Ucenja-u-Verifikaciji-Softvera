@@ -431,41 +431,41 @@ U želji da se u ovom procesu uštedi na resursima i vremenu izvršavanja koriš
 
 Kao skup podataka za obučavanje modela klasifikacije korišćen je jm1.arff korpus podataka koji se nalazi na PROMISE repozitorijumu. PROMISE repozitorijum (eng.~PROMISE Software Engineering Repository) sadrži kolekciju javno dostupnih skupova podataka i alata koji treba da olakšaju istraživačima konstrukciju prediktivnih modela \cite{promise}. 
 
-JM1 datoteka sadrži informacije o C programima, njihovim karakteristikama i o tome da li sadrže grešku ili ne. Sastoji se od 10878 objekata, od kojih svaki ima 22 atributa\footnote{Za potrebe ovog rada korišćeno je 18 atributa.  Izostavljeni su atributi cyclomatic complexity, design complexity, essential complexity i branch count. Ovi atributi su izostavljeni jer za njih nije pronađen jedinstven opis, a izborom atributa je utvrđeno da ne spadaju u 10 najbitnijih atributa pa bi pokušaj njihovog izračunavanja odneo previše vremena ili bio nemoguć a dobit bi bila sitna. Atributi su izostavljani tek nakon što je utvrđeno da njihovo izostavljanje neće značajno uticati na kvalitet modela klasifikacije - model dobijen bez ovih atributa ima preciznost svega 0,02 manju od modela koji koristi sve atribute. Zbog toga je procenjeno da je bolje poboljšavati model na druge načine. }. Sedamnaest atributa se odnosi na razne karakteristike koda, a osamnaesti je atribut klase ( da li program ima ili nema grešku) \cite{jm1}: 
+JM1 datoteka sadrži informacije o C programima, njihovim karakteristikama i o tome da li sadrže grešku ili ne. Sastoji se od 10878 objekata, od kojih svaki ima 22 atributa\footnote{Za potrebe ovog rada korišćeno je 18 atributa.  Izostavljeni su atributi cyclomatic complexity, design complexity, essential complexity i branch count. Ovi atributi su izostavljeni jer za njih nije pronađen jedinstven opis, a izborom atributa je utvrđeno da ne spadaju u 10 najbitnijih atributa pa bi pokušaj njihovog izračunavanja odneo previše vremena ili bio nemoguć a dobit bi bila sitna. Atributi su izostavljani tek nakon što je utvrđeno da njihovo izostavljanje neće značajno uticati na kvalitet modela klasifikacije - model dobijen bez ovih atributa ima preciznost svega 0,02 manju od modela koji koristi sve atribute. Zbog toga je procenjeno da je bolje poboljšavati model na druge načine. }. Sedamnaest atributa tipa \textit{numeric} se odnosi na razne karakteristike koda, a osamnaesti je atribut klase (da li program ima ili nema grešku) \cite{jm1}: 
 
-\textbf{LOC\_BLANK numeric } Broj praznih linija u izvornom kodu programa
+\textbf{LOC\_BLANK} Broj praznih linija u izvornom kodu programa
 
-\textbf{LOC\_CODE\_AND\_COMMENT numeric} Broj linija koda i komentara
+\textbf{LOC\_CODE\_AND\_COMMENT} Broj linija koda i komentara
 
-\textbf{LOC\_COMMENTS numeric} Broj linija komentara
+\textbf{LOC\_COMMENTS} Broj linija komentara
 
-\textbf{LOC\_EXECUTABLE numeric} Broj izvršivih linija koda
+\textbf{LOC\_EXECUTABLE} Broj izvršivih linija koda
 
-\textbf{LOC\_TOTAL numeric} Ukupan broj linija koda
+\textbf{LOC\_TOTAL} Ukupan broj linija koda
 
-\textbf{NUM\_OPERATORS numeric} $N_1$ Ukupan broj operatora u programu
+\textbf{NUM\_OPERATORS} $N_1$ Ukupan broj operatora u programu
 
-\textbf{NUM\_OPERANDS numeric} $N_2$ Ukupan broj operanada u programu
+\textbf{NUM\_OPERANDS} $N_2$ Ukupan broj operanada u programu
 
-\textbf{NUM\_UNIQUE\_OPERATORS numeric} $\eta_1$ Broj jedinstvenih operatora u programu
+\textbf{NUM\_UNIQUE\_OPERATORS} $\eta_1$ Broj jedinstvenih operatora u programu
 
-\textbf{NUM\_UNIQUE\_OPERANDS numeric} $\eta_2$ Broj jedinstvenih operanada u programu
+\textbf{NUM\_UNIQUE\_OPERANDS} $\eta_2$ Broj jedinstvenih operanada u programu
 
-\textbf{HALSTEAD\_CONTENT numeric} $I = L*V$
+\textbf{HALSTEAD\_LEVEL} $L = (2*\eta_2)/(\eta_1*N_2)$
 
-\textbf{HALSTEAD\_DIFFICULTY numeric} $D = 1/L = (\eta_1/2)*(N_2/\eta_2))$
+\textbf{HALSTEAD\_VOLUME} $V = (N_1+N_2)*(log_2(\eta_1+\eta_2))$ % = N*log_2(n)$
 
-\textbf{HALSTEAD\_EFFORT numeric} $E = V/L = D*V$
+\textbf{HALSTEAD\_LENGTH} $N = N_1+N_2$
 
-\textbf{HALSTEAD\_ERROR\_EST numeric} $B = V/3000$
+\textbf{HALSTEAD\_CONTENT} $I = L*V$
 
-\textbf{HALSTEAD\_LENGTH numeric} $N = N_1+N_2$
+\textbf{HALSTEAD\_DIFFICULTY} $D = 1/L = (\eta_1/2)*(N_2/\eta_2))$
 
-\textbf{HALSTEAD\_LEVEL numeric} $L = (2*\eta_2)/(\eta_1*N_2)$
+\textbf{HALSTEAD\_EFFORT} $E = V/L = D*V$
 
-\textbf{HALSTEAD\_PROG\_TIME numeric} $T = E/18$
+\textbf{HALSTEAD\_ERROR\_EST} $B = V/3000$
 
-\textbf{HALSTEAD\_VOLUME numeric} $V = (N_1+N_2)*(log_2(\eta_1+\eta_2))*N*log_2(n)$
+\textbf{HALSTEAD\_PROG\_TIME} $T = E/18$
 
 \textbf{Defective \{Y,N\} } Atribut klase sa vrednostima $Y$ (program ima grešku) i $N$ (program nema grešku)
 
@@ -482,7 +482,7 @@ ARFF (eng.~ Attribute-Relation File Format) predstavlja način reprezentacije sk
 
 \section{Nalaženje najboljeg klasifikatora}
 
-U cilju dobijanja najboljeg modela klasifikacije, konstruisani su klasifikatori zasnovani na algoritmima k najbližih suseda, logistističke regresije i slučajnih šuma. Svaki od klasifikatora tretiran je na isti način. Vršene su razne transformacije da bi dobijeni klasifikatori davali preciznije rezultate. Nakon izvršenih transformacija, upoređivani su dobijeni rezultati. Poređenje klasifikatora vršeno je upoređivanjem nekih od svojstava klasifikatora. U nastavku je opisan proces kreiranja i unapređivanja klasifikacionih modela.  
+U cilju dobijanja najboljeg modela klasifikacije, konstruisani su klasifikatori zasnovani na algoritmima $k$ najbližih suseda, logistističke regresije i slučajnih šuma. Svaki od klasifikatora tretiran je na isti način. Vršene su razne transformacije da bi dobijeni klasifikatori davali preciznije rezultate. Nakon izvršenih transformacija, upoređivani su dobijeni rezultati. Poređenje klasifikatora vršeno je upoređivanjem nekih od svojstava klasifikatora. U nastavku je opisan proces kreiranja i unapređivanja klasifikacionih modela.  
 
 \subsection{Tehnike evaluacije klasifikacionih modela} \label{evaluacija}
 
@@ -672,7 +672,7 @@ Jedan od načina rešavanja problema neizbalansiranih klasa je \textit{uzorkovan
 	X_resampled, y_resampled = SMOTE(kind="svm").fit_sample(X, y)
 \end{lstlisting}
 
-Nakon dodavanja novih podataka potrebno je ponovo proći postupak obučavanja modela. Odgovarajuće matrice konfuzije prikazane su na slici \ref{fig:confmatrovers}. Procenjene tačnosti modela na osnovu podele skupa podataka na trening i test skup iznose 0,814, 0,711 i 0,859, a na osnovu 10-slojne unakrsne validacije 0,811, 0,642 i 0,834. Ono što iskače u prvi plan je vidno lošija tačnost modela zasnovanog na algoritmu logističke regresije što se posebno može primetiti evaluacijom pomoću tehnike unakrsne validacije. Takođe, modeli zasnovani na algoritmima k najbližih suseda i slučajne šume deluju stabilnije prilikom obe vrste evaluacije. 
+Nakon dodavanja novih podataka potrebno je ponovo proći postupak obučavanja modela. Odgovarajuće matrice konfuzije prikazane su na slici \ref{fig:confmatrovers}. Procenjene tačnosti modela na osnovu podele skupa podataka na trening i test skup iznose 0,814, 0,711 i 0,859, a na osnovu 10-slojne unakrsne validacije 0,811, 0,642 i 0,834. Ono što iskače u prvi plan je vidno lošija tačnost modela zasnovanog na algoritmu logističke regresije što se posebno može primetiti evaluacijom pomoću tehnike unakrsne validacije. Takođe, modeli zasnovani na algoritmima $k$ najbližih suseda i slučajne šume deluju stabilnije prilikom obe vrste evaluacije. 
 
 \begin{figure}[!ht]
     \centering
@@ -814,29 +814,29 @@ Na osnovu do sada viđenog može se zaključiti da je model koji najviše odgova
 
 \section{Program koji iz C koda dobija atribute}
 
-Ulazi modela klasifikacije su atributi C programa. Da bi se za proizvoljan program mogla raditi klasifikacija neophodno je njegov izvorni k\^od prevesti u atribute. U tu svrhu implementiran je program koji na osnovu izvornog koda programa napisanog u C-u dobija atribute opisane u delu \ref{kor_podaci}. Ovaj program napisan je u jeziku Python i većim delom se zasniva na biblioteci \textit{pycparser}. Pycparser je parser programskog jezika C implementiran u Python-u. Detalji o modulu mogu se pronaći na linku: \url{https://github.com/eliben/pycparser} odakle se može izvršiti i njegovo preuzimanje. Korisne informacije se mogu naći i na veb strani autorke: \url{https://eli.thegreenplace.net/}.
+Ulazi modela klasifikacije su atributi programa napisanih u programskom jeziku C. Da bi se za proizvoljan program mogla raditi klasifikacija neophodno je njegov izvorni k\^od prevesti u atribute. U tu svrhu implementiran je program koji na osnovu izvornog koda programa napisanog u C-u dobija atribute opisane u delu \ref{kor_podaci}. Ovaj program napisan je u jeziku Python i većim delom se zasniva na biblioteci \textit{pycparser}. \textit{Pycparser} je parser programskog jezika C implementiran u Python-u. Detalji o modulu mogu se pronaći na linku: \url{https://github.com/eliben/pycparser} odakle se može izvršiti i njegovo preuzimanje. Korisne informacije se mogu naći i na veb strani autorke: \url{https://eli.thegreenplace.net/}.
 
 Kako se atributi sa kojima se radi mogu podeliti u dve grupe (atributi koji se odnose na Halstedove metrike i atributi koji se odnose na linije koda) tako se postupak izračunavanja atributa na osnovu C koda može opisati u dva koraka. 
 
 \begin{description}
 \item[Izračunavanje atributa koji se odnose na Halstedove metrike]
 
-Halstedove metrike se koriste da bi se izmerili veličina softverskog proizvoda, kao i cena i napor potrebni za njegov razvoj. Ove metrike se zasnivaju na broju operatora i broju operanada izvornog koda. Preciznije, u pitanju su četiri atributa koda: broj jedinstvenih operatora, broj jedinstvenih operanada, ukupan broj operatora i ukupan broj operanada. Smernice za izračunavanje operanada i operatora za programski jezik C izgledaju ovako \cite{halstead}:
+Halstedove metrike se koriste da bi se izmerili veličina softverskog proizvoda, kao i cena i napor potrebni za njegov razvoj. Ove metrike se zasnivaju na broju operatora i broju operanada izvornog koda (operatori i operandi o kojima je ovde reč nisu definisani na onaj način kako se operatori i operandi definišu u programskom jeziku, već su to širi pojmovi koji obuhvataju i neke druge stvari). Preciznije, u pitanju su četiri atributa koda: broj jedinstvenih operatora, broj jedinstvenih operanada, ukupan broj operatora i ukupan broj operanada.  Smernice za izračunavanje operanada i operatora za programski jezik C izgledaju ovako \cite{halstead}:
 \begin{description}
 \item[Operandi]
 	\begin{enumerate}[(a)]
 		\item[]
 		\item Identifikatori - svi identifikatori koji ne spadaju u ključne reči
-		\item Imena tipova - int, float, char, double, long, short, signed, unsigned, void, ... 
+		\item Imena tipova - \textit{int}, \textit{float}, \textit{char}, \textit{double}, \textit{long}, \textit{short}, \textit{signed}, \textit{unsigned}, \textit{void}, ... 
 		\item Konstante - bilo da im je sadržaj karakter, string ili broj
 	\end{enumerate}
 
 \item[Operatori]
 	\begin{enumerate}[(a)]
 		\item[]
-		\item Specifikatori koji se odnose na skladišta - auto, extern, register, static, typedef
-		\item Kvalifikatori tipova - const, final, volatile
-		\item Razne rezervisane reči kao što su: break, case, continue, default, do, if, else, enum, for, goto, if, new, return, sizeof, struct, switch, union, while. 
+		\item Specifikatori koji se odnose na skladišta - \textit{auto}, \textit{extern}, \textit{register}, \textit{static}, \textit{typedef}
+		\item Kvalifikatori tipova - \textit{const}, \textit{final}, \textit{volatile}
+		\item Razne rezervisane reči kao što su: \textit{break}, \textit{case}, \textit{continue}, \textit{default}, \textit{do}, \textit{if}, \textit{else}, \textit{enum}, \textit{for}, \textit{goto}, \textit{if}, \textit{new}, \textit{return}, \textit{sizeof}, \textit{struct}, \textit{switch}, \textit{union}, \textit{while}. 
 		\item Operatori - svi operatori programskog jezika C
 % ! != \% \%= \& \&\& || \&= ( ) \{ \} [ ] * *= + ++ += , - -- -= -> . \/ \/= : :: < << <<= <= = == > >= >> >>= ? \^{} \^{}= | |= ~ ; =\& \# \#\# '' ""
 	\end{enumerate}
@@ -845,31 +845,31 @@ Potrebno je napomenuti i neke specijalne slučajeve \cite{halstead}:
 \begin{enumerate}
 	\item Par zagrada je jedan operator
 	\item Jedan operator su takođe i delimiter ; kao i ternarni operator ?:
-	\item Labele su operatori ako se koriste u okviru goto konstrukta
-	\item Dvotačka u okviru case:, kao i par zagrada u okviru for(), if(), while(), switch() predstavljaju deo konstrukta i jedan operator 
+	\item Labele su operatori ako se koriste u okviru \textit{goto} konstrukta
+	\item Dvotačka u okviru \textit{case:}, kao i par zagrada u okviru \textit{for()}, \textit{if()}, \textit{while()}, \textit{switch()} predstavljaju deo konstrukta i jedan operator 
 	\item Komentari ne spadaju ni u operatore ni u operande
 	\item Imena funkcija su operatori ako je u pitanju poziv funkcije. Imena funkcija u deklaraciji i definiciji nisu operatori
 	\item Prethodno pravilo takođe važi i za promenljive i konstante
 \end{enumerate}
 
-Pomoću biblioteke pycparser moguće je na osnovu datih smernica prebrojati operatore i operanade. Izračunavanje atributa koji se zasnivaju na operandima i operatorima je malo složenije od jednostavnog prebrojavanja i započinje parsiranjem C koda metodom \textit{parse\_file}. Rezultat parsiranja je \textit{AST stablo}. AST stablo (eng.~Abstract Syntax Tree) je drvolika reprezentacija sintakse izvornog koda programa pogodna za analizu i manipulaciju. Dobijeno AST stablo prepoznaje 47 tipova čvorova (neki od njih su: Assignment, BinaryOp, For, If, Return, Struct, Switch, Typedef, While, ...) koji se odnose na strukturu C koda. Obilaskom AST stabla, analizom njegovih čvorova i primenom prethodno navedenih smernica na čvorove stabla zabeleženi su svi operandi i većina operatora. Operatori koji su ostali nezabeleženi su: ( ) [ ] \{ \} , ; : \# \#\# ' i ''. Ovi operatori su prebrojani regularnim izrazima zbog jednostavnosti. Po završetku prebrojavanja operatora i operanada moguće je izračunati atribute koji se na njih odnose. Nakon toga jednostavnom primenom formula iz \ref{kor_podaci} mogu se izračunati potrebne Halstedove metrike \cite{pycparser}.
+Pomoću biblioteke \textit{pycparser} moguće je na osnovu datih smernica prebrojati operatore i operanade. Izračunavanje atributa koji se zasnivaju na operandima i operatorima je malo složenije od jednostavnog prebrojavanja i započinje parsiranjem C koda metodom \textit{parse\_file}. Rezultat parsiranja je \textit{AST stablo}. AST stablo (eng.~Abstract Syntax Tree) je drvolika reprezentacija sintakse izvornog koda programa pogodna za analizu i manipulaciju. Dobijeno AST stablo prepoznaje 47 tipova čvorova (neki od njih su: \textit{Assignment}, \textit{BinaryOp}, \textit{For}, \textit{If}, \textit{Return}, \textit{Struct}, \textit{Switch}, \textit{Typedef}, \textit{While}, ...) koji se odnose na strukturu C koda. Obilaskom AST stabla, analizom njegovih čvorova i primenom prethodno navedenih smernica na čvorove stabla zabeleženi su svi operandi i većina operatora. Operatori koji su ostali nezabeleženi su: ( ) [ ] \{ \} , ; : \# \#\# ' i ''. Ovi operatori su prebrojani regularnim izrazima zbog jednostavnosti. Po završetku prebrojavanja operatora i operanada moguće je izračunati atribute koji se na njih odnose. Nakon toga jednostavnom primenom formula iz \ref{kor_podaci} mogu se izračunati potrebne Halstedove metrike \cite{pycparser}.
 
 \item[Izračunavanje atributa koji se odnose na linije koda]
 
-Atributi koji se odnose na linije koda programa su računati na različite načine. Broj izvršivih linija koda LOC\_EXEC se računa prilikom obilaska čvorova AST stabla. Ukupan broj linija koda LOC\_TOTAL, kao i broj praznih linija LOC\_BLANC računaju se prebrojavanjem. Broj linija komentara LOC\_COMMENTS se računa korišćenjem regularnog izraza. Broj linija koda i komentara \\LOC\_CODE\_AND\_COMMENT se računa oduzimanjem broja praznih linija od ukupnog broja linija. 
+Atributi koji se odnose na linije koda programa su računati na različite načine. Broj izvršivih linija koda \textit{LOC\_EXEC} se računa prilikom obilaska čvorova AST stabla. Ukupan broj linija koda \textit{LOC\_TOTAL}, kao i broj praznih linija \textit{LOC\_BLANC} računaju se prebrojavanjem. Broj linija komentara \textit{LOC\_COMMENTS} se računa korišćenjem regularnog izraza. Broj linija koda i komentara \\\textit{LOC\_CODE\_AND\_COMMENT} se računa oduzimanjem broja praznih linija od ukupnog broja linija. 
 
 \end{description}
 
 \section{Primena klasifikacionog modela na izlaz programa za dobijanje atributa}
 
-Uz poznavanje najboljeg modela klasifikacije (modela zasnovanog na algoritmu slučajne šume) i uz program koji od izvornog koda C programa dobija atribute koji se koriste kao ulaz u klasifikacioni model, moguće je testirati ponašanje modela pri klasifikovanju programa koje model prvi put vidi. Korpus programa koji se koriste za testiranje modela je korpus korišćen na takmičenju u verifikaciji i preuzet je sa \url{https://github.com/sosy-lab/sv-benchmarks/tree/master/c}\footnote{Korpus korišćen u tezi je deo podskupa sa linka.}
+Uz poznavanje najboljeg modela klasifikacije (modela zasnovanog na algoritmu slučajne šume) i uz program koji od izvornog koda programa napisanih u programskom jeziku C dobija atribute koji se koriste kao ulaz u klasifikacioni model, moguće je testirati ponašanje modela pri klasifikovanju programa koje model prvi put vidi. Korpus programa koji se koriste za testiranje modela je korpus korišćen na takmičenju u verifikaciji i preuzet je sa \url{https://github.com/sosy-lab/sv-benchmarks/tree/master/c}\footnote{Korpus korišćen u tezi je deo podskupa sa linka.}
 
 Imena korišćenih programa su oblika: ime programa, nakon čega sledi jedan ili više delova \textit{\_false-<svojstvo>} ili \textit{\_true-<svojstvo>} i .c ekstenzija. Na primer, program \textit{cstrcat-alloca\_true-valid-memsafety\_true-termination.c} koji zadovoljava svojstva \textit{valid-memsafety} i \textit{termination}. Postoji nekoliko testiranih svojstava programa \cite{benchmarks}:
 \begin{itemize}
 	\item \textit{unreach-call}: Određeni poziv funkcije mora biti nedostižan u okviru programa.
-	\item \textit{valid-memsafety}, \textit{valid-deref}, \textit{valid-free}, \textit{valid-memtrack}: Određeno svojstvo bezbednosti memorije mora biti zadovoljeno u programu, pri čemu je memsafety konjukncija preostala tri svojstva.
+	\item \textit{valid-memsafety}, \textit{valid-deref}, \textit{valid-free}, \textit{valid-memtrack}: Određeno svojstvo bezbednosti memorije mora biti zadovoljeno u programu, pri čemu je \textit{memsafety} konjukncija preostala tri svojstva.
 	\item \textit{valid-memcleanup}: Sva alocirana memorija mora biti dealocirana pre nego što se program završi.
-	\item \textit{no-overflow}: Program ne sme sadržati nedefinisano ponašanje koje je posledica prekoračenja označenih integera.
+	\item \textit{no-overflow}: Program ne sme sadržati nedefinisano ponašanje koje je posledica prekoračenja označenih brojeva.
 	\item \textit{termination}: Program se mora završiti na svakoj od izvršnih putanja.
 \end{itemize}
 
@@ -891,10 +891,10 @@ Na slici \ref{fig:confmfinal} je prikazana matrica konfuzije dobijena primenom k
   \label{fig:extrafinal}
 \end{figure}
 
+% Veoma je moguće da su programi korišćeni za obučavanje modela ,,pravi'' (ne znam da li je ovo najsrećniji izraz. Iako sam razumeo šta ste hteli da mi kažete, mislim da možemo da očekujemo komentar komisije - a šta su to pravi programi? :))
+Ovakvi rezultati, koliko god bili obeshrabrujući, imaju smisla. Pretpostavka je da su programi korišćeni za obučavanje modela zapravo preuzeti iz industrijskih aplikacija. Ovi programi su raznovrsni, ali su dati samo u obliku atributa te stoga njihov izgled ostaje nepoznat. Dodatno, za ove programe se može pretpostaviti da su uzeti iz suštinski različitih projekata. 
 
-Ovakvi rezultati, koliko god bili obeshrabrujući, donekle imaju smisla. Veoma je moguće da su programi korišćeni za obučavanje modela ,,pravi'' (ne znam da li je ovo najsrećniji izraz. Iako sam razumeo šta ste hteli da mi kažete, mislim da možemo da očekujemo komentar komisije - a šta su to pravi programi? :)), dok su programi korišćeni u evaluaciji ,,veštački'' (specijalno napravljeni za takmičenje u verifikaciji) i kao takvi sadrže drugačije osobine i konstrukcije koje se ne mogu primeniti na ,,prave'' programe. Pored toga, programi korišćeni za obučavanje atributa su raznovrsni, ali su dati samo u obliku atributa te stoga njihov izgled ostaje nepoznat. Dodatno, za ove programe se može pretpostaviti da su uzeti iz suštinski različitih projekata. 
-
-Nasuprot njima, programi korišćeni za evaluaciju su prilično homogeni. Razlike između programa koji imaju i onih koji nemaju grešku su minimalne, kao na primer da jedan program ima znak < a drugi >. Iz ovakvih razlika se ne može izvesti neki poseban zaključak osim da u slučaju znaka < postoji greška, a u slučaju znaka > greška ne postoji. Takve informacije su besmislene i neupotrebljive. Još jedan razlog za slabije ponašanje modela je priroda korišćenih atributa. Oni se zasnivaju na linijama koda, komentara, broju operatora i broju operanada. Iz tog ugla ne postoji nikakva razlika između dva programa, onog sa greškom i onog bez greške, koji se razlikuju samo po tome što jedan ima karakter <, a drugi karakter >. Navedene razlike su previše suptilne da bi bile uhvaćene metodama mašinskog učenja pa je u takvim situacijama potrebno koristiti sofisticirane alate verifikacije softvera.
+Programi korišćeni u evaluaciji su specijalno napravljeni za takmičenje u verifikaciji i kao takvi sadrže drugačije osobine i konstrukcije koje se ne mogu primeniti na programe iz klase koja je korišćena za obučavanje. Programi korišćeni za evaluaciju su prilično homogeni. Razlike između programa koji imaju i onih koji nemaju grešku su minimalne, kao na primer da jedan program ima znak < a drugi >. Iz ovakvih razlika se ne može izvesti neki poseban zaključak osim da u slučaju znaka < postoji greška, a u slučaju znaka > greška ne postoji. Takve informacije su besmislene i neupotrebljive. Još jedan razlog za slabije ponašanje modela je priroda korišćenih atributa. Oni se zasnivaju na linijama koda, komentara, broju operatora i broju operanada. Iz tog ugla ne postoji nikakva razlika između dva programa, onog sa greškom i onog bez greške, koji se razlikuju samo po tome što jedan ima karakter <, a drugi karakter >. Navedene razlike su previše suptilne da bi bile uhvaćene metodama mašinskog učenja pa je u takvim situacijama potrebno koristiti sofisticirane alate verifikacije softvera.
 
 
 %---------------------
