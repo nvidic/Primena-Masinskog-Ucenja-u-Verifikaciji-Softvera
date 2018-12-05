@@ -1,3 +1,66 @@
+PROMISE repozitorijumu. JM1 datoteka... Vodite racuna da je to prirodno za engleski, za srpski je
+repozitorijum PROMISE i datoteka JM1. Pogledajte da li i jos negde imate slicno obrnute pojmove pa
+izmenite svuda.
+- nisam razmisljao o tome, cak mi je prirodnije da cujem npr. mp3 fajl nego fajl mp3 :)
+- PROMISE i jm1 ispravljeni
+- ostalo cu da promenim ako/kad naidjem u tekstu
+
+pa bi pokušaj njihovog izračunavanja odneo previše vremena ili bio nemoguć a dobit bi bila sitna.
+-- ovo bih izbacila, to isto je objasnjeno i posle toga, kao i da ne bi bilo ponavljanja
+- izbaceno
+
+Dalje, fusnota treba da ima takav sadrzaj da ako se i ne procita to ne utice na razumevanje ostatka teksta.
+Medjutim, broj 18 je vazan za dalja desavanja i zato bi to objasnjenje trebalo prebaciti iz fusnote u tekst.
+- fusnota prebacena u tekst
+
+arff treba da je svuda isto (malo/veliko) a ne negdemalo a negde veliko
+- ispravljeno
+
+arff fajla --- fajla arff
+- zamenjeno sa:
+- Primer fajla formata \textit{arff}
+
+Postoje četiri tipa atributa: imenski, brojčani, stringovi i datumi.
+Nesto nije u redu sa tom recenicom. Atribut ne moze da bude stringovi i datumi.
+Mozda stringovski i datumski? Ali i to mi cudno zvuci. Pokusajte da preformulisete nekako...
+String i datum su tipovi, a ne atributi... pa je to malo spetljano...
+- mozda ovako:
+- U primeru sa slike prikazani su imenski i brojčani atributi. U okviru formata \textit{arff}
+takođe su podržani i atributi čiji je tip string, kao i atributi čiji je tip datum.
+
+Slika 4.1: Primer arff fajla --- font za arff uskladiti sa ostatkom
+- uskladjen font
+
+Evaluacija pomoću skupa za testiranje Evaluacija pomoću skupa za testiranje --- nema potrebe da se dva puta
+ponavlja (isto i kod sledeceg), tj mozete samo nastaviti recenicu.
+- izbrisano
+
+Na osnovu
+vrednosti matrice mogu se izračunati ukupan broj tačnih predviđanja (f 11 + f 00 ) i
+ukupan broj pogrešnih predviđanja (f 10 + f 01 ) [33].
+Brojevi u zagradi odgovaraju binarnoj klasifkaciji i zato zbunjuju jer se ovde definise opsti slucaj.
+Zato ta primer ili izdvojte iz zagrada u posebnu recenicu, ili napisiite dole uz sliku.
+- zapravo sam naveo da se onosi na binarnu klasifikaciju :) Ako mislite da je dvosmisleno lako cu promeniti
+- Slika \ref{fig:matrkonf} prikazuje opšti izgled matrice konfuzije
+za problem binarne klasifikacije.
+Svako od polja $f_{ij}$ označava broj objekata klase $i$ koji su klasifikovani kao objekti klase $j$.
+Na osnovu vrednosti matrice mogu se izračunati ukupan broj tačnih predviđanja ($f_{11}+f_{00}$) i ukupan
+broj pogrešnih predviđanja ($f_{10}+f_{01}$)
+
+Trebalo bi da je uvek engleski pojam u zagradi naveden kao naglasen ili iskrivljen. To je uradjeno tako
+u drugom poglavlju, ali nije posle u trecem, a trebalo bi.
+- dodato \textit{}
+
+Naveli ste samo formule, niste rekli na sta se one odnose.
+- na koje formule se ovo odnosi?
+- ako se odnosi na preciznost, odziv i F1 meru, formule se nalaze na vrhu strane 30 ali su definisane
+odmah iznad, u poslednjem pasusu na strani 29
+
+Ne vidim sustinsku razliku izmedju slika 4.1 i 4.2. Da li ima potrebe da imamo obe?
+- slike 4.2 i 4.3? U pravu ste, koju da izbacim? Mozda 4.3?
+
+
+--------------------------------------
 ( da li program ima ili nema grešku)
 Blanko viska
 - obrisan
