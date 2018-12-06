@@ -496,7 +496,15 @@ Po završetku kreiranja klasifikacionog modela korisno je testirati njegove perf
 
 \subsection{Matrica konfuzije}
 
-\textit{Matrica konfuzije} je tabelarni prikaz brojeva ispravno i pogrešno klasifikovanih objekata na osnovu kojih se mogu vršiti ocene modela klasifikacije. Slika \ref{fig:matrkonf} prikazuje opšti izgled matrice konfuzije za problem binarne klasifikacije. Svako od polja $f_{ij}$ označava broj objekata klase $i$ koji su klasifikovani kao objekti klase $j$. Na osnovu vrednosti matrice mogu se izračunati ukupan broj tačnih predviđanja ($f_{11}+f_{00}$) i ukupan broj pogrešnih predviđanja ($f_{10}+f_{01}$) \cite{mitic}.
+\textit{Matrica konfuzije} je tabelarni prikaz brojeva ispravno i pogrešno klasifikovanih objekata na osnovu kojih se mogu vršiti ocene modela klasifikacije. Slika \ref{fig:matrkonf} prikazuje opšti izgled matrice konfuzije za problem binarne klasifikacije. Svako od polja $f_{ij}$ označava broj objekata klase $i$ koji su klasifikovani kao objekti klase $j$. Kod problema binarne klasifikacije kada su klase nejednako zastupljene, ređe zastupljena klasa često nosi naziv pozitivna klasa, a zastupljenija klasa nosi naziv negativna klasa. Vrednosti matrice imaju sledeće značenje \cite{mitic}:
+
+\textit{Stvarno pozitivni (TP - true positive)} ili $f_{11}$ je broj objekata koji pripadaju pozitivnoj klasi a dodeljena im je pozitivna klasa.
+
+\textit{Lažno negativni (FN - false negative)} ili $f_{10}$ je broj objekata koji pripadaju pozitivnoj klasi a dodeljena im je negativna klasa.
+
+\textit{Lažno pozitivni (FP - false positive)} ili $f_{01}$ je broj objekata koji pripadaju negativnoj klasi a dodeljena im je pozitivna klasa.
+
+\textit{Stvarno negativni (TN - true negative)} ili $f_{00}$ je broj objekata koji pripadaju negativnoj klasi a dodeljena im je negativna klasa.
 
 \begin{figure}[!ht]
   \centering
@@ -505,36 +513,25 @@ Po završetku kreiranja klasifikacionog modela korisno je testirati njegove perf
   \label{fig:matrkonf}
 \end{figure}
 
- Za poređenje većeg broja modela bilo bi jednostavnije da su vrednosti matrice konfuzije predstavljene jednim brojem. U tu svrhu se mogu koristiti tačnost (eng.~\textit{accuracy})  i odnos greške (eng.~\textit{error rate}). \textit{Tačnost} je broj tačnih predviđanja podeljen ukupnim brojem predviđanja. \textit{Odnos greške} je broj pogrešnih predviđanja podeljen ukupnim brojem predviđanja. Većina algoritama treba da ostvari najveću tačnost (ili analogno najmanji odnos greške) \cite{mitic}.
-
+Na osnovu vrednosti matrice mogu se izračunati ukupan broj tačnih predviđanja ($f_{11}+f_{00}$) i ukupan broj pogrešnih predviđanja ($f_{10}+f_{01}$). Za poređenje većeg broja modela bilo bi jednostavnije da su vrednosti matrice konfuzije predstavljene jednim brojem. U tu svrhu se mogu koristiti \textit{tačnost} (eng.~\textit{accuracy})  i \textit{odnos greške} (eng.~\textit{error rate}) \cite{mitic}. Tačnost je broj tačnih predviđanja podeljen ukupnim brojem predviđanja i za binarnu klasifikaciju definise se formulom: 
 $$ \textit{Tačnost} = \frac{f_{11}+f_{00}}{f_{11}+f_{10}+f_{01}+f_{00}} $$
 
+Odnos greške je broj pogrešnih predviđanja podeljen ukupnim brojem predviđanja i za binarnu klasifikaciju definise se formulom:
 $$ \textit{Odnos greške} = \frac{f_{10}+f_{01}}{f_{11}+f_{10}+f_{01}+f_{00}} $$
 
-U situacijama kada su klase nejednako zastupljene tačnost nije mera koja odgovara podacima jer svaku klasu tretira kao jednako važnu. Za problem binarne klasifikacije ređe zastupljena klasa često nosi naziv pozitivna klasa, a zastupljenija klasa nosi naziv negativna klasa. Slika \ref{fig:matrkonf2} prikazuje matricu konfuzije koja sumira brojeve dobro klasifikovanih i loše klasifikovanih objekata pri čemu vrednosti matrice imaju sledeće značenje \cite{mitic}:
+Većina algoritama treba da ostvari najveću tačnost (ili analogno najmanji odnos greške). U situacijama kada su klase nejednako zastupljene tačnost nije mera koja odgovara podacima jer svaku klasu tretira kao jednako važnu. 
 
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=0.60\textwidth]{matrica_konfuzije2}
-  \caption{Matrica konfuzije za problem binarne klasifikacije kada dve klase nisu podjednako bitne}
-  \label{fig:matrkonf2}
-\end{figure}
+%U situacijama kada su klase nejednako zastupljene tačnost nije mera koja odgovara podacima jer svaku klasu tretira kao jednako važnu. Za problem binarne klasifikacije ređe zastupljena klasa često nosi naziv pozitivna klasa, a zastupljenija klasa nosi naziv negativna klasa. Slika \ref{fig:matrkonf2} prikazuje matricu konfuzije koja sumira brojeve dobro klasifikovanih i loše klasifikovanih objekata pri čemu vrednosti matrice imaju sledeće značenje \cite{mitic}:
 
-\textit{Stvarno pozitivni (TP - true positive)} ili $f_{++}$ je broj objekata koji pripadaju pozitivnoj klasi a dodeljena im je pozitivna klasa.
+Metrike koje se sa dosta uspeha koriste kada je potrebno otkriti jednu od klasa su \textit{preciznost} i \textit{odziv} \cite{mitic}. Preciznost (eng.~\textit{precision}) je procenat stvarno pozitivnih objekata među objektima koji su klasifikovani kao pozitivni i za binarnu klasifikaciju definise se formulom:
+$$ \textit{Preciznost} = \frac{TP}{TP+FP} = \frac{f_{11}}{f_{11}+f_{01}} $$
 
-\textit{Lažno negativni (FP - false negative)} ili $f_{+-}$ je broj objekata koji pripadaju pozitivnoj klasi a dodeljena im je negativna klasa.
+Veća preciznost takođe znači da postoji manji broj lažno pozitivnih objekata. Odziv (eng.~\textit{recall}) predstavlja procenat pozitivnih objekata koji su ispravno klasifikovani i za binarnu klasifikaciju definise se formulom:
+$$ \textit{Odziv} = \frac{TP}{TP+FN} = \frac{f_{11}}{f_{11}+f_{10}} $$ 
 
-\textit{Lažno pozitivni (FP - false positive)} ili $f_{-+}$ je broj objekata koji pripadaju negativnoj klasi a dodeljena im je pozitivna klasa.
+Visok odziv znači da postoji mali broj lažno negativnih objekata. Preciznost i odziv se mogu sumirati u metriku koja se zove $F_1\ mera$ (eng.~\textit{$F_1$ measure}) i za binarnu klasifikaciju definise se formulom:
+$$ F_1\ mera = \frac{2TP}{2TP+FP+FN} = \frac{2*f_{11}}{2*f_{11}+f_{01}+f_{10}} $$
 
-\textit{Stvarno negativni (TN - true negative)} ili $f_{--}$ je broj objekata koji pripadaju negativnoj klasi a dodeljena im je negativna klasa.
-
-Metrike koje se sa dosta uspeha koriste kada je potrebno otkriti jednu od klasa su preciznost i odziv. \textit{Preciznost} (eng.~\textit{precision}) je procenat stvarno pozitivnih objekata među objektima koji su klasifikovani kao pozitivni. Veća preciznost takođe znači da postoji manji broj lažno pozitivnih objekata. \textit{Odziv} (eng.~\textit{recall}) predstavlja procenat pozitivnih objekata koji su ispravno klasifikovani. Visok odziv znači da postoji mali broj lažno negativnih objekata. Preciznost i odziv se mogu sumirati u metriku koja se zove $F_1\ mera$ (eng.~\textit{$F_1$ measure})  \cite{mitic}.
-
-$$ \textit{Preciznost} = \frac{TP}{TP+FP} $$
-
-$$ \textit{Odziv} = \frac{TP}{TP+FN} $$ 
-
-$$ F_1\ mera = \frac{2TP}{2TP+FP+FN}$$
 
 % \subsection{ROC kriva}
 
@@ -545,7 +542,7 @@ $$ F_1\ mera = \frac{2TP}{2TP+FP+FN}$$
 \textit{Preprocesiranje podataka} (eng.~\textit{data preprocessing}) je široka oblast koja obuhvata različite tehnike i strategije koje se koriste zarad dobijanja podataka pogodnijih za rad. Te tehnike i strategije spadaju ili u izbor objekata i atributa za analizu ili u kreiranje novih atributa/menjanje postojećih atributa i ne postoji generalno pravilo kojim redom će se one primenjivati. Na izbor tehnika i strategija utiče priroda podataka sa kojima se radi \cite{mitic}. 
 
 Upoznavanje sa podacima je neizostavan korak u procesu dobijanja kvalitetnog klasifikacionog modela. Od prirode podataka zavisi koji algoritmi se mogu koristiti za dobijanje modela, kao i kakve transformacije podataka su potrebne ili neophodne da bi dobijeni modeli bili verodostojni.
-Zbog toga je najpre potrebno upoznati se sa raspoloživim podacima. Broj podataka i atributi su poznati iz dela \ref{kor_podaci}. Jedna od prvih provera je da li postoje podaci sa nedostajućim vrednostima. Takvih podataka nema u korišćenom korpusu, tako da neće biti više reči na ovu temu. U slučaju da postoje podaci sa nedostajućim vrednostima, mogu se tretirati na neki od načina opisanih u \cite{mitic}. Takođe je potrebno proveriti raspodelu klasa među podacima. Na slici \ref{fig:raspodela} vidi se da su podaci prilično neravnomerno raspoređeni. Podaci koji nemaju grešku su daleko zastupljeniji od podataka koji imaju grešku. Od 10878 podataka, čak 8776 podataka su podaci koji imaju grešku, a 2102 nema grešku i ovo može predstavljati problem. Ovakva pojava predstavlja problem neizbalansiranih klasa. Modeli trenirani nad podacima koji imaju ovako velike razlike u raspodeli klasa mogu davati pristrasne rezultate tj. težiti da novim instancama dodele zastupljeniju klasu (u ovom slučaju je to klasa programa koji nemaju greške). Kako su podaci od interesa programi kod kojih greška postoji takvo ponašanje modela je posebno nedopustivo. Problem neizbalansiranih klasa se može rešiti na nekoliko načina. U ovom radu problem je rešen dodavanjem novih instanci što je detaljnije opisano u delu \ref{oversampling}. Postoji nekoliko koraka urađenih pre dodavanja novih instanci kojima je potrebno posvetiti više pažnje.  
+Zbog toga je najpre potrebno upoznati se sa raspoloživim podacima. Broj podataka i atributi su poznati iz dela \ref{kor_podaci}. Jedna od prvih provera je da li postoje podaci sa nedostajućim vrednostima. Takvih podataka nema u korišćenom korpusu, tako da neće biti više reči na ovu temu. Takođe je potrebno proveriti raspodelu klasa među podacima. Na slici \ref{fig:raspodela} vidi se da su podaci prilično neravnomerno raspoređeni. Podaci koji nemaju grešku su daleko zastupljeniji od podataka koji imaju grešku. Od 10878 podataka, čak 8776 podataka su podaci koji imaju grešku, a 2102 nema grešku i ovo može predstavljati problem. Ovakva pojava predstavlja problem neizbalansiranih klasa. Modeli trenirani nad podacima koji imaju ovako velike razlike u raspodeli klasa mogu davati pristrasne rezultate tj. težiti da novim instancama dodele zastupljeniju klasu (u ovom slučaju je to klasa programa koji nemaju greške). Kako su podaci od interesa programi kod kojih greška postoji takvo ponašanje modela nije poželjno. Problem neizbalansiranih klasa se može rešiti na nekoliko načina. U ovom radu problem je rešen dodavanjem novih instanci što je detaljnije opisano u delu \ref{oversampling}. Postoji nekoliko koraka urađenih pre dodavanja novih instanci kojima je potrebno posvetiti više pažnje.  
 
 \begin{figure}[!ht]
   \centering
@@ -556,7 +553,7 @@ Zbog toga je najpre potrebno upoznati se sa raspoloživim podacima. Broj podatak
 	 
 \subsection{Transformacija atributa}
 
-Termin \textit{transformacija atributa} označava transformaciju koja se primenjuje na sve vrednosti atributa. To znači da će vrednost atributa svakog objekta biti transformisana. Postoje različiti tipovi transformacija, a koji tip će biti korišćen zavisi od prirode podataka. U nekim situacijama je dovoljno primeniti jednostavnu matematičku funkciju na vrednosti atributa $x$ (npr. $x^k$, $\log x$, $\sqrt{x}$, $\left| x \right|$, ...) . U nekim drugim situacijama potrebno je izvršiti normalizaciju ili standardizaciju \footnote{U nekim literaturama ne postoji razlika između ova dva termina. Međutim, paket scikit-learn razlikuje pojmove normalizacije i standardizacije pa će stoga biti razlikovani i u ovoj tezi. Dodatno, u tezi se za transformaciju podataka koristi samo standardizacija pa će ona biti detaljnije objašnjena.}. Cilj normalizacije i standardizacije je da transformacijama skup vrednosti dobije određena svojstva \cite{mitic}.  
+Termin \textit{transformacija atributa} označava transformaciju koja se primenjuje na sve vrednosti atributa. To znači da će vrednost atributa svakog objekta biti transformisana. Postoje različiti tipovi transformacija, a koji tip će biti korišćen zavisi od prirode podataka. U nekim situacijama je dovoljno primeniti jednostavnu matematičku funkciju na vrednosti atributa $x$ (npr. $x^k$, $\log x$, $\sqrt{x}$, $\left| x \right|$, ...) . U nekim drugim situacijama potrebno je izvršiti normalizaciju ili standardizaciju \footnote{U nekim knjigama ne postoji razlika između ova dva termina. Međutim, paket \textit{scikit-learn} razlikuje pojmove normalizacije i standardizacije pa će stoga biti razlikovani i u ovoj tezi.} U tezi se za transformaciju podataka koristi samo standardizacija pa će ona biti detaljnije objašnjena. Cilj normalizacije i standardizacije je da transformacijama skup vrednosti dobije određena svojstva \cite{mitic}.  
 
 \textit{Standardizacija} je tehnika transformisanja atributa na taj način što se od svake vrednosti atributa oduzima njegova sredina, a zatim se dobijena vrednost deli standardnom devijacijom atributa. Na ovaj način se dobijaju nove vrednosti atributa, a sam atribut će imati sredinu 0 i standardnu devijaciju 1. Standardizacija je često neophodna za veliki broj algoritama mašinskog učenja paketa \textit{scikit-learn}. U slučaju da atributi nemaju raspodelu podataka sličnu normalnoj ili Gausovoj algoritmi mašinskog učenja mogu proizvesti pogrešne rezultate. Standardizacija je takođe često neophodna ako se veći broj promenljivih međusobno kombinuju. Standardizacijom se sprečava uticaj promenljive sa visokim vrednostima atributa na rezultat izračunavanja. Jednostavan ali slikovit primer kada treba primeniti standardizaciju je situacija u kojoj treba porediti dve osobe na osnovu godina i plate. Razlike u platama mogu biti veće od razlika u godinama zato što se njihovi opsezi vrednosti dosta razlikuju (godine su broj manji od 100, a plate se mere u desetinama ili stotinama hiljada). U takvoj situaciji, ukoliko se ove razlike ne uzmu u obzir, na rezultat poređenja će najviše uticati razlike u platama (Euklidsko rastojanje je jedna od metrika kod koje se moraju uzeti u obzir razlike u opsezima atributa) \cite{ sklearn_preprocessing, mlm2, mitic}. 
 
@@ -571,9 +568,11 @@ Na slici \ref{fig:atr_opsezi} vidi se da se opsezi vrednosti atributa dosta razl
 
 \subsection{Treniranje modela klasifikacije i njihove ocene}
 
-Nakon osnovnog upoznavanja sa podacima i urađene standardizacije mogu se konstruisati inicijalni modeli klasifikacije za svaki algoritam. Rad sa klasifikacionim modelima u Python-u je prilično jednostavan i gruba skica bi se sastojala od četiri koraka \cite{scikit-learn}:
+Nakon osnovnog upoznavanja sa podacima i urađene standardizacije mogu se konstruisati inicijalni modeli klasifikacije za svaki algoritam. Rad sa klasifikacionim modelima u Python-u je prilično jednostavan i gruba skica bi se sastojala od četiri koraka \cite{scikit-learn}
 
-Na početku je potrebno skup podataka podeliti na skup za trening i skup za testiranje (npr. u odnosu 60:40) da bi kasnije bilo moguće proceniti kvalitet modela. Za podelu skupa podataka dovoljno je pozvati metod \textit{train\_test\_split} koji pripada modulu \textit{model\_selection} u okviru paketa \textit{scikit-learn}. Treba napomenuti da je podela skupa podataka na skupove za treniranje i testiranje (kao i unakrsna validacija koja je takođe korišćena u tezi) samo način da se izvrši procena kvaliteta dobijenog modela (kao što je opisano u delu \ref{evaluacija}). Konačni model koji će se koristiti za dodeljivanje klasa nepoznatim podacima treba da se obuči nad celokupnim skupom raspoloživih podataka \cite{mladen}.
+\begin{enumerate}
+
+\item Na početku je potrebno skup podataka podeliti na skup za trening i skup za testiranje (npr. u odnosu 60:40) da bi kasnije bilo moguće proceniti kvalitet modela. Za podelu skupa podataka dovoljno je pozvati metod \textit{train\_test\_split} koji pripada modulu \textit{model\_selection} u okviru paketa \textit{scikit-learn}. Treba napomenuti da je podela skupa podataka na skupove za treniranje i testiranje (kao i unakrsna validacija koja je takođe korišćena u tezi) samo način da se izvrši procena kvaliteta dobijenog modela (kao što je opisano u delu \ref{evaluacija}). Konačni model koji će se koristiti za dodeljivanje klasa nepoznatim podacima treba da se obuči nad celokupnim skupom raspoloživih podataka \cite{mladen}.
 
 \begin{lstlisting}[language=Python, basicstyle=\tiny]
 	from sklearn.model_selection import train_test_split
@@ -581,7 +580,7 @@ Na početku je potrebno skup podataka podeliti na skup za trening i skup za test
 		train_test_split(X, y, test_size=0.4, random_state=42)
 \end{lstlisting}
 
-Zatim se iz odgovarajućeg paketa učitava i kreira klasifikacioni model \footnote{U ovoj tezi se prilikom kreiranja klasifikatora zasnovanih na algoritmu $k$ najbližih suseda za vrednosti $k$ uzimaju 3 i 15 (u zavisnosti od situacije). Do ovih vrednosti se došlo konstruisanjem algoritama za vrednosti $k$ = 1..25 i poređenjem tačnosti dobijenih klasifikatora. Izabrane vrednosti $k$ su one za koje su dobijeni modeli imali najveću ili skoro najveću tačnost, a da su neparan broj.}. 
+\item Zatim se iz odgovarajućeg paketa učitava i kreira klasifikacioni model \footnote{U ovoj tezi se prilikom kreiranja klasifikatora zasnovanih na algoritmu $k$ najbližih suseda za vrednosti $k$ uzimaju 3 i 15 (u zavisnosti od situacije). Do ovih vrednosti se došlo konstruisanjem algoritama za vrednosti $k$ = 1..25 i poređenjem tačnosti dobijenih klasifikatora. Izabrane vrednosti $k$ su one za koje su dobijeni modeli imali najveću ili skoro najveću tačnost, a da su neparan broj.}. 
 \begin{lstlisting}[language=Python, basicstyle=\tiny]
 	# from sklearn.neighbors import KNeighborsClassifier
 	# clf = KNeighborsClassifier(n_neighbors=15)
@@ -591,15 +590,17 @@ Zatim se iz odgovarajućeg paketa učitava i kreira klasifikacioni model \footno
 	clf = RandomForestClassifier(n_jobs=2, random_state=0)
 \end{lstlisting}
 
-Klasifikator uči model na osnovu trening podataka pomoću metoda \textit{fit}. 
+\item Klasifikator uči model na osnovu trening podataka pomoću metoda \textit{fit}. 
 \begin{lstlisting}[language=Python, basicstyle=\tiny]
 	clf.fit(X_train, np.ravel(y_train))
 \end{lstlisting}
 
-Konačno, metodom \textit{predict} se model primeni na test podatke.
+\item Konačno, metodom \textit{predict} se model primeni na test podatke.
 \begin{lstlisting}[language=Python, basicstyle=\tiny]
 	y_pred = clf.predict(X_test)
 \end{lstlisting}
+
+\end{enumerate}
 
 Na slici \ref{fig:confmatr} mogu se videti tačnosti i matrice konfuzije za svaki od tri klasifikaciona modela. Na prvi pogled se vidi da sva tri algoritma daju modele sličnih tačnosti: 0,805, 0,810 i 0,810 (10-slojnom unakrsnom validacijom su dobijene tačnosti modela 0,776, 0,797 i 0,775). Pošto je tačnost modela broj u opsegu [0-1] za sve modele bi se moglo reći da su prihvatljivi. Tačnost modela može često da zavara i sama po sebi nije dovoljna da bi se donela presuda o kvalitetu modela pa je zato potrebno detaljnije analizirati dobijene rezultate. Dobijeni modeli sadrže relativno veliki broj (oko 700) lažno negativnih predviđanja. Ovakvi rezultati pokazuju da dobijeni modeli zapravo nisu dobri. Zadatak modela je otkrivanje programa koji imaju grešku, a u praksi će velikom broju programa sa greškom biti pogrešno dodeljena klasa programa bez greške. Primećeno ponašanje modela je posledica naizbalansiranosti klasa (kao što je napomenuto u delu \ref{upoznavanje}). 
 
@@ -819,7 +820,8 @@ Kako se atributi sa kojima se radi mogu podeliti u dve grupe (atributi koji se o
 \begin{description}
 \item[Izračunavanje atributa koji se odnose na Halstedove metrike]
 
-Halstedove metrike se koriste da bi se izmerili veličina softverskog proizvoda, kao i cena i napor potrebni za njegov razvoj. Ove metrike se zasnivaju na broju operatora i broju operanada izvornog koda (operatori i operandi o kojima je ovde reč nisu definisani na onaj način kako se operatori i operandi definišu u programskom jeziku, već su to širi pojmovi koji obuhvataju i neke druge stvari). Preciznije, u pitanju su četiri atributa koda: broj jedinstvenih operatora, broj jedinstvenih operanada, ukupan broj operatora i ukupan broj operanada.  Smernice za izračunavanje operanada i operatora za programski jezik C izgledaju ovako \cite{halstead}:
+Halstedove metrike se koriste da bi se izmerili veličina softverskog proizvoda, kao i cena i napor potrebni za njegov razvoj. Ove metrike se zasnivaju na broju operatora i broju operanada izvornog koda (operatori i operandi o kojima je ovde reč nisu definisani na isti način kako se operatori i operandi definišu u programskom jeziku, već su to širi pojmovi koji obuhvataju
+i neke dodatke). Preciznije, u pitanju su četiri atributa koda: broj jedinstvenih operatora, broj jedinstvenih operanada, ukupan broj operatora i ukupan broj operanada.  Smernice za izračunavanje operanada i operatora za programski jezik C izgledaju ovako \cite{halstead}:
 \begin{description}
 \item[Operandi]
 	\begin{enumerate}[(a)]
@@ -890,7 +892,7 @@ Na slici \ref{fig:confmfinal} je prikazana matrica konfuzije dobijena primenom k
 \end{figure}
 
 % Veoma je moguće da su programi korišćeni za obučavanje modela ,,pravi'' (ne znam da li je ovo najsrećniji izraz. Iako sam razumeo šta ste hteli da mi kažete, mislim da možemo da očekujemo komentar komisije - a šta su to pravi programi? :))
-Ovakvi rezultati, koliko god bili obeshrabrujući, imaju smisla. Pretpostavka je da su programi korišćeni za obučavanje modela zapravo preuzeti iz industrijskih aplikacija. Ovi programi su raznovrsni, ali su dati samo u obliku atributa te stoga njihov izgled ostaje nepoznat. Dodatno, za ove programe se može pretpostaviti da su uzeti iz suštinski različitih projekata. 
+Ovakvi rezultati, koliko god bili obeshrabrujući, imaju smisla. Pretpostavka je da su programi korišćeni za obučavanje modela zapravo preuzeti iz industrijskih aplikacija. Ovi programi su raznovrsni, ali su dati samo u obliku atributa te stoga njihov izgled ostaje nepoznat. 
 
 Programi korišćeni u evaluaciji su specijalno napravljeni za takmičenje u verifikaciji i kao takvi sadrže drugačije osobine i konstrukcije koje se ne mogu primeniti na programe iz klase koja je korišćena za obučavanje. Programi korišćeni za evaluaciju su prilično homogeni. Razlike između programa koji imaju i onih koji nemaju grešku su minimalne, kao na primer da jedan program ima znak < a drugi $\leq$ (tj. <= u kodu). Iz ovakvih razlika se ne može izvesti neki poseban zaključak osim da u slučaju znaka < postoji greška, a u slučaju znaka $\leq$ greška ne postoji. Takve informacije se ne mogu smisleno generalizovati. Još jedan razlog za slabije ponašanje modela je priroda korišćenih atributa. Oni se zasnivaju na linijama koda, komentara, broju operatora i broju operanada. Iz tog ugla razlika između dva programa, onog sa greškom i onog bez greške, je u tome što jedan od programa sadrži jedan karakter = više. Navedene razlike su previše suptilne da bi bile uhvaćene metodama mašinskog učenja pa je u takvim situacijama potrebno koristiti sofisticirane alate verifikacije softvera.
 %Iz tog ugla ne postoji nikakva razlika između dva programa, onog sa greškom i onog bez greške, koji se razlikuju samo po tome što jedan ima karakter <, a drugi karakter >. Navedene razlike su previše suptilne da bi bile uhvaćene metodama mašinskog učenja pa je u takvim situacijama potrebno koristiti sofisticirane alate verifikacije softvera.

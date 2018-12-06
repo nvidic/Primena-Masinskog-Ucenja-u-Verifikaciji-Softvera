@@ -59,7 +59,103 @@ odmah iznad, u poslednjem pasusu na strani 29
 Ne vidim sustinsku razliku izmedju slika 4.1 i 4.2. Da li ima potrebe da imamo obe?
 - slike 4.2 i 4.3? U pravu ste, koju da izbacim? Mozda 4.3?
 
+--------------------------------------
 
+Dodatno, za ove programe se može pretpostaviti da su uzeti iz suštinski različitih projekata.
+Posto je u pitanju pretpostavka, mozda ipak bolje da to izbacimo iz teksta.
+- izbaceno
+
+(operatori i operandi o kojima je ovde reč nisu definisani na onaj način kako se operatori i
+operandi definišu u programskom jeziku, već su to širi pojmovi koji obuhvataju
+i neke druge stvari).
+(operatori i operandi o kojima je ovde reč nisu definisani na isti način kako se operatori i
+operandi definišu u programskom jeziku, već su to širi pojmovi koji obuhvataju
+i neke dodatke).
+- zamenjeno
+
+
+Naveli ste samo formule, niste rekli na sta se one odnose.
+- na koje formule se ovo odnosi?
+- ako se odnosi na preciznost, odziv i F1 meru, formule se nalaze na vrhu strane 30 ali su definisane
+odmah iznad, u poslednjem pasusu na strani 29
+Da, mislim i na te i na ove prethodne. Jesto to sve definisano ali nije povezano.
+U tu svrhu se mogu koristiti tačnost (eng. ac-
+curacy) i odnos greške (eng. error rate). Tačnost je broj tačnih predviđanja podeljen
+ukupnim brojem predviđanja. Odnos greške je broj pogrešnih predviđanja podeljen
+ukupnim brojem predviđanja. Većina algoritama treba da ostvari najveću tačnost
+(ili analogno najmanji odnos greške) [33].
+
+Prvo tacnost  i odnos greske treba da je nakrivljeno (tj u prvoj recinici, kod prvog pojavljivanja, a ne posle).
+- zamenjeno
+
+Dalje, trebalo bi ovako:
+U tu svrhu se mogu koristiti tačnost (eng. accuracy) i odnos greške (eng. error rate). Tačnost je broj tačnih
+predviđanja podeljen
+ukupnim brojem predviđanja i za binarnu klasifikaciju definise se formulom ... Odnos greške je broj pogrešnih
+predviđanja podeljen
+ukupnim brojem predviđanja i za binarnu klasifikaciju definise se formulom .... Većina algoritama treba da
+ostvari najveću tačnost
+(ili analogno najmanji odnos greške) [33].
+Trenutno je receno sta je sta, a onda je stavljena formula za binarnu klasifkacju, ali nije receno
+da je to formula za binarnu klasifikaciju. I slicno u drugom slucaju. Mora nekako tekst da se poveze
+sa formulom koja sledi (mora da se pozove i kaze da je ta formula bas to iz teksta).
+- zamenjeno ---> stavio sam referencu odmah nakon uvodjenja pojmova zato sto
+mi tu ima vise smisla nego na kraju pasusa
+
+[
+Ne vidim sustinsku razliku izmedju slika 4.1 i 4.2. Da li ima potrebe da imamo obe?
+- slike 4.2 i 4.3? U pravu ste, koju da izbacim? Mozda 4.3?
+Da, mislila sam na te dve. Izbacite koju zelite ali vodite racuna da i tekst prilagodite tako da
+nema ponavljanja. U principu, objasnjenje koje ide uz 4.3 bi trebalo da ide odmah.
+
+
+Na osnovu
+vrednosti matrice mogu se izračunati ukupan broj tačnih predviđanja (f 11 + f 00 ) i
+ukupan broj pogrešnih predviđanja (f 10 + f 01 ) [33].
+Brojevi u zagradi odgovaraju binarnoj klasifkaciji i zato zbunjuju jer se ovde definise opsti slucaj.
+Zato ta primer ili izdvojte iz zagrada u posebnu recenicu, ili napisiite dole uz sliku.
+- zapravo sam naveo da se onosi na binarnu klasifikaciju :) Ako mislite da je dvosmisleno lako cu promeniti
+Meni se cini da jeste dvosimsleno.
+]
+
+- preuredio sam tekst o matrici konfuzije. Zamolio bih Vas da jos jednom pogledate.
+
+--------------------------------------
+Poglavlje 4.2.2 Matrica konfuzije --- preciznost, odziv ... definisani su sa skracenicama TN i slicno,
+a uvedene su oznake f+- i slicno --- treba to ujednaciti.
+- f+- i slicne oznake sam promenio na f10 itd
+- preciznost, odziv... definicije sam prosirio formulom koja sadrzi i f11...
+
+U slučaju da postoje podaci sa nedostajućim vrednostima, mogu se tretirati na neki od načina
+opisanih u [33].
+Ova recenica je visak, rekli smo da vise necemo pisati na tu temu.
+- izbrisano
+
+Kako su podaci
+od interesa programi kod kojih greška postoji takvo ponašanje modela je posebno
+nedopustivo.
+nije pozeljno umesto posebno nedopustivo.
+- zamenjeno
+
+U nekim literaturama ne postoji razlika između ova dva termina. ---- litarature ne moze da bude u mnozini
+- zamenjeno
+- U nekim knjigama ne postoji razlika između ova dva termina. Međutim, paket \textit{scikit-learn} razlikuje
+pojmove normalizacije i standardizacije pa će stoga biti razlikovani i u ovoj tezi
+
+scikit-learn --- promeniti font
+- zamenjeno
+
+Dodatno, u tezi se za transformaciju podataka koristi samo standardizacija pa će ona biti detaljnije
+objašnjena. --- ovo ne treba da je u fusnoti jer utice na ostatak teksta
+- prebaceno u tekst
+
+4.2.5 --- imate cetiri koraka pa : koje se odnosena nekoliko pasusa. To nije dobro. Treba bez dvotacke i
+nekako naglasiti koja su ta cetiri koraka, npr kroz okruzenje \begin{enumerate} \end{enumarate}
+ili tako nekako...
+- stavljeno u enumarate
+
+
+--------------------------------------
 --------------------------------------
 ( da li program ima ili nema grešku)
 Blanko viska
