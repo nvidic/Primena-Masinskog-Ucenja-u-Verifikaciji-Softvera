@@ -15,11 +15,12 @@ classes = []
 
 #print("----------------------------")
 for directory in os.walk("./C_tests"):
+    #print("Direktorijum: ")
     #print(directory)
     folder = directory[0]
     files = directory[2]
-    print(folder)
-    print(files)
+    #print(folder)
+    #print(files)
     for file in files:
         if file.endswith(".c"):
             file = os.path.join(folder, file)
@@ -63,9 +64,17 @@ for directory in os.walk("./C_tests"):
             attributes.expr_list = False
             attributes.loc_exec = 0
 
+            #ast = parse_file(file, use_cpp=True,
+            #                 cpp_path='gcc',
+            #                 cpp_args=['-nostdinc', '-D__attribute__(x)=', '-D__extension__=',  '-D__const=', '-E',
+            #                           r'-I./pycparser-master/utils/fake_libc_include']
+            #                 )
+
+
+            # gcc
             ast = parse_file(file, use_cpp=True,
                              cpp_path='gcc',
-                             cpp_args=['-nostdinc', '-D__attribute__(x)=', '-D__extension__=',  '-D__const=', '-E',
+                             cpp_args=['-nostdinc', '-D__attribute__(x)=', '-D__extension__=', '-D__const=', '-E',
                                        r'-I./pycparser-master/utils/fake_libc_include']
                              )
 

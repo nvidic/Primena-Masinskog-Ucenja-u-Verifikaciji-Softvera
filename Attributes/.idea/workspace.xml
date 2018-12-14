@@ -4,6 +4,9 @@
     <list default="true" id="2b93290f-e139-4662-9532-490bbbdbb9c2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/attributes.py" beforeDir="false" afterPath="$PROJECT_DIR$/attributes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c_attributes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/c_attributes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c_attributes_classes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/c_attributes_classes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../teza/rad.bib" beforeDir="false" afterPath="$PROJECT_DIR$/../teza/rad.bib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../teza/rad.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../teza/rad.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../teza/rad.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../teza/rad.synctex.gz" afterDir="false" />
@@ -75,32 +78,44 @@
     <session id="2004602505">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.4" value="4" />
-          <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.4" value="6" />
+          <entry key="project.open.time.5" value="2" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="3" />
+          <entry key="py" value="133" />
+          <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="3" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="133" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/attributes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="1278" lean-forward="true" selection-start-line="1278" selection-end-line="1278" />
+            <state relative-caret-position="356">
+              <caret line="1292" column="51" selection-start-line="1292" selection-start-column="51" selection-end-line="1292" selection-end-column="51" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -108,11 +123,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1139">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
+            <state relative-caret-position="135">
+              <caret line="73" column="17" selection-start-line="73" selection-start-column="17" selection-end-line="73" selection-end-column="17" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -123,9 +138,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/c_attributes.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9690">
-              <caret line="570" column="142" selection-start-line="570" selection-start-column="142" selection-end-line="570" selection-end-column="142" />
-            </state>
+            <state relative-caret-position="-9314" />
           </provider>
         </entry>
       </file>
@@ -159,6 +172,11 @@
       <find>3, 32, 0, 14,</find>
       <find>Fajl:</find>
       <find>loc_exec</find>
+      <find>exec</find>
+      <find>exec +=</find>
+      <find>loc_</find>
+      <find>loc_ex</find>
+      <find>gcc</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -168,8 +186,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/attributes.py" />
+        <option value="$PROJECT_DIR$/c_attributes.txt" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -201,6 +220,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -212,7 +232,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -275,7 +294,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49814126" weight="0.30718955" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49814126" weight="0.30638298" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -310,10 +329,25 @@
     <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/1937003313/builtins.py" />
     <entry file="file:///usr/lib/python3.7/ntpath.py" />
     <entry file="file:///usr/lib/python3.7/typing.py" />
+    <entry file="file://$USER_HOME$/Anaconda3/envs/Attributes/Lib/subprocess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="996" selection-start-line="996" selection-end-line="996" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/c_attributes_classes.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/c_attributes.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9314" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/attributes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="1278" lean-forward="true" selection-start-line="1278" selection-end-line="1278" />
+        <state relative-caret-position="356">
+          <caret line="1292" column="51" selection-start-line="1292" selection-start-column="51" selection-end-line="1292" selection-end-column="51" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
@@ -322,23 +356,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
+        <state relative-caret-position="135">
+          <caret line="73" column="17" selection-start-line="73" selection-start-column="17" selection-end-line="73" selection-end-column="17" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/c_attributes.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9690">
-          <caret line="570" column="142" selection-start-line="570" selection-start-column="142" selection-end-line="570" selection-end-column="142" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/c_attributes_classes.txt">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

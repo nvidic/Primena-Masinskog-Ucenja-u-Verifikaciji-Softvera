@@ -508,17 +508,17 @@ U želji da se u ovom procesu uštedi na resursima i vremenu izvršavanja koriš
 
 Kao skup podataka za obučavanje modela klasifikacije korišćen je korpus podataka \textit{jm1.arff} koji se nalazi na repozitorijumu \textit{PROMISE}. Repozitorijum \textit{PROMISE} (eng.~\textit{PROMISE Software Engineering Repository}) sadrži kolekciju javno dostupnih skupova podataka i alata koji treba da olakšaju istraživačima konstrukciju prediktivnih modela \cite{promise}. 
 
-Datoteka \textit{jm1} sadrži informacije o programima napisanim u programskom jeziku C, njihovim karakteristikama i o tome da li sadrže grešku ili ne. Sastoji se od 10878 objekata, od kojih svaki ima 22 atributa. Za potrebe ovog rada korišćeno je 18 atributa.  Izostavljeni su atributi \textit{cyclomatic complexity}, \textit{design complexity}, \textit{essential complexity} i \textit{branch count}. Ovi atributi su izostavljeni jer za njih nije pronađen jedinstven opis, a izborom atributa je utvrđeno da ne spadaju u 10 najbitnijih atributa. Atributi su izostavljani tek nakon što je utvrđeno da njihovo izostavljanje neće značajno uticati na kvalitet modela klasifikacije - model dobijen bez ovih atributa ima preciznost svega 0,02 manju od modela koji koristi sve atribute. Zbog toga je procenjeno da je bolje poboljšavati model na druge načine. Sedamnaest atributa tipa \textit{numeric} se odnosi na razne karakteristike koda, a osamnaesti je atribut klase (da li program ima ili nema grešku) \cite{jm1}: 
+Datoteka \textit{jm1} sadrži informacije o programima napisanim u programskom jeziku C, njihovim karakteristikama i o tome da li sadrže grešku ili ne. Sastoji se od 10878 objekata, od kojih svaki ima 22 atributa. Za potrebe ovog rada korišćeno je 18 atributa.  Izostavljeni su atributi \textit{cyclomatic complexity}, \textit{design complexity}, \textit{essential complexity} i \textit{branch count}. Ovi atributi su izostavljeni jer za njih nije pronađen jedinstven opis, a izborom atributa je utvrđeno da ne spadaju u 10 najbitnijih atributa. Atributi su izostavljani tek nakon što je utvrđeno da njihovo izostavljanje neće značajno uticati na kvalitet modela klasifikacije - model dobijen bez ovih atributa ima preciznost svega 0,02 manju od modela koji koristi sve atribute. Zbog toga je procenjeno da je bolje poboljšavati model na druge načine. Sedamnaest atributa tipa \textit{numeric} se odnosi na razne karakteristike koda, a osamnaesti je atribut klase (da li program ima ili nema grešku) \cite{jm1, SLOC}: 
 
 \textbf{LOC\_BLANK} Broj praznih linija u izvornom kodu programa
 
-\textbf{LOC\_CODE\_AND\_COMMENT} Broj linija koda i komentara
-
 \textbf{LOC\_COMMENTS} Broj linija komentara
 
-\textbf{LOC\_EXECUTABLE} Broj izvršivih linija koda
-
 \textbf{LOC\_TOTAL} Ukupan broj linija koda
+
+\textbf{LOC\_EXECUTABLE} Broj linija koda koji se dobije kada se od ukupnog broja linija oduzmu brojevi praznih linija i linija sa komentarima
+
+\textbf{LOC\_CODE\_AND\_COMMENT} Broj linija koda koji se dobije kada se od ukupnog broja linija oduzmu brojevi praznih linija
 
 \textbf{NUM\_OPERATORS} $N_1$ Ukupan broj operatora u programu
 
@@ -877,7 +877,8 @@ Pomoću biblioteke \textit{pycparser} moguće je na osnovu datih smernica prebro
 
 \item[Izračunavanje atributa koji se odnose na linije koda]
 
-Atributi koji se odnose na linije koda programa su računati na različite načine. Broj izvršivih linija koda \textit{LOC\_EXEC} se računa prilikom obilaska čvorova AST stabla. Ukupan broj linija koda \textit{LOC\_TOTAL}, kao i broj praznih linija \textit{LOC\_BLANC} računaju se prebrojavanjem. Broj linija komentara \textit{LOC\_COMMENTS} se računa korišćenjem regularnog izraza. Broj linija koda i komentara \\\textit{LOC\_CODE\_AND\_COMMENT} se računa oduzimanjem broja praznih linija od ukupnog broja linija. 
+Atributi koji se odnose na linije koda programa su računati korišćenjem regularnih izraza i prebrojavanjem linija koda. Ukupan broj linija koda \textit{LOC\_TOTAL}, kao i broj praznih linija \textit{LOC\_BLANC} dobijaju se prebrojavanjem. Broj linija komentara \textit{LOC\_COMMENTS} se računa korišćenjem regularnog izraza. Broj izvršivih linija koda \textit{LOC\_EXEC} se računa oduzimanjem broja praznih linija i broja linija sa komentarima od ukupnog broja linija. Broj linija koda i komentara \textit{LOC\_CODE\_AND\_COMMENT} se računa oduzimanjem broja praznih linija od ukupnog broja linija.
+
 
 \end{description}
 
@@ -894,9 +895,9 @@ Imena korišćenih programa su oblika: ime programa, nakon čega sledi jedan ili
 	\item \textit{termination}: Program se mora završiti na svakoj od izvršnih putanja.
 \end{itemize}
 
-Na osnovu prethodno definisanih svojstava programa poznato je koji programi sa takmičenja imaju grešku, a koji programi nemaju grešku (programi sa greškom imaju prefiks false ispred makar jednog od svojstava). Poznavanje klasa je neophodna informacija za testiranje performansi modela na novim podacima. Da bi bilo moguće primeniti klasifikacioni model na korpus podataka sa takmičenja, potrebno je transformisati podatke na isti način kao i prilikom obučavanja modela - standardizacijom i izborom atributa. 
+Na osnovu prethodno definisanih svojstava programa poznato je koji programi sa takmičenja imaju grešku, a koji programi nemaju grešku (programi sa greškom imaju prefiks \textit{false} ispred makar jednog od svojstava). Poznavanje klasa je neophodna informacija za testiranje performansi modela na novim podacima. Da bi bilo moguće primeniti klasifikacioni model na korpus podataka sa takmičenja, potrebno je transformisati podatke na isti način kao i prilikom obučavanja modela - standardizacijom i izborom atributa. 
 
-Na slici \ref{fig:confmfinal} je prikazana matrica konfuzije dobijena primenom konačnog modela klasifikacije na programe sa takmičenja. Rezultati dobijeni primenom modela na podacima sa takmičenja su lošiji u odnosu na rezultate dobijene na podacima za testiranje. Tačnost modela je oko 20\% lošija. Dodatni problem predstavlja činjenica da je većini programa dodeljena klasa 0 - klasa programa bez greške. Od 199 programa sa greškom samo 21 je ispravno klasifikovan. Svega 43 od 571 programa je označeno kao programi koji sadrže grešku. Nasuprot tome čak 178 programa koji zapravo sadrže grešku označeni su kao programi koji grešku ne sadrže. Kako su programi sa greškom programi od interesa, ovakvo ponašanje je problematično. Nešto detaljnije (ili bar razumljivije) informacije prikazane su na slici \ref{fig:extrafinal} gde se vidi da je i preciznost za obe klase (a posebno za klasu programa sa greškom) lošija u odnosu na preciznost modela primenjenog na podacima za testiranje. Odziv za klasu programa sa greškom iznosi svega 0,11 i to je prilično zabrinjavajuće.
+Na slici \ref{fig:confmfinal} je prikazana matrica konfuzije dobijena primenom konačnog modela klasifikacije na programe sa takmičenja. Rezultati dobijeni primenom modela na podacima sa takmičenja su lošiji u odnosu na rezultate dobijene na podacima za testiranje. Tačnost modela je oko 25\% lošija. Dodatni problem predstavlja činjenica da je većini programa dodeljena klasa 0 - klasa programa bez greške. Od 199 programa sa greškom samo 47 je ispravno klasifikovan. Tek 123 od ukupno 571 programa (sa i bez greške) je označeno kao programi koji sadrže grešku. Nasuprot tome čak 152 programa koji zapravo sadrže grešku označeni su kao programi koji grešku ne sadrže. Kako su programi sa greškom programi od interesa, ovakvo ponašanje je problematično. Nešto detaljnije (ili bar razumljivije) informacije prikazane su na slici \ref{fig:extrafinal} gde se vidi da je i preciznost za obe klase (a posebno za klasu programa sa greškom) lošija u odnosu na preciznost modela primenjenog na podacima za testiranje. Odziv za klasu programa sa greškom iznosi svega 0,24 što je prilično loše.
 
 \begin{figure}[!ht]
   \centering
@@ -912,11 +913,11 @@ Na slici \ref{fig:confmfinal} je prikazana matrica konfuzije dobijena primenom k
   \label{fig:extrafinal}
 \end{figure}
 
-% Veoma je moguće da su programi korišćeni za obučavanje modela ,,pravi'' (ne znam da li je ovo najsrećniji izraz. Iako sam razumeo šta ste hteli da mi kažete, mislim da možemo da očekujemo komentar komisije - a šta su to pravi programi? :))
-Ovakvi rezultati, koliko god bili obeshrabrujući, imaju smisla. Pretpostavka je da su programi korišćeni za obučavanje modela zapravo preuzeti iz industrijskih aplikacija. Ovi programi su raznovrsni, ali su dati samo u obliku atributa te stoga njihov izgled ostaje nepoznat. 
+Jedna od ideja za ovaj rad bila je da se u slučaju da model dobro klasifikuje programe njegovi rezultati porede sa rezultatima nekog verifikacijskog alata. Poređenje bi trebalo da pokaže da li postoji ušteda u vremenu izvršavanja, bez drastičnog gubitka tačnosti, ako se koristi samo klasifikacioni model. Međutim, na osnovu dobijenih rezultata može se zaključiti da postojeći klasifikacioni model loše klasifikuje programe i iz tog razloga neće biti pokretan nijedan verifikacioni alat niti vršena poređenja.
+
+Dobijeni rezultati, koliko god bili obeshrabrujući, imaju smisla. Pretpostavka je da su programi korišćeni za obučavanje modela zapravo preuzeti iz industrijskih aplikacija. Ovi programi su raznovrsni, ali su dati samo u obliku atributa te stoga njihov izgled ostaje nepoznat. 
 
 Programi korišćeni u evaluaciji su specijalno napravljeni za takmičenje u verifikaciji i kao takvi sadrže drugačije osobine i konstrukcije koje se ne mogu primeniti na programe iz klase koja je korišćena za obučavanje. Programi korišćeni za evaluaciju su prilično homogeni. Razlike između programa koji imaju i onih koji nemaju grešku su minimalne, kao na primer da jedan program ima znak < a drugi $\leq$ (tj. <= u kodu). Iz ovakvih razlika se ne može izvesti neki poseban zaključak osim da u slučaju znaka < postoji greška, a u slučaju znaka $\leq$ greška ne postoji. Takve informacije se ne mogu smisleno generalizovati. Još jedan razlog za slabije ponašanje modela je priroda korišćenih atributa. Oni se zasnivaju na linijama koda, komentara, broju operatora i broju operanada. Iz tog ugla razlika između dva programa, onog sa greškom i onog bez greške, je u tome što jedan od programa sadrži jedan karakter = više. Navedene razlike su previše suptilne da bi bile uhvaćene metodama mašinskog učenja pa je u takvim situacijama potrebno koristiti sofisticirane alate verifikacije softvera.
-%Iz tog ugla ne postoji nikakva razlika između dva programa, onog sa greškom i onog bez greške, koji se razlikuju samo po tome što jedan ima karakter <, a drugi karakter >. Navedene razlike su previše suptilne da bi bile uhvaćene metodama mašinskog učenja pa je u takvim situacijama potrebno koristiti sofisticirane alate verifikacije softvera.
 
 
 %---------------------

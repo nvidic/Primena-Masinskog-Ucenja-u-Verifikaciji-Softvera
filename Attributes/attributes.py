@@ -123,7 +123,7 @@ def traverse(node):
         #print("Assignment")
         # Assignment[op, lvalue*, rvalue*]
 
-        loc_exec += 1
+        #loc_exec += 1
 
         if node.op in operators:
             operators[node.op] += 1
@@ -163,7 +163,7 @@ def traverse(node):
         #print("Break")
         # Break[]
 
-        loc_exec += 1
+        #loc_exec += 1
 
         if "break" in operators:
             operators["break"] += 1
@@ -226,7 +226,7 @@ def traverse(node):
         #print("Continue")
         # Continue[]
 
-        loc_exec += 1
+        #loc_exec += 1
 
         if "continue" in operators:
             operators["continue"] += 1
@@ -430,7 +430,7 @@ def traverse(node):
         # name: Id
         # args: ExprList
 
-        loc_exec += 1
+        #loc_exec += 1
 
         func_call = True
 
@@ -472,7 +472,7 @@ def traverse(node):
         # Goto[name]
         # goto label;
 
-        loc_exec += 1
+        #loc_exec += 1
 
         if "goto" in operators:
             operators["goto"] += 1
@@ -721,7 +721,7 @@ def traverse(node):
     elif isinstance(node, c_ast.Return):
         #print("Return")
 
-        loc_exec += 1
+        #loc_exec += 1
 
         is_return = True
         # Return[expr*]
@@ -916,10 +916,10 @@ def traverse(node):
         # UnaryOperator[op, epxr*]
         unary_op = True
 
-        if "++" in node.op:
-            loc_exec += 1
-        if "--" in node.op:
-            loc_exec += 1
+        #if "++" in node.op:
+            #loc_exec += 1
+        #if "--" in node.op:
+            #loc_exec += 1
 
         if node.op:
             if node.op in operators:
@@ -1289,6 +1289,8 @@ def loc_metrics(filename):
         loc_comments += len(comment[0].split('\n'))
 
     loc_code_and_comment = loc_total - loc_blanc
+
+    loc_exec = loc_total - loc_blanc - loc_comments
 
 def Halstead_metrics(filename):
     global operators
