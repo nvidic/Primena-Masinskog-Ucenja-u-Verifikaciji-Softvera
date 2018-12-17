@@ -296,9 +296,22 @@ Svako stablo odlučivanja za podelu u čvoru koristi odgovarajući slučajni vek
 \item Mogući pristup podeli unutar čvora je da se umesto najboljeg atributa podele na slučajan način izabere jedan od $F$ najboljih atributa. Stabla dobijena na ovaj način mogu imati veći stepen korelacije u slučaju nedovoljno velikog parametra $F$. Pored toga, ovaj pristup ne daje uštedu u vremenu izvršavanja kao prethodna dva pristupa jer je potrebno ispitati svaki atribut podele u svakom čvoru stabla. 
 \end{enumerate}
 
-\section{Preprocesiranje podataka}
+\section{Pretprocesiranje podataka}
 
-\textit{Preprocesiranje podataka} (eng.~\textit{data preprocessing}) je široka oblast koja obuhvata različite tehnike i strategije koje se koriste zarad dobijanja podataka pogodnijih za rad. Te tehnike i strategije spadaju ili u izbor objekata i atributa za analizu ili u kreiranje novih atributa/menjanje postojećih atributa i ne postoji generalno pravilo kojim redom će se one primenjivati. Na izbor tehnika i strategija utiče priroda podataka sa kojima se radi \cite{mitic}. 
+\textit{Pretprocesiranje podataka} (eng.~\textit{data preprocessing}) je široka oblast koja obuhvata različite tehnike i strategije koje se koriste zarad dobijanja podataka pogodnijih za rad. Te tehnike i strategije spadaju ili u izbor objekata i atributa za analizu ili u kreiranje novih atributa/menjanje postojećih atributa i ne postoji generalno pravilo kojim redom će se one primenjivati. Na izbor tehnika i strategija utiče priroda podataka sa kojima se radi \cite{mitic}. 
+
+\subsection{Transformacija atributa}
+
+Termin \textit{transformacija atributa} označava transformaciju koja se primenjuje na sve vrednosti atributa. To znači da će vrednost atributa svakog objekta biti transformisana. Postoje različiti tipovi transformacija, a koji tip će biti korišćen zavisi od prirode podataka. U nekim situacijama je dovoljno primeniti jednostavnu matematičku funkciju na vrednosti atributa $x$ (npr. $x^k$, $\log x$, $\sqrt{x}$, $\left| x \right|$, ...) . U nekim drugim situacijama potrebno je izvršiti normalizaciju ili standardizaciju \footnote{U nekim knjigama ne postoji razlika između ova dva termina. Međutim, paket \textit{scikit-learn} razlikuje pojmove normalizacije i standardizacije pa će stoga biti razlikovani i u ovoj tezi.}. U tezi se za transformaciju podataka koristi samo standardizacija pa će ona biti detaljno objašnjena. Cilj normalizacije i standardizacije je da transformacijama skup vrednosti dobije određena svojstva \cite{mitic}.  
+
+\textit{Standardizacija} je tehnika transformisanja atributa kojom se svaki atribut transformiše oduzimanjem njegove srednje vrednosti i zatim deljenjem standardnom devijacijom. Na ovaj način se dobijaju nove vrednosti atributa koje su centrirane oko nule, a standardna devijacija će biti 1. Standardizacija je često neophodna za veliki broj algoritama mašinskog učenja paketa \textit{scikit-learn}. U slučaju da atributi nemaju raspodelu podataka sličnu normalnoj ili Gausovoj algoritmi mašinskog učenja mogu proizvesti pogrešne rezultate. Standardizacija je takođe često neophodna ako se veći broj promenljivih međusobno kombinuju. Standardizacijom se sprečava uticaj promenljive sa visokim vrednostima atributa na rezultat izračunavanja. Jednostavan ali slikovit primer kada treba primeniti standardizaciju je situacija u kojoj treba porediti dve osobe na osnovu godina i plate. Razlike u platama mogu biti veće od razlika u godinama zato što se njihovi opsezi vrednosti dosta razlikuju (godine su broj manji od 100, a plate se mere u desetinama ili stotinama hiljada). U takvoj situaciji, ukoliko se ove razlike ne uzmu u obzir, na rezultat poređenja će najviše uticati razlike u platama (Euklidsko rastojanje je jedna od metrika kod koje se moraju uzeti u obzir razlike u opsezima atributa) \cite{ sklearn_preprocessing, mlm2, mitic}. 
+
+\subsection{Uzorkovanje}
+% uzorkovanje - manipulisanje instancama/uzorcima
+
+Jedan od načina rešavanja problema neizbalansiranih klasa je \textit{uzorkovanje} (eng.~\textit{sampling}) sa ciljem modifikovanja raspodele instanci. Posledica ovakve modifikacije raspodele je da ređe zastupljena klasa postaje reprezentativna u skupu trening podataka tj. da se poveća njen uticaj na klasifikacioni model. Uzorkovanje obuhvata dodavanje novih instanci (eng.~\textit{oversampling}), uklanjanje postojećih instanci (eng.~\textit{undersampling}) i kombinaciju prethodne dve tehnike \cite{mitic, aggarwal}. 
+
+\textit{Uklanjanje postojećih instanci} je tehnika transformisanja trening skupa uklanjanjem nekih od podataka koji pripadaju zastupljenijoj klasi originalnog skupa podataka za trening. \textit{Dodavanje novih instanci} je tehnika transformisanja trening skupa dodavanjem novih podataka nastalih na osnovu nekih od podataka koji pripadaju manje zastupljenoj klasi originalnog skupa podataka za trening \cite{mitic}. 
 
 \subsection{Izbor atributa}
 
@@ -309,19 +322,6 @@ Postoje brojne prednosti smanjenja dimenzionalnosti: algoritam mašinskog učenj
 Smanjenje dimenzionalnosti često se odnosi na tehnike koje do smanjenja vode pravljenjem novih atributa kombinovanjem postojećih. Do smanjenja dimenzionalnosti može se doći i tako što novi atributi predstavljaju podskup postojećih. Ova tehnika zove se \textit{izbor podskupa atributa} (eng.~\textit{feature subset selection}) ili kraće \textit{izbor atributa} (eng.~\textit{feature selection}). Iako deluje da bi se izborom atributa mogle izgubiti bitne informacije ovo nije slučaj ukoliko postoje nevažni i redundantni atributi. \textit{Redundantni atributi} dupliraju informaciju koja je već postojana u nekom drugom atributu (npr. cena atrikla i porez), dok \textit{nevažni atributi} ne sadrže informacije od značaja (npr. indeksi studenata prilikom predviđanja ocene na ispitu) \cite{mitic}. 
 
 Idealan pristup izboru atributa je isprobavanje svih mogućih kombinacija atributa za ulaz u algoritam mašinskog učenja. U praksi ovo nije izvodljivo jer je broj podskupova za $n$ atributa jednak $2^n$. Postoje tri često korišćene grupe pristupa za izbor atributa: 1) \textit{ugrađeni pristupi} (eng.~\textit{embedded approaches}) - izbor atributa dešava se prilikom izvršavanja algoritma mašinskog učenja tj. prilikom obučavanja klasifikacionog modela kada algoritam bira koje atribute da zadrži a koje da zanemari, 2) \textit{pristupi koji koriste filtere} (eng.~\textit{filter approaches}) - izbor atributa vrši se pre pokretanja algoritma mašinskog učenja i nezavisno od samog zadatka istraživanja podataka i 3) \textit{pristupi koji koriste omotače} (eng.~\textit{wrapper approaches}) - za izbor atributa se, kao crna kutija, koristi neki algoritam mašinskog učenja \cite{mitic, UMLFTA, aggarwal}.
-
-\subsection{Transformacija atributa}
-
-Termin \textit{transformacija atributa} označava transformaciju koja se primenjuje na sve vrednosti atributa. To znači da će vrednost atributa svakog objekta biti transformisana. Postoje različiti tipovi transformacija, a koji tip će biti korišćen zavisi od prirode podataka. U nekim situacijama je dovoljno primeniti jednostavnu matematičku funkciju na vrednosti atributa $x$ (npr. $x^k$, $\log x$, $\sqrt{x}$, $\left| x \right|$, ...) . U nekim drugim situacijama potrebno je izvršiti normalizaciju ili standardizaciju \footnote{U nekim knjigama ne postoji razlika između ova dva termina. Međutim, paket \textit{scikit-learn} razlikuje pojmove normalizacije i standardizacije pa će stoga biti razlikovani i u ovoj tezi.} U tezi se za transformaciju podataka koristi samo standardizacija pa će ona biti detaljnije objašnjena. Cilj normalizacije i standardizacije je da transformacijama skup vrednosti dobije određena svojstva \cite{mitic}.  
-
-\textit{Standardizacija} je tehnika transformisanja atributa na taj način što se od svake vrednosti atributa oduzima njegova sredina, a zatim se dobijena vrednost deli standardnom devijacijom atributa. Na ovaj način se dobijaju nove vrednosti atributa, a sam atribut će imati sredinu 0 i standardnu devijaciju 1. Standardizacija je često neophodna za veliki broj algoritama mašinskog učenja paketa \textit{scikit-learn}. U slučaju da atributi nemaju raspodelu podataka sličnu normalnoj ili Gausovoj algoritmi mašinskog učenja mogu proizvesti pogrešne rezultate. Standardizacija je takođe često neophodna ako se veći broj promenljivih međusobno kombinuju. Standardizacijom se sprečava uticaj promenljive sa visokim vrednostima atributa na rezultat izračunavanja. Jednostavan ali slikovit primer kada treba primeniti standardizaciju je situacija u kojoj treba porediti dve osobe na osnovu godina i plate. Razlike u platama mogu biti veće od razlika u godinama zato što se njihovi opsezi vrednosti dosta razlikuju (godine su broj manji od 100, a plate se mere u desetinama ili stotinama hiljada). U takvoj situaciji, ukoliko se ove razlike ne uzmu u obzir, na rezultat poređenja će najviše uticati razlike u platama (Euklidsko rastojanje je jedna od metrika kod koje se moraju uzeti u obzir razlike u opsezima atributa) \cite{ sklearn_preprocessing, mlm2, mitic}. 
-
-\section{Dodavanje novih instanci - Oversampling}
-% uzorkovanje - manipulisanje instancama/uzorcima
-
-Jedan od načina rešavanja problema neizbalansiranih klasa je \textit{uzorkovanje} (eng.~\textit{sampling}) sa ciljem modifikovanja raspodele instanci. Posledica ovakve modifikacije raspodele je da ređe zastupljena klasa postaje reprezentativna u skupu trening podataka tj. da se poveća njen uticaj na klasifikacioni model. Uzorkovanje obuhvata dodavanje novih instanci (eng.~\textit{oversampling}), uklanjanje postojećih instanci (eng.~\textit{undersampling}) i kombinaciju prethodne dve tehnike \cite{mitic, aggarwal}. 
-
-\textit{Uklanjanje postojećih instanci} je tehnika transformisanja trening skupa uklanjanjem nekih od podataka koji pripadaju zastupljenijoj klasi originalnog skupa podataka za trening. \textit{Dodavanje novih instanci} je tehnika transformisanja trening skupa dodavanjem novih podataka nastalih na osnovu nekih od podataka koji pripadaju manje zastupljenoj klasi originalnog skupa podataka za trening \cite{mitic}. 
 
 \section{Matrica konfuzije}
 
@@ -342,24 +342,24 @@ Jedan od načina rešavanja problema neizbalansiranih klasa je \textit{uzorkovan
   \label{fig:matrkonf}
 \end{figure}
 
-Na osnovu vrednosti matrice mogu se izračunati ukupan broj tačnih predviđanja ($f_{11}+f_{00}$) i ukupan broj pogrešnih predviđanja ($f_{10}+f_{01}$). Za poređenje većeg broja modela bilo bi jednostavnije da su vrednosti matrice konfuzije predstavljene jednim brojem. U tu svrhu se mogu koristiti \textit{tačnost} (eng.~\textit{accuracy})  i \textit{odnos greške} (eng.~\textit{error rate}) \cite{mitic}. Tačnost je broj tačnih predviđanja podeljen ukupnim brojem predviđanja i za binarnu klasifikaciju definise se formulom: 
+Na osnovu vrednosti matrice mogu se izračunati ukupan broj tačnih predviđanja ($f_{11}+f_{00}$) i ukupan broj pogrešnih predviđanja ($f_{10}+f_{01}$). Za poređenje većeg broja modela bilo bi jednostavnije da su vrednosti matrice konfuzije predstavljene jednim brojem. U tu svrhu se mogu koristiti \textit{tačnost} (eng.~\textit{accuracy})  i \textit{odnos greške} (eng.~\textit{error rate}) \cite{mitic}. Tačnost je broj tačnih predviđanja podeljen ukupnim brojem predviđanja i za binarnu klasifikaciju definiše se formulom: 
 $$ \textit{Tačnost} = \frac{f_{11}+f_{00}}{f_{11}+f_{10}+f_{01}+f_{00}} $$
 
-Odnos greške je broj pogrešnih predviđanja podeljen ukupnim brojem predviđanja i za binarnu klasifikaciju definise se formulom:
+Odnos greške je broj pogrešnih predviđanja podeljen ukupnim brojem predviđanja i za binarnu klasifikaciju definiše se formulom:
 $$ \textit{Odnos greške} = \frac{f_{10}+f_{01}}{f_{11}+f_{10}+f_{01}+f_{00}} $$
 
 Većina algoritama treba da ostvari najveću tačnost (ili analogno najmanji odnos greške). U situacijama kada su klase nejednako zastupljene tačnost nije mera koja odgovara podacima jer svaku klasu tretira kao jednako važnu. 
 
 %U situacijama kada su klase nejednako zastupljene tačnost nije mera koja odgovara podacima jer svaku klasu tretira kao jednako važnu. Za problem binarne klasifikacije ređe zastupljena klasa često nosi naziv pozitivna klasa, a zastupljenija klasa nosi naziv negativna klasa. Slika \ref{fig:matrkonf2} prikazuje matricu konfuzije koja sumira brojeve dobro klasifikovanih i loše klasifikovanih objekata pri čemu vrednosti matrice imaju sledeće značenje \cite{mitic}:
 
-Metrike koje se sa dosta uspeha koriste kada je potrebno otkriti jednu od klasa su \textit{preciznost} i \textit{odziv} \cite{mitic}. Preciznost (eng.~\textit{precision}) je procenat stvarno pozitivnih objekata među objektima koji su klasifikovani kao pozitivni i za binarnu klasifikaciju definise se formulom:
+Metrike koje se sa dosta uspeha koriste kada je potrebno otkriti jednu od klasa su \textit{preciznost} i \textit{odziv} \cite{mitic}. Preciznost (eng.~\textit{precision}) je procenat stvarno pozitivnih objekata među objektima koji su klasifikovani kao pozitivni i za binarnu klasifikaciju definiše se formulom:
 $$ \textit{Preciznost} = \frac{TP}{TP+FP} = \frac{f_{11}}{f_{11}+f_{01}} $$
 
-Veća preciznost takođe znači da postoji manji broj lažno pozitivnih objekata. Odziv (eng.~\textit{recall}) predstavlja procenat pozitivnih objekata koji su ispravno klasifikovani i za binarnu klasifikaciju definise se formulom:
+Veća preciznost takođe znači da postoji manji broj lažno pozitivnih objekata. Odziv (eng.~\textit{recall}) predstavlja procenat pozitivnih objekata koji su ispravno klasifikovani i za binarnu klasifikaciju definiše se formulom:
 $$ \textit{Odziv} = \frac{TP}{TP+FN} = \frac{f_{11}}{f_{11}+f_{10}} $$ 
 
-Visok odziv znači da postoji mali broj lažno negativnih objekata. Preciznost i odziv se mogu sumirati u metriku koja se zove $F_1\ mera$ (eng.~\textit{$F_1$ measure}) i za binarnu klasifikaciju definise se formulom:
-$$ F_1\ mera = \frac{2TP}{2TP+FP+FN} = \frac{2*f_{11}}{2*f_{11}+f_{01}+f_{10}} $$
+Visok odziv znači da postoji mali broj lažno negativnih objekata. Preciznost i odziv se mogu sumirati u metriku koja se zove $F_1\ mera$ (eng.~\textit{$F_1$ measure}) i za binarnu klasifikaciju definiše se formulom:
+$$ F_1\ mera = \frac{2 \cdot TP}{2 \cdot TP+FP+FN} = \frac{2 \cdot f_{11}}{2 \cdot f_{11}+f_{01}+f_{10}} $$
 
 
 \section{Tehnike evaluacije klasifikacionih modela} \label{evaluacija}
@@ -610,7 +610,7 @@ Nakon osnovnog upoznavanja sa podacima i urađene standardizacije mogu se konstr
 		train_test_split(X, y, test_size=0.4, random_state=42)
 \end{lstlisting}
 
-\item Zatim se iz odgovarajućeg paketa učitava i kreira klasifikacioni model \footnote{U ovoj tezi se prilikom kreiranja klasifikatora zasnovanih na algoritmu $k$ najbližih suseda za vrednosti $k$ uzimaju 3 i 15 (u zavisnosti od situacije). Do ovih vrednosti se došlo konstruisanjem algoritama za vrednosti $k$ = 1..25 i poređenjem tačnosti dobijenih klasifikatora. Izabrane vrednosti $k$ su one za koje su dobijeni modeli imali najveću ili skoro najveću tačnost, a da su neparan broj.}. 
+\item Zatim se iz odgovarajućeg paketa učitava i kreira klasifikacioni model. Što se tiče modela zasnovanih na algoritmu $k$ najbližih suseda u ovoj tezi se za vrednosti parametra $k$ uzimaju $k=3$ i $k=15$. Do konkretnih vrednosti se došlo konstruisanjem modela za vrednosti $k$ = 1..25 i poređenjem tačnosti dobijenih modela. Modeli dobijeni za vrednosti $k=3$ i $k=15$ su modeli koji su imali najveću ili skoro najveću tačnost za neparnu vrednost parametra $k$. 
 \begin{lstlisting}[language=Python, basicstyle=\tiny]
 	# from sklearn.neighbors import KNeighborsClassifier
 	# clf = KNeighborsClassifier(n_neighbors=15)

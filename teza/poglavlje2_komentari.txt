@@ -1,0 +1,55 @@
+je izvršiti normalizaciju ili standardizaciju 2 U tezi se
+Nedostaje tacka
+- dodato
+
+samo standardizacija pa će ona biti detaljnije objašnjena. -->
+samo standardizacija pa će ona biti detaljno objašnjena.
+- zamenjeno
+
+Standardizacija je tehnika transformisanja atributa na taj način što se od svake
+vrednosti atributa oduzima njegova sredina, a zatim se dobijena vrednost deli stan-
+dardnom devijacijom atributa.
+Standardizacija je tehnika transformisanja atributa kojom se svaki atribut transformise oduzimanjem
+i zatim deljenjem standardnom devijacijom.
+- zamenjeno
+- Standardizacija je tehnika transformisanja atributa kojom se svaki atribut transformiše oduzimanjem
+njegove srednje vrednosti i zatim deljenjem standardnom devijacijom.
+
+Na ovaj način se dobijaju nove vrednosti atributa, a sam atribut će imati sredinu 0 i standardnu devijaciju 1.
+Ovo nije dobro receno. Sta je sredina? Mozda
+Na ovaj način se dobijaju nove vrednosti atributa koje su centrirane oko nule a standardna devijacija ce biti 1.
+- moze. zamenjeno
+
+binarnu klasifikaciju definise se formulom:
+i za binarnu klasifikaciju definise se formulom:
+rec definice fali sh
+- ispravljeno
+
+F 1 mera = .. umesto * koristite \cdot ili tako neki znak u latexu koji odgovara mnozenju
+- zamenjeno sa \cdot
+
+Slika 2.3 --- umesto class = 1 tebalo bi klasa=1
+- zamenjeno
+
+
+!!!
+Matrica konfuzije je nacin prikaza rezultata? Onda bi bilo logicno da to ide nakon evaluacije?
+- kod profesora Mladena pise ovako:
+- "Prakticno sve cesto koriscene mere kvaliteta klasifikacije pocivaju na matrici
+konfuzije i pojmovima vezanim za nju."
+- Dakle, tacnost, preciznost, odziv, ... pocivaju na matrici konfuzije
+- Posto tehnike evaluacije daju ocene modela npr. u vidu tacnosti, mislim da ipak prvo treba
+da stoji deo o matrici konfuzije (proverio sam i tako je i kod profesora Mladena).
+
+2.3 Dodavanje novih instanci - Oversampling --- Naslov ne odgovara, pre bi trebalo ovde da bude
+Uzorkovanje jer se isto prica i o jednom i o drugom
+- naslov promenjen u uzorkovanje
+
+
+!!!
+Da li bi 2.3 trebalo da bude podpoglavlje od 2.2 ili treba ovako? Uzorkovanje je deo pretprocesiranja?
+- 2.3 je sada potpoglavlje od 2.2
+- uzorkovanje jeste deo pretprocesiranja, ali je uzorkovanje mnogo vise od ovoga sto sam ja pisao.
+Ja sam se fokusirao samo na under/oversampling zato sto se oni koriste u slucaju
+neuravnotezenih klasa. Ne znam da li bi trebalo da napisem jos nesto o samom uzorkovanju ili
+mozda da naglasim da je fokus na oversamplingu
