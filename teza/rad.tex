@@ -104,7 +104,7 @@
 }
 
 % Ključne reči na srpskom jeziku (u odabranom pismu)
-\kljucnereci{}%analiza, geometrija, algebra, logika, računarstvo, astronomija}
+\kljucnereci{mašinsko učenje, verifikacija softvera, verifikacija, nadgledano učenje}%analiza, geometrija, algebra, logika, računarstvo, astronomija}
 
 \begin{document}
 % ==============================================================================
@@ -129,9 +129,22 @@
 
 % ------------------------------------------------------------------------------
 \chapter{Uvod}
-% ------------------------------------------------------------------------------
-%\pangrami
 
+Živimo u dobu informacija, u svetu koji neprekidno i brzo tehnološki napreduje, u svetu neograničenih mogućnosti i prostora za napredak. Opravdanje za ovako smelu tvrdnju daje jedan mali, neobični uređaj bez koga prosečna osoba ne može da zamisli svoj dan - moderni mobilni telefon. Mogućnosti koje mobilni telefon pruža su ogromne. One prevazilaze jednostavno sredstvo komunikacije u vidu telefonskih razgovora i razmene poruka. Mobilni telefon takođe služi i kao budilnik, fotoaparat, video kamera, radio, muzički plejer, veb pregledač, uređaj za navigaciju. Spisak deluje impresivno, a impresivnije je da je pored svega nabrojanog pomoću mobilnog telefona moguće i transformisati uslikane fotografije i snimljene videe, gledati filmove i serije, kupiti namirnice, plaćati račune i mnogo toga još. Ali mobilni telefon je samo alat. U pozadini svih navedenih mogućnosti mobilnog telefona nalazi se jedna stvar, stvar koja je nestvarno učinila svakodnevnim - \textit{softver}. 
+
+Softver čini da domen naučne fantastike od pre nekoliko vekova i decenija danas postaje realnost. Zahvaljujući softveru moguće je pre samog dolaska kući uključiti klima uređaj da ugreje ili rashladi kuću. Moguće je voziti se automobilom sposobnim da, bez ljudske pomoći, upravlja vozilom i parkira. Proboj na polju veštačke inteligencije omogućio je ličnog asistenta na uređaju koji stane u džep. Otkazivanje kamere prilikom fotografisanja mačke koja se nalazi u nezgodnom položaju ume da iznervira, ali ne može da se poredi sa otkazivanjem kočnica kada se ispred automobila nalaze pešaci. Zbog toga je jedan od najvažnijih aspekata softvera njegova ispravnost. 
+
+Informacije dolaze sa svih strana i čine veliki deo svakodnevnog života. Televizija, novine, knjige, internet, obrazovne ustanove predstavljaju neke od uobičajenih izvora informacija. Softver je takođe izvor informacija, korišćenje softvera ostavlja trag u vidu informacija. Informacije dolaze u raznim oblicima i bilo da su to fotografije, zvučni ili video zapisi, bankovne transakcije, stavke računa iz prodavnice ili nešto drugo, informacija ima mnogo i njihov broj konstantno raste. 
+
+U ovom radu predstavljena je kombinacija dve važne oblasti, \textit{verifikacije softvera} i \textit{mašinskog učenja}. Za ispitivanje ispravnosti softvera koriste se metodi verifikacije softvera. Mašinsko učenje daje metode pogodne za sumiranje informacija i metode pogodne za obradu velike količine informacija. 
+
+Pregled mašinskog učenja dat je u poglavlju \ref{chp:mašinsko učenje}. Posebna pažnja posvećena je delu mašinskog učenja koji se zove nadgledano učenje (odeljak \ref{sec:nadgledano}), kao i algoritmima nadgledanog učenja $k$ najbližih suseda (odeljak \ref{sec:knn}), logistička regresija (odeljak \ref{sec:logreg}) i slučajne šume (odeljak \ref{sec:randfor}). U cilju razumevanja praktičnog dela rada opisane su korišćene tehnike pretprocesiranja podataka (odeljak \ref{sec:pretprocesiranje}). Objašnjeno šta je to matrica konfuzije (odeljak \ref{sec:matrica konfuzije}) i opisane su tehnike evaluacije klasifikacionih modela (odeljak \ref{sec:evaluacija}), kao i izgled mašinskog učenja u programskom jeziku Python (odeljak \ref{sec:python}). 
+
+Poglavlje \ref{chp:verifikacija softvera} objašnjava šta je verifikacija softvera i razjašnjava njen značaj. Objašnjeni su pojmovi specifikacije (odeljak \ref{sec:specifikacija}), verifikacije i validacije (odeljak \ref{sec:verval}) i detaljnije su objašnjene dve vrste verifikacije, dinamička (odeljak \ref{sec:dinamicka}) i statička (odeljak \ref{sec:staticka}). 
+
+Praktični deo rada opisan je u poglavlju \ref{chp:implementacija}. Detaljnije se diskutuje o podacima korišćenim za dobijanje klasifikacionog modela (odeljak \ref{sec:kor_podaci}), kao i samom procesu obučavanja klasifikacionog modela (odeljak \ref{sec:obuka}). Pored toga u ovom poglavlju su opisani i program, koji na osnovu izvornih kodova programa napisanih u programskom jeziku C, računa atribute koji se koriste kao ulaz u prethodno obučeni model (odeljak \ref{sec:program atributi}) i primena modela na izračunate atribute (odeljak \ref{sec:primena modela}).  
+
+U poglavlju \ref{chp:zaključak} sumirani su rezultati rada.
 
 
 
@@ -151,6 +164,8 @@ Mašinsko učenje za rešavanje problema koristi različite metode. Ove metode s
 % tj. podacima na osnovu kojih se uči i izlaznim podacima tj. podacima koje je potrebno naučiti. 
 %Understanding Machine Learning: From Theory to Algorithms
 \section{Nadgledano učenje}
+\label{sec:nadgledano}
+
 Nadgledano učenje se odlikuje datim vrednostima ulaza, ali i datim vrednostima izlaza koji im odgovaraju. Na osnovu tih podataka potrebno je odrediti vezu koja postoji između ulaza i izlaza. Nadgledano učenje se može posmatrati kao vid učenja u kom se znanje stiče iskustvom. Iskustvo je sadržano u podacima za treniranje, a stečeno znanje se primenjuje na nove podatke.  Naziv je posledica sličnosti postupka nadgledanog učenja i učenja u kome profesor zada učeniku zadatke i nakon što ih učenik reši, d\^a učeniku odgovore radi poređenja rezultata. Algoritmi mašinskog učenja se opisuju kao učenje ciljne funkcije \textit{f} koja najbolje opisuje vezu između ulaznih promenljivih \textit{x} i izlazne promenljive \textit{y}, odnosno $y=f(x)$. Naučena veza (ciljna funkcija $f$) se kasnije koristi za buduća predviđanja izlaza $y$ na osnovu novih vrednosti ulaza $x$. Najčešće je ulaz predstavljen vektorom vrednosti promenljivih koje se nazivaju \textit{atributima} (eng.~\textit{features}), a izlaz kao jedna promenljiva koja se zove \textit{ciljna promenljiva} (eng.~\textit{target variable}). 
 Kako se u današnje vreme raspolaže ogromnim količinama podataka merenim gigabajtima i terabajtima, neophodno je pronaći metode koje automatski pronalaze veze između promenljivih. Veze tj. izgrađene ciljne funkcije se nazivaju \textit{modelima mašinskog učenja}. Postoji veliki broj modela i ne opisuju svi podjednako dobro veze među podacima. Od kvalitetnog modela se očekuje da vrši dobru generalizaciju tj. da prilikom predviđanja retko greši \cite{mladen, mlm, UMLFTA}. %https://machinelearningmastery.com/how-machine-learning-algorithms-work/
 
@@ -170,6 +185,7 @@ slučajnim šumama i logističkoj regresiji.
 
 %% kNN
 \subsection{Algoritam \textit{k} najbližih suseda}
+\label{sec:knn}
 
 Klasifikatori zasnovani na algoritmu \textit{k} najbližih suseda spadaju u klasifikatore zasnovane na instancama. Kod klasifikatora zasnovnih na instancama faza treniranja se odlaže sve do poslednjeg koraka procesa klasifikacije. Za takve klasifikatore se kaže da ,,lenjo'' uče (eng.~\textit{lazy learners}). Najjednostavniji opis logike učenja zasnovanog na instancama je da slične instance imaju slične oznake klasa (,,ako hoda kao patka, priča kao patka i izgleda kao patka, onda je najverovatnije patka \cite{mitic}'') \cite{aggarwal}.
 
@@ -237,6 +253,7 @@ Za rezultat klasifikacije jako je bitan izbor parametra \textit{k}. U slučaju m
 
 %% LR
 \subsection{Logistička regresija}
+\label{sec:logreg}
 
 % probabilisticki modeli
 Logistička regresija predstavlja probabilistički model klasifikacije. Koristi se i za probleme binarne i za probleme višeklasne klasifikacije. Kod probabilističkih modela je potrebno definisati raspodelu verovatnoće koju kasnije treba oceniti na osnovu podataka. Da bi ocena raspodele bila računski izvodljiva potrebno je uvesti pretpostavke o: (1) raspodeli podataka i (2) međusobnoj zavisnosti promenljivih. Pogrešne pretpostavke o podacima, njihovoj raspodeli i zavisnosti, vode ka lošijim rezultatima predviđanja. U daljem tekstu detaljnije je opisana binarna logistička regresija \cite{mladen}.
@@ -259,6 +276,7 @@ Treniranje modela linearne regresije odgovara oceni njegovih parametara i zasniv
 
 %% RF
 \subsection{Slučajne šume}
+\label{sec:randfor}
 
 \textit{Ansambl metodi} (eng.~\textit{ensemble methods}) su tehnike koje za cilj imaju poboljšanje tačnosti klasifikacije koje se postiže kombinovanjem predviđanja većeg broja klasifikatora. Ovi metodi konstruišu veći broj \textit{baznih klasifikatora} (eng.\textit{ base classifiers}) i kombinovanjem njihovih rezultata vrše svoje predviđanje. Rezultat predviđanja je srednja vrednost u slučaju regresije ili najzastupljenija vrednost u slučaju klasifikacije. Rezultati dobijeni primenom ansambl klasifikatora mogu biti bolji od rezultata dobijenih korišćenjem samo jednog klasifikatora ako su ispunjena sledeća dva uslova \cite{mitic}:
 \begin{enumerate}[1)]
@@ -297,6 +315,7 @@ Svako stablo odlučivanja za podelu u čvoru koristi odgovarajući slučajni vek
 \end{enumerate}
 
 \section{Pretprocesiranje podataka}
+\label{sec:pretprocesiranje}
 
 \textit{Pretprocesiranje podataka} (eng.~\textit{data preprocessing}) je široka oblast koja obuhvata različite tehnike i strategije koje se koriste zarad dobijanja podataka pogodnijih za rad. Te tehnike i strategije spadaju ili u izbor objekata i atributa za analizu ili u kreiranje novih atributa/menjanje postojećih atributa i ne postoji generalno pravilo kojim redom će se one primenjivati. Na izbor tehnika i strategija utiče priroda podataka sa kojima se radi \cite{mitic}. 
 
@@ -324,6 +343,7 @@ Smanjenje dimenzionalnosti često se odnosi na tehnike koje do smanjenja vode pr
 Idealan pristup izboru atributa je isprobavanje svih mogućih kombinacija atributa za ulaz u algoritam mašinskog učenja. U praksi ovo nije izvodljivo jer je broj podskupova za $n$ atributa jednak $2^n$. Postoje tri često korišćene grupe pristupa za izbor atributa: 1) \textit{ugrađeni pristupi} (eng.~\textit{embedded approaches}) - izbor atributa dešava se prilikom izvršavanja algoritma mašinskog učenja tj. prilikom obučavanja klasifikacionog modela kada algoritam bira koje atribute da zadrži a koje da zanemari, 2) \textit{pristupi koji koriste filtere} (eng.~\textit{filter approaches}) - izbor atributa vrši se pre pokretanja algoritma mašinskog učenja i nezavisno od samog zadatka istraživanja podataka i 3) \textit{pristupi koji koriste omotače} (eng.~\textit{wrapper approaches}) - za izbor atributa se, kao crna kutija, koristi neki algoritam mašinskog učenja \cite{mitic, UMLFTA, aggarwal}.
 
 \section{Matrica konfuzije}
+\label{sec:matrica konfuzije}
 
 \textit{Matrica konfuzije} je tabelarni prikaz brojeva ispravno i pogrešno klasifikovanih objekata na osnovu kojih se mogu vršiti ocene modela klasifikacije. Slika \ref{fig:matrkonf} prikazuje matricu konfuzije za problem binarne klasifikacije. Svako od polja $f_{ij}$ označava broj objekata klase $i$ koji su klasifikovani kao objekti klase $j$. Za problem binarne klasifikacije sa nejednako zastupljenim klasama, ređe zastupljena klasa često nosi naziv pozitivna klasa, a zastupljenija klasa nosi naziv negativna klasa. Vrednosti matrice imaju sledeće značenje \cite{mitic}:
 
@@ -362,7 +382,7 @@ Visok odziv znači da postoji mali broj lažno negativnih objekata. Preciznost i
 $$ F_1\ mera = \frac{2 \cdot TP}{2 \cdot TP+FP+FN} = \frac{2 \cdot f_{11}}{2 \cdot f_{11}+f_{01}+f_{10}} $$
 
 
-\section{Tehnike evaluacije klasifikacionih modela} \label{evaluacija}
+\section{Tehnike evaluacije klasifikacionih modela} \label{sec:evaluacija}
 
 Po završetku kreiranja klasifikacionog modela korisno je testirati njegove performanse na skupu podataka koji mu je nepoznat, pri čemu je neophodno da taj skup podataka sadrži informacije o klasama. Ovakav vid testiranja predstavlja nepristrasnu ocenu generalizacije. Često korišćeni metodi evaluacije su  \cite{mitic, mladen, aggarwal, UMLFTA}: 
 % deep learning with python
@@ -376,6 +396,8 @@ Po završetku kreiranja klasifikacionog modela korisno je testirati njegove perf
 
 
 \section{Mašinsko učenje u Python-u}
+\label{sec:python}
+
 ,,Python je interpretirani, objektno-orijentisani viši programski jezik sa dinamičkom semantikom. Python-ova jednostavna sintaksa se lako uči i naglašava čitljivost koda koja za posledicu ima nisku cenu održavanja \cite{python-blurb}''. Python podržava veliki broj paketa i modula što vodi ponovnoj upotrebljivosti i modularnosti koda. Nepostojanje faze kompilacije ubrzava čitav proces pisanja i testiranja koda. Debagovanje je prilično jednostavno, greške proizvode izuzetke i ako se oni ne uhvate interpreter ispisuje \textit{stanje steka} (eng.~\textit{stack trace}). Štaviše, često je najjednostavniji način debagovanja ubacivanje \textit{print} naredbi \cite{python-blurb}. %https://www.python.org/doc/essays/blurb/
 
 Autor Pythona je Holanđanin Gido Van Rosum (hol. Guido Van Rossum). Ideju o Python-u dobija krajem 1980-ih kada je radio kao programer na Državnom institutu za matematiku i informatiku CWI (Centrum voor Wiskunde en Informatica) u jeziku ABC kojim je inspirisan. Implementaciju započinje decembra 1989-te, a prva verzija jezika (verzija 0.9.0) puštena je 1991-ve. Januara 1994-te izlazi verzija 1.0 koja se razvija sve do septembra 2000-te. Unapređena verzija 2.0 (poznata i kao Python 2) izlazi u oktobru 2000-te, a verzija 3.0 (Python 3) u decembru 2008-me. Zanimljivo je da razvoj verzije 2.0 nije zaustavljen izlaskom nove velike verzije 3.0. Razlog za to je činjenica da je Python 3 prva distribucija namerno napravljena da bude nekompatibilna sa prethodnim distribucijama. Poslednja i konačna verzija vezana za Python 2 je 2.7 iz jula 2010-te, koja je i dalje podržana (poslednja promena desila se u aprilu 2018-te (2.7.15)). Verzija 3.7.0 je najnovijeg datuma (jun 2018-te). Izmene koje Python 3 donosi su brojne, a neke od njih su: \textit{print} više nije naredba već postaje funkcija, interfejsi poput rečnika i mapa vraćaju poglede i iteratore umesto listi, pojednostavljena su pravila operatora poređenja, napravljene su promene u samoj sintaksi,...  \cite{python-history, python-dates, python-whats-new}.
@@ -408,6 +430,7 @@ je modul koji implementira veliki broj algoritama mašinskog učenja. Pored algo
 
 
 \chapter{Verifikacija softvera}
+\label{chp:verifikacija softvera}
 
 Softver se nalazi svuda oko nas. U svakodnevnom životu, ljudi se sve više oslanjaju na sisteme zasnovane na informacionim i komunikacionim tehnologijama, pri čemu ti sistemi postaju sve složeniji i sve zastupljeniji. Ovi sistemi nalaze primenu u velikom broju oblasti: od berze, preko telefonskih i internet tehnologija pa sve do medicinskih sistema. Osim što se od njih očekuju dobre performanse u smislu vremena odziva i izračunavanja, jedan od ključnih aspekata kvaliteta sistema je odsustvo grešaka. Međutim, softver je pisan od strane ljudi pa stoga ne može biti savršen i podložan je greškama \cite{PoMC, SoftTest}.
 
@@ -415,7 +438,7 @@ Neke greške mogu biti pogubne po proizvođače. Greška pri deljenju brojeva u 
 
 Neke druge greške imaju daleko ozbiljnije posledice i njihova cena se ogleda u ljudskim životima. Softveri se koriste za upravljanje sistemima kao što su hemijske i nuklearne elektrane, sistemima za upravljanje saobraćaja, sistemima za odbranu od olujnih talasa (eng.~\textit{storm surge barriers}), a greške ovih sistema mogu imati katastrofalne posledice. Greška u protivraketnom sistemu (Patriot Missile Defense System) 1991-ve dovela je do smrti 28 vojnika. Greška u mašini za terapiju radijacijom Therac-25 prouzrokovala je smrt šest pacijenata u periodu između 1985-te i 1987-me zbog prevelike izloženosti radijaciji  \cite{PoMC, SoftTest}.
 
-\section{Specifikacija}
+\section{Specifikacija} \label{sec:specifikacija}
 
 Provera ispravnosti nekog softvera, odnosno njegovog ponašanja, nije moguća bez poznavanja željenog ponašanja datog softvera. Sa ciljem definisanja željenog ponašanja uvodi se pojam specifikacije. \textit{Specifikacija} predstavlja dogovor razvojnog tima oko toga šta softver treba da radi. 
 
@@ -423,7 +446,7 @@ Rezultat ispitivanja zahteva klijenta su podaci koji opisuju šta klijent očeku
 
 % ,,Specifikacija daje opis šta softver treba da radi \cite{mvj}''. 
 
-\section{Verifikacija i validacija}
+\section{Verifikacija i validacija} \label{sec:verval}
 
 Verifikacija i validacija su pojmovi koji se često međusobno prepliću a imaju različito značenje. \textit{Verifikacija} (eng.~\textit{software verification}) je postupak potvrđivanja da softver zadovoljava specifikaciju. \textit{Validacija} (eng.~\textit{software validation}) je postupak potvrđivanja da softver zadovoljava potrebe korisnika. % mozda ne treba da bude pod navodnicima
 Razlika između ova dva slična pojma se može razjasniti na primeru problema sa Habl teleskopom (eng.~\textit{Hubble telescope}). Habl je reflektujući teleskop koji koristi veliko ogledalo da uveća objekte ka kojima je uperen. Pravljenje ogledala je zahtevalo veliku tačnost i preciznost. Kako je ogledalo pravljeno da se koristi u svemiru, jedini način da se testira je bio pažljivim merenjem svih atributa ogledala i njihovim poređenjem sa specifikacijom. Testovi su prošli uspešno i teleskop je lansiran u zemljinu orbitu aprila 1990-te. Ubrzo nakon što je teleskop počeo sa radom otkriveno je da su slike koje vraća mutne kao posledica greške u specifikaciji. Iako je ogledalo zadovoljavalo specifikaciju, specifikacija je bila pogrešna što je dovelo do ogledala koje ima visoku preciznost a nisku tačnost. Testiranje je u ovom slučaju potvrdilo da ogledalo zadovoljava specifikaciju tj. verifikacija je bila uspešna. Sa druge stranje testiranje nije potvrdilo da ogledalo zadovoljava zahteve korisnika i validacija, da je rađena, ne bi prošla. Cena ove greške je bila u novoj svemirskoj misiji 1993-će da bi se dodalo korektivno sočivo \cite{SoftTest}.
@@ -433,7 +456,8 @@ Uopšteno govoreći, program ne zadovoljava specifikaciju ako sadrži greške ko
 Osnovne vrste verifikacije softvera su dinamička i statička  \cite{mvj}. Ova dva pojma se slikovito mogu opisati na primeru kupovine polovnog automobila. Gledanje ispod haube, traženje tragova rđe, traženje ulubljenja, traženje ogrebotina na farbi, naprsnuća stakla, šutiranje guma su tehnike statičkog testiranja. Paljenje motora automobila i vožnja koja obuhvata dodavanje gasa i kočenje su tehnike dinamičkog testiranja \cite{SoftTest}.
 
 
-\section{Dinamička verifikacija softvera}
+\section{Dinamička verifikacija softvera} \label{sec:dinamicka}
+
 Dinamička verifikacija softvera je provera njegove ispravnosti u toku izvršavanja. Provera ispravnosti se najčešće vrši testiranjem. Samim testiranjem se ne može dokazati ispravnost programa. Ono što testiranje može da uradi je da pokaže prisustvo grešaka, ne i njihovo odsustvo. Zbog toga je svrha testiranja otkrivanje grešaka koje program sadrži \cite{mvj}.  
 
 Testiranje je proces u kojem se program pokreće sa reprezentativnim skupom ulaznih podataka, nakon čega se rezultati porede sa očekivanim. Strategija testiranja služi za određivanje reprezentativnih ulaza pri čemu reprezentativni skup treba da zadovoljava sledeće uslove: (1) ima visok potencijal otkrivanja greške, (2) relativno je male veličine, (3) vodi do visokog poverenja u softver nakog što softver uspešno prođe sve test primere. Dva osnovna izvora testova su programski k\^od i specifikacija programa. U zavisnosti od izvora testova postoje tri strategije testiranja \cite{mvj}:
@@ -458,7 +482,8 @@ Slično strategijama crne kutije i ovde postoje nedostaci: (1) broj jedinstvenih
 %Od velikog značaja je automatizacija procesa generisanja test primera i provere rezultata testiranja jer ubrzava i olakšava proces testiranja. Rasplinuto testiranje (eng.~fuzz testing) je tehnika koju je moguće u potpunosti automatizovati.  
 
 
-\section{Statička verifikacija softvera}
+\section{Statička verifikacija softvera} \label{sec:staticka}
+
 Statička verifikacija softvera je provera njegove ispravnosti na osnovu koda, bez njegovog izvršavanja. Analiza koda može biti od strane ljudi ili automatizovana. 
 % ovde moze deo o pregledima sa slajdova 04 ili iz ron patton software testing
 
@@ -493,18 +518,13 @@ Ako simboličko izvršavanje pokaže da neka putanja zadovoljava uslove ispravno
 %----------------------------
 
 \chapter{Implementacija}
-% DODATI UVODNI TEKST
-%U ovom delu prikazani su postupak dobijanja najboljeg klasifikacionog modela i 
-% - da li masinsko ucenje moze da ubrza verifikaciju 
- %  - da li moze sa zadovoljavajucom tacnoscu da pronadje predvidi koji programi imaju gresku
-%- kreirana su 3 modela zasnovana na razlicitim algoritmima da bi se videlo koji daje %zadovoljavajuce/prihvatljive rezultate na trening podacima
-%- najbolji model je primenjen na specificnim programima koriscenim na takmicenju iz verifikacije
+\label{chp:implementacija}
 
 Postupak automatizovane verifikacije softvera zahteva veliku količinu vremena i resursa. 
 U želji da se u ovom procesu uštedi na resursima i vremenu izvršavanja korišćena je binarna klasifikacija. Pritom rezultati binarne klasifikacije treba dovoljno tačno da predviđaju da li programi sadrže greške. Na osnovu korpusa podataka za koje je poznato da li sadrže grešku ili ne kreirana su tri klasifikaciona modela, svaki zasnovan na različitom algoritmu. Od dobijenih modela izabran je model koji najviše odgovara podacima tj. model koji daje najtačnije rezultate. Ovaj model je evaluiran na specifičnim programima korišćenim na takmičenju iz verifikacije. 
 
 \section{Korišćeni podaci}
-\label{kor_podaci}
+\label{sec:kor_podaci}
 
 Kao skup podataka za obučavanje modela klasifikacije korišćen je korpus podataka \textit{jm1.arff} koji se nalazi na repozitorijumu \textit{PROMISE}. Repozitorijum \textit{PROMISE} (eng.~\textit{PROMISE Software Engineering Repository}) sadrži kolekciju javno dostupnih skupova podataka i alata koji treba da olakšaju istraživačima konstrukciju prediktivnih modela \cite{promise}. 
 
@@ -558,23 +578,20 @@ Format \textit{arff} (eng.~\textit{Attribute-Relation File Format}) predstavlja 
 \end{figure}
 
 \section{Nalaženje najboljeg klasifikatora}
+\label{sec:obuka}
 
 U cilju dobijanja najboljeg modela klasifikacije, konstruisani su klasifikatori zasnovani na algoritmima $k$ najbližih suseda, logistističke regresije i slučajnih šuma. Svaki od klasifikatora tretiran je na isti način. Vršene su razne transformacije da bi dobijeni klasifikatori davali preciznije rezultate. Nakon izvršenih transformacija, upoređivani su dobijeni rezultati. Poređenje klasifikatora vršeno je upoređivanjem nekih od svojstava klasifikatora. U nastavku je opisan proces kreiranja i unapređivanja klasifikacionih modela.  
-
-
-
 
 
 % \subsection{ROC kriva}
 
 %ROC (eng.~Receiver Operating Characteristic) kriva služi za grafički prikaz odnosa stvarno pozitivnih i lažno pozitivnih objekata matrice konfuzije
 
-\subsection{Upoznavanje sa podacima}  \label{upoznavanje}
-
+\subsection{Upoznavanje sa podacima}  \label{sec:upoznavanje}
 
 
 Upoznavanje sa podacima je neizostavan korak u procesu dobijanja kvalitetnog klasifikacionog modela. Od prirode podataka zavisi koji algoritmi se mogu koristiti za dobijanje modela, kao i kakve transformacije podataka su potrebne ili neophodne da bi dobijeni modeli bili verodostojni.
-Zbog toga je najpre potrebno upoznati se sa raspoloživim podacima. Broj podataka i atributi su poznati iz dela \ref{kor_podaci}. Jedna od prvih provera je da li postoje podaci sa nedostajućim vrednostima. Takvih podataka nema u korišćenom korpusu, tako da neće biti više reči na ovu temu. Takođe je potrebno proveriti raspodelu klasa među podacima. Na slici \ref{fig:raspodela} vidi se da su podaci prilično neravnomerno raspoređeni. Podaci koji nemaju grešku su daleko zastupljeniji od podataka koji imaju grešku. Od 10878 podataka, čak 8776 podataka su podaci koji imaju grešku, a 2102 nema grešku i ovo može predstavljati problem. Ovakva pojava predstavlja problem neizbalansiranih klasa. Modeli trenirani nad podacima koji imaju ovako velike razlike u raspodeli klasa mogu davati pristrasne rezultate tj. težiti da novim instancama dodele zastupljeniju klasu (u ovom slučaju je to klasa programa koji nemaju greške). Kako su podaci od interesa programi kod kojih greška postoji takvo ponašanje modela nije poželjno. Problem neizbalansiranih klasa se može rešiti na nekoliko načina. U ovom radu problem je rešen dodavanjem novih instanci. Postoji nekoliko koraka urađenih pre dodavanja novih instanci kojima je potrebno posvetiti više pažnje.  
+Zbog toga je najpre potrebno upoznati se sa raspoloživim podacima. Broj podataka i atributi su poznati iz dela \ref{sec:kor_podaci}. Jedna od prvih provera je da li postoje podaci sa nedostajućim vrednostima. Takvih podataka nema u korišćenom korpusu, tako da neće biti više reči na ovu temu. Takođe je potrebno proveriti raspodelu klasa među podacima. Na slici \ref{fig:raspodela} vidi se da su podaci prilično neravnomerno raspoređeni. Podaci koji nemaju grešku su daleko zastupljeniji od podataka koji imaju grešku. Od 10878 podataka, čak 8776 podataka su podaci koji imaju grešku, a 2102 nema grešku i ovo može predstavljati problem. Ovakva pojava predstavlja problem neizbalansiranih klasa. Modeli trenirani nad podacima koji imaju ovako velike razlike u raspodeli klasa mogu davati pristrasne rezultate tj. težiti da novim instancama dodele zastupljeniju klasu (u ovom slučaju je to klasa programa koji nemaju greške). Kako su podaci od interesa programi kod kojih greška postoji takvo ponašanje modela nije poželjno. Problem neizbalansiranih klasa se može rešiti na nekoliko načina. U ovom radu problem je rešen dodavanjem novih instanci. Postoji nekoliko koraka urađenih pre dodavanja novih instanci kojima je potrebno posvetiti više pažnje.  
 
 \begin{figure}[!ht]
   \centering
@@ -602,7 +619,7 @@ Nakon osnovnog upoznavanja sa podacima i urađene standardizacije mogu se konstr
 
 \begin{enumerate}
 
-\item Na početku je potrebno skup podataka podeliti na skup za trening i skup za testiranje (npr. u odnosu 60:40) da bi kasnije bilo moguće proceniti kvalitet modela. Za podelu skupa podataka dovoljno je pozvati metod \textit{train\_test\_split} koji pripada modulu \textit{model\_selection} u okviru paketa \textit{scikit-learn}. Treba napomenuti da je podela skupa podataka na skupove za treniranje i testiranje (kao i unakrsna validacija koja je takođe korišćena u tezi) samo način da se izvrši procena kvaliteta dobijenog modela (kao što je opisano u delu \ref{evaluacija}). Konačni model koji će se koristiti za dodeljivanje klasa nepoznatim podacima treba da se obuči nad celokupnim skupom raspoloživih podataka \cite{mladen}.
+\item Na početku je potrebno skup podataka podeliti na skup za trening i skup za testiranje (npr. u odnosu 60:40) da bi kasnije bilo moguće proceniti kvalitet modela. Za podelu skupa podataka dovoljno je pozvati metod \textit{train\_test\_split} koji pripada modulu \textit{model\_selection} u okviru paketa \textit{scikit-learn}. Treba napomenuti da je podela skupa podataka na skupove za treniranje i testiranje (kao i unakrsna validacija koja je takođe korišćena u tezi) samo način da se izvrši procena kvaliteta dobijenog modela (kao što je opisano u delu \ref{sec:evaluacija}). Konačni model koji će se koristiti za dodeljivanje klasa nepoznatim podacima treba da se obuči nad celokupnim skupom raspoloživih podataka \cite{mladen}.
 
 \begin{lstlisting}[language=Python, basicstyle=\tiny]
 	from sklearn.model_selection import train_test_split
@@ -632,7 +649,7 @@ Nakon osnovnog upoznavanja sa podacima i urađene standardizacije mogu se konstr
 
 \end{enumerate}
 
-Na slici \ref{fig:confmatr} mogu se videti tačnosti i matrice konfuzije za svaki od tri klasifikaciona modela. Na prvi pogled se vidi da sva tri algoritma daju modele sličnih tačnosti: 0,805, 0,810 i 0,810 (10-slojnom unakrsnom validacijom su dobijene tačnosti modela 0,776, 0,797 i 0,775). Pošto je tačnost modela broj u opsegu [0-1] za sve modele bi se moglo reći da su prihvatljivi. Tačnost modela može često da zavara i sama po sebi nije dovoljna da bi se donela presuda o kvalitetu modela pa je zato potrebno detaljnije analizirati dobijene rezultate. Dobijeni modeli sadrže relativno veliki broj (oko 700) lažno negativnih predviđanja. Ovakvi rezultati pokazuju da dobijeni modeli zapravo nisu dobri. Zadatak modela je otkrivanje programa koji imaju grešku, a u praksi će velikom broju programa sa greškom biti pogrešno dodeljena klasa programa bez greške. Primećeno ponašanje modela je posledica naizbalansiranosti klasa (kao što je napomenuto u delu \ref{upoznavanje}). 
+Na slici \ref{fig:confmatr} mogu se videti tačnosti i matrice konfuzije za svaki od tri klasifikaciona modela. Na prvi pogled se vidi da sva tri algoritma daju modele sličnih tačnosti: 0,805, 0,810 i 0,810 (10-slojnom unakrsnom validacijom su dobijene tačnosti modela 0,776, 0,797 i 0,775). Pošto je tačnost modela broj u opsegu [0-1] za sve modele bi se moglo reći da su prihvatljivi. Tačnost modela može često da zavara i sama po sebi nije dovoljna da bi se donela presuda o kvalitetu modela pa je zato potrebno detaljnije analizirati dobijene rezultate. Dobijeni modeli sadrže relativno veliki broj (oko 700) lažno negativnih predviđanja. Ovakvi rezultati pokazuju da dobijeni modeli zapravo nisu dobri. Zadatak modela je otkrivanje programa koji imaju grešku, a u praksi će velikom broju programa sa greškom biti pogrešno dodeljena klasa programa bez greške. Primećeno ponašanje modela je posledica naizbalansiranosti klasa (kao što je napomenuto u delu \ref{sec:upoznavanje}). 
 
 \begin{figure}[!ht]
     \centering
@@ -833,8 +850,9 @@ Na osnovu do sada viđenog može se zaključiti da je model koji najviše odgova
 % ROC krive?
 
 \section{Program koji iz C koda dobija atribute}
+\label{sec:program atributi}
 
-Ulazi modela klasifikacije su atributi programa napisanih u programskom jeziku C. Da bi se za proizvoljan program mogla raditi klasifikacija neophodno je njegov izvorni k\^od prevesti u atribute. U tu svrhu implementiran je program koji na osnovu izvornog koda programa napisanog u C-u dobija atribute opisane u delu \ref{kor_podaci}. Ovaj program napisan je u jeziku Python i većim delom se zasniva na biblioteci \textit{pycparser}. \textit{Pycparser} je parser programskog jezika C implementiran u Python-u. Detalji o modulu mogu se pronaći na linku: \url{https://github.com/eliben/pycparser} odakle se može izvršiti i njegovo preuzimanje. Korisne informacije se mogu naći i na veb strani autorke: \url{https://eli.thegreenplace.net/}.
+Ulazi modela klasifikacije su atributi programa napisanih u programskom jeziku C. Da bi se za proizvoljan program mogla raditi klasifikacija neophodno je njegov izvorni k\^od prevesti u atribute. U tu svrhu implementiran je program koji na osnovu izvornog koda programa napisanog u C-u dobija atribute opisane u delu \ref{sec:kor_podaci}. Ovaj program napisan je u jeziku Python i većim delom se zasniva na biblioteci \textit{pycparser}. \textit{Pycparser} je parser programskog jezika C implementiran u Python-u. Detalji o modulu mogu se pronaći na linku: \url{https://github.com/eliben/pycparser} odakle se može izvršiti i njegovo preuzimanje. Korisne informacije se mogu naći i na veb strani autorke: \url{https://eli.thegreenplace.net/}.
 
 Kako se atributi sa kojima se radi mogu podeliti u dve grupe (atributi koji se odnose na Halstedove metrike i atributi koji se odnose na linije koda) tako se postupak izračunavanja atributa na osnovu C koda može opisati u dva koraka. 
 
@@ -873,7 +891,7 @@ Potrebno je napomenuti i neke specijalne slučajeve \cite{halstead}:
 	\item Prethodno pravilo takođe važi i za promenljive i konstante
 \end{enumerate}
 
-Pomoću biblioteke \textit{pycparser} moguće je na osnovu datih smernica prebrojati operatore i operanade. Izračunavanje atributa koji se zasnivaju na operandima i operatorima je malo složenije od jednostavnog prebrojavanja i započinje parsiranjem C koda metodom \textit{parse\_file}. Rezultat parsiranja je \textit{AST stablo}. AST stablo (eng.~\textit{Abstract Syntax Tree}) je drvolika reprezentacija sintakse izvornog koda programa pogodna za analizu i manipulaciju. Dobijeno AST stablo prepoznaje 47 tipova čvorova (neki od njih su: \textit{Assignment}, \textit{BinaryOp}, \textit{For}, \textit{If}, \textit{Return}, \textit{Struct}, \textit{Switch}, \textit{Typedef}, \textit{While}, ...) koji se odnose na strukturu C koda. Obilaskom AST stabla, analizom njegovih čvorova i primenom prethodno navedenih smernica na čvorove stabla zabeleženi su svi operandi i većina operatora. Operatori koji su ostali nezabeleženi su: ( ) [ ] \{ \} , ; : \# \#\# ' i ''. Ovi operatori su prebrojani regularnim izrazima zbog jednostavnosti. Po završetku prebrojavanja operatora i operanada moguće je izračunati atribute koji se na njih odnose. Nakon toga jednostavnom primenom formula iz \ref{kor_podaci} mogu se izračunati potrebne Halstedove metrike \cite{pycparser}.
+Pomoću biblioteke \textit{pycparser} moguće je na osnovu datih smernica prebrojati operatore i operanade. Izračunavanje atributa koji se zasnivaju na operandima i operatorima je malo složenije od jednostavnog prebrojavanja i započinje parsiranjem C koda metodom \textit{parse\_file}. Rezultat parsiranja je \textit{AST stablo}. AST stablo (eng.~\textit{Abstract Syntax Tree}) je drvolika reprezentacija sintakse izvornog koda programa pogodna za analizu i manipulaciju. Dobijeno AST stablo prepoznaje 47 tipova čvorova (neki od njih su: \textit{Assignment}, \textit{BinaryOp}, \textit{For}, \textit{If}, \textit{Return}, \textit{Struct}, \textit{Switch}, \textit{Typedef}, \textit{While}, ...) koji se odnose na strukturu C koda. Obilaskom AST stabla, analizom njegovih čvorova i primenom prethodno navedenih smernica na čvorove stabla zabeleženi su svi operandi i većina operatora. Operatori koji su ostali nezabeleženi su: ( ) [ ] \{ \} , ; : \# \#\# ' i ''. Ovi operatori su prebrojani regularnim izrazima zbog jednostavnosti. Po završetku prebrojavanja operatora i operanada moguće je izračunati atribute koji se na njih odnose. Nakon toga jednostavnom primenom formula iz \ref{sec:kor_podaci} mogu se izračunati potrebne Halstedove metrike \cite{pycparser}.
 
 \item[Izračunavanje atributa koji se odnose na linije koda]
 
@@ -883,6 +901,7 @@ Atributi koji se odnose na linije koda programa su računati korišćenjem regul
 \end{description}
 
 \section{Primena klasifikacionog modela na izlaz programa za dobijanje atributa}
+\label{sec:primena modela}
 
 Uz poznavanje najboljeg modela klasifikacije (modela zasnovanog na algoritmu slučajne šume) i uz program koji od izvornog koda programa napisanih u programskom jeziku C dobija atribute koji se koriste kao ulaz u klasifikacioni model, moguće je testirati ponašanje modela pri klasifikovanju programa koje model prvi put vidi. Korpus programa koji se koriste za testiranje modela je korpus korišćen na takmičenju u verifikaciji i preuzet je sa \url{https://github.com/sosy-lab/sv-benchmarks/tree/master/c}\footnote{Korpus korišćen u tezi je deo podskupa sa linka.}
 
@@ -1017,6 +1036,9 @@ Programi korišćeni u evaluaciji su specijalno napravljeni za takmičenje u ver
 
 % ------------------------------------------------------------------------------
 \chapter{Zaključak}
+\label{chp:zaključak}
+
+
 % ------------------------------------------------------------------------------
 %\pangrami
 
