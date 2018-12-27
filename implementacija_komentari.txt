@@ -1,0 +1,42 @@
+Kakvih podataka? Svih vrsta? Slike, zvuk?
+- ne pise nista osim da su podaci u formatu arff. na osnovu podataka deluje da
+su u pitanju samo programski kodovi
+
+Prediktivnih modela za koje probleme?
+- pise prediktivne modele softverskog inzenjerstva
+
+Podaci koji nemaju grešku su daleko zastupljeniji od podataka koji imaju grešku.
+Sledeca recenica kaze suprotno.
+- ispravljeno
+
+Imajuci u vidu da veca klasa cini 81% podataka, ovi modeli nisu nista naucili.
+Ne nuzno. Sve sto ja iz ovoga zakljucujem to je da ne valjaju, a razlozi mogu biti razliciti.
+- Promenjen pasus. Izbacena je diskusija o modelima i samo je napisano da ne valjaju,
+kao i sledeca stvar koja se radi
+- Međutim, imajući u vidu da zastupljenija klasa čini oko 81% podataka može se smatrati da
+ovi modeli ništa nisu naučili.
+Sledeći korak u potrazi za boljim modelima je rešavanje problema neizbalansiranih klasa dodavanjem novih instanci.
+
+Za slucajne sume nije receno kako su im birane vrednosti metaparametara.
+- dodato objasnjenje za izbor metaparametara:
+- Za model zasnovan na algoritmu logističke regresije parametar \textit{random\_state} koji se koristi za
+generisanje pseudoslučajnih brojeva postavljen je na nulu. Pored toga vrednosti parametara
+\textit{solver} i \textit{max\_iter} su promenjene tako da budu u skladu sa narednom verzijom biblioteke,
+čime su eliminisana upozorenja. Modelu zasnovanom na algoritmu slučajne šume je parametar
+\textit{random\_state} takođe postavljen na nulu, a parametar \textit{n\_estimators} je promenjen
+u skladu sa narednom verzijom biblioteke.
+
+Svuda skloniti nule iza decimalne tacke. Ovako izgleda kao da se radi o milionima.
+- uklonjene nule
+
+Tačnost modela je oko 25% lošija
+A kolika je?
+- dodata tacnost modela
+
+Dati prvo statistike o programima sa takmicenja. Koliko ima onih sa greskom, a koliko onih bez?
+- dodato
+
+metodama masinskog ucenja iz datih podataka (ko zna sta bi bilo moguce na osnovu celih
+kodova - ako ne sad, a onda u buducnosti)
+- Navedene razlike su previše suptilne da bi na osnovu datih podataka bile uhvaćene metodama
+mašinskog učenja pa je u takvim situacijama potrebno koristiti sofisticirane alate verifikacije softvera.

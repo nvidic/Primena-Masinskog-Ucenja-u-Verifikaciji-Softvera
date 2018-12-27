@@ -99,14 +99,24 @@
 
 % Apstrakt na srpskom jeziku (u odabranom pismu)
 
-\apstr{%
+\apstr{Softver predstavlja sastavni deo svakodnevnog života i zahvaljujući napretku tehnologije pronalazi primenu u sve većem broju oblasti. Jedna od najvažnijih osobina softvera je njegova \textit{ispravnost}. Ovde nije reč samo o jednostavnom pitanju da li softver radi ili ne. Prisustvo greške nekada može imati katastrofalne posledice. Na primer, greške u softveru koji se koristi u medicini mogu pacijente koštati života. Zato se posebna pažnja posvećuje \textit{verifikaciji softvera} tj. ispitivanju njegove ispravnosti. %Verifikaciji se može pristupiti dinamički, za vreme izvršavanja programa, i to najčešće testiranjem. Verifikaciji se može pristupiti i statički, bez izvršavanja programa, analizom izvornog koda. 
+% !!!!!!! 
+Nažalost, verifikacija može biti vremenski i memorijski veoma skupa zbog čega je svako poboljšanje u efikasnosti jako važno. 
+%Verifikacija se može vršiti tokom izvršavanja programa pri čemu se koriste tehnike dinamičke analize. Verifikaciju je moguće vršiti i bez pokretanja programa, analizom programskog koda, kada se koriste tehnike statičke analize. Verifikacijski alati koji se koriste prilikom statičke analize su memorijski i vremenski veoma zahtevni zbog čega je svako poboljšanje u efikasnosti važno. 
+\textit{Mašinsko učenje} se bavi proučavanjem procesa generalizacije - uopštavanja koje vodi ka generalnim zaključcima.
+Pomoću metoda mašinskog učenja moguće je konstruisati sisteme sposobne da poboljšaju svoje performanse na osnovu iskustva koje se ogleda u raspoloživim podacima. 
+%Pomoću metoda mašinskog učenja moguće je konstruisati prilagodljive sisteme. Prednost takvih sistema je njihova sposobnost da poboljšaju svoje performanse na osnovu iskustva koje se ogleda u raspoloživim podacima. 
+%Prednost takvih sistema je njihova sposobnost da poboljšaju svoje performanse na osnovu iskustva koje se ogleda u raspoloživim podacima. 
+%Mašinsko učenje se bavi konstrukcijom prilagodljivih sistema sposobnih da poboljšaju svoje performanse na osnovu iskustva koje se ogleda u raspoloživim podacima. 
+U ovom radu je pokušano da se uz pomoć mašinskog učenja dobije na efikasnosti u verifikaciji. U tu svrhu su pomoću metoda nadgledanog učenja konstruisani modeli čiji je zadatak da procene da li u nekom programu postoji greška i na taj način smanje potrebu za skupim verifikacijskim analizama. %
 %\pangrami
 }
 
 % Ključne reči na srpskom jeziku (u odabranom pismu)
-\kljucnereci{mašinsko učenje, verifikacija softvera, verifikacija, nadgledano učenje}%analiza, geometrija, algebra, logika, računarstvo, astronomija}
+\kljucnereci{mašinsko učenje, verifikacija softvera, verifikacija, nadgledano učenje, klasifikacija}%analiza, geometrija, algebra, logika, računarstvo, astronomija}
 
 \begin{document}
+%\sloppy
 % ==============================================================================
 % Uvodni deo teze
 \frontmatter
@@ -116,9 +126,11 @@
 % Strana sa podacima o mentoru i članovima komisije
 \komisija
 % Strana sa posvetom (u odabranom pismu)
-\posveta{}%Mami, tati i dedi}
+%\posveta{}%Mami, tati i dedi}
 % Strana sa podacima o disertaciji na srpskom jeziku
 \apstrakt
+
+
 % Sadržaj teze
 \tableofcontents*
 
@@ -144,8 +156,7 @@ Poglavlje \ref{chp:verifikacija softvera} objašnjava šta je verifikacija softv
 
 Praktični deo rada opisan je u poglavlju \ref{chp:implementacija}. Detaljnije se diskutuje o podacima korišćenim za dobijanje klasifikacionog modela (odeljak \ref{sec:kor_podaci}), kao i samom procesu obučavanja klasifikacionog modela (odeljak \ref{sec:obuka}). Pored toga u ovom poglavlju su opisani i program, koji na osnovu izvornih kodova programa napisanih u programskom jeziku C, računa atribute koji se koriste kao ulaz u prethodno obučeni model (odeljak \ref{sec:program atributi}) i primena modela na izračunate atribute (odeljak \ref{sec:primena modela}).  
 
-U poglavlju \ref{chp:zaključak} sumirani su rezultati rada.
-
+U poglavlju \ref{chp:zaključak} sumirani su rezultati rada. Pored toga diskutovano je o pravcima daljeg razvoja. 
 
 
 \chapter{Mašinsko učenje}
@@ -328,7 +339,7 @@ Termin \textit{transformacija atributa} označava transformaciju koja se primenj
 \subsection{Uzorkovanje}
 % uzorkovanje - manipulisanje instancama/uzorcima
 
-Jedan od načina rešavanja problema neizbalansiranih klasa je \textit{uzorkovanje} (eng.~\textit{sampling}) sa ciljem modifikovanja raspodele instanci. Posledica ovakve modifikacije raspodele je da ređe zastupljena klasa postaje reprezentativna u skupu trening podataka tj. da se poveća njen uticaj na klasifikacioni model. Uzorkovanje obuhvata dodavanje novih instanci (eng.~\textit{oversampling}), uklanjanje postojećih instanci (eng.~\textit{undersampling}) i kombinaciju prethodne dve tehnike \cite{mitic, aggarwal}. 
+Jedan od načina rešavanja problema neizbalansiranih klasa je \textit{uzorkovanje} (eng.~\\\textit{sampling}) sa ciljem modifikovanja raspodele instanci. Posledica ovakve modifikacije raspodele je da ređe zastupljena klasa postaje reprezentativna u skupu trening podataka tj. da se poveća njen uticaj na klasifikacioni model. Uzorkovanje obuhvata dodavanje novih instanci (eng.~\textit{oversampling}), uklanjanje postojećih instanci (eng.~\textit{undersampling}) i kombinaciju prethodne dve tehnike \cite{mitic, aggarwal}. Uzorkovanje je zapravo mnogo više od navedenog, ali detalji o uzorkovanju neće biti detaljnije opisani jer je fokus rada na dodavanju novih instanci.
 
 \textit{Uklanjanje postojećih instanci} je tehnika transformisanja trening skupa uklanjanjem nekih od podataka koji pripadaju zastupljenijoj klasi originalnog skupa podataka za trening. \textit{Dodavanje novih instanci} je tehnika transformisanja trening skupa dodavanjem novih podataka nastalih na osnovu nekih od podataka koji pripadaju manje zastupljenoj klasi originalnog skupa podataka za trening \cite{mitic}. 
 
@@ -449,7 +460,9 @@ Rezultat ispitivanja zahteva klijenta su podaci koji opisuju šta klijent očeku
 \section{Verifikacija i validacija} \label{sec:verval}
 
 Verifikacija i validacija su pojmovi koji se često međusobno prepliću a imaju različito značenje. \textit{Verifikacija} (eng.~\textit{software verification}) je postupak potvrđivanja da softver zadovoljava specifikaciju. \textit{Validacija} (eng.~\textit{software validation}) je postupak potvrđivanja da softver zadovoljava potrebe korisnika. % mozda ne treba da bude pod navodnicima
-Razlika između ova dva slična pojma se može razjasniti na primeru problema sa Habl teleskopom (eng.~\textit{Hubble telescope}). Habl je reflektujući teleskop koji koristi veliko ogledalo da uveća objekte ka kojima je uperen. Pravljenje ogledala je zahtevalo veliku tačnost i preciznost. Kako je ogledalo pravljeno da se koristi u svemiru, jedini način da se testira je bio pažljivim merenjem svih atributa ogledala i njihovim poređenjem sa specifikacijom. Testovi su prošli uspešno i teleskop je lansiran u zemljinu orbitu aprila 1990-te. Ubrzo nakon što je teleskop počeo sa radom otkriveno je da su slike koje vraća mutne kao posledica greške u specifikaciji. Iako je ogledalo zadovoljavalo specifikaciju, specifikacija je bila pogrešna što je dovelo do ogledala koje ima visoku preciznost a nisku tačnost. Testiranje je u ovom slučaju potvrdilo da ogledalo zadovoljava specifikaciju tj. verifikacija je bila uspešna. Sa druge stranje testiranje nije potvrdilo da ogledalo zadovoljava zahteve korisnika i validacija, da je rađena, ne bi prošla. Cena ove greške je bila u novoj svemirskoj misiji 1993-će da bi se dodalo korektivno sočivo \cite{SoftTest}.
+Razlika između ova dva slična pojma se može razjasniti na primeru problema sa Habl teleskopom (eng.~\textit{Hubble telescope}). Habl je reflektujući teleskop koji koristi veliko ogledalo da uveća objekte ka kojima je uperen. %Pravljenje ogledala je zahtevalo veliku tačnost i preciznost. 
+Kako je ogledalo pravljeno da se koristi u svemiru, jedini način da se testira je bio pažljivim merenjem svih atributa ogledala i njihovim poređenjem sa specifikacijom. Testovi su prošli uspešno i teleskop je lansiran u zemljinu orbitu aprila 1990-te. Ubrzo nakon što je teleskop počeo sa radom otkriveno je da su slike koje vraća mutne. Naknadnim analizama utvrđeno je da je postojala greška u specifikaciji. %Iako je ogledalo zadovoljavalo specifikaciju, sama specifikacija je bila pogrešna što je dovelo do neželjenog ponašanja teleskopa. %što je dovelo do ogledala koje ima visoku preciznost a nisku tačnost. 
+Gde je bio problem? Testiranje je potvrdilo da ogledalo zadovoljava specifikaciju tj. verifikacija je bila uspešna. Ono što testiranjem nije otkriveno je postojanje greške u samoj specifikaciji. Ogledalo nije zadovoljavalo zahteve korisnika zbog čega validacija, da je rađena, ne bi prošla. Cena ove greške je bila u novoj svemirskoj misiji 1993-će da bi se dodalo korektivno sočivo \cite{SoftTest}.
 
 Uopšteno govoreći, program ne zadovoljava specifikaciju ako sadrži greške koje narušavaju funkcionalne i nefunkcionalne željene osobine programa. Funkcionalne osobine definišu koji su to željeni izlazi za zadate ulaze, a u nefunkcionalne osobine softvera spadaju vreme odziva, performanse i efikasnost. Bitna klasa grešaka koje mogu da naruše funkcionalne osobine softvera je klasa grešaka koje utiču na ispunjavanje bezbednosnih zahteva, npr. dovode do kraha programa ili utiču na performanse i efikasnost. Neki od primera su pokušaj deljenja nulom, pokušaj dereferenciranja NULL pokazivača, pokušaj čitanja sadržaja van granica rezervisane memorije i prisustvo kružnih blokada. Ove greške se mogu javiti nevezano od namene programa  \cite{mvj}.
 
@@ -490,8 +503,8 @@ Statička verifikacija softvera je provera njegove ispravnosti na osnovu koda, b
 % sa slajdova sta je automatizovana analiza 04 - jedna recenica
 
 
-Neodlučivost halting problema (problem ispitivanja ispravnosti programa) predstavlja ograničenje za automatizaciju provere ispravnosti programa. Posledica neodlučivosti je da se osobine polaznog sistema mogu verno opisati neodlučivim teorijama, ali proces dokazivanja nije moguće automatizovati baš zbog neodlučivosti teorija. Delimično rešenje ovog problema je u korišćenju interaktivnih dokazivača teorema (eng.~\textit{interactive theorem provers}) kao što su Isabelle i Coq. Korišćenjem ovih sistema moguće je pouzdano interaktivno dokazati razne osobine ispravnosti programa. Proverom samog dokaza dodatno se obezbeđuje najviši stepen pouzdanosti i sigurnosti u dokaz ispravnosti. Problem sa ovim sistemima je što zahtevaju ljudski rad zbog čega se ne koriste za čitave programe, već za njihove delove ili kompleksne osobine \cite{mvj}. 
-Potpuna automatizacija procesa verifikacije moguća je ako se polazni sistem opiše nekom odlučivom teorijom, ali često pod pretpostavkom neograničenih resursa. Neograničeno vreme, kao i bilo koji drugi neograničeni resurs u praksi nisu mogući. Svaki konačan opis u okviru odlučive teorije je, u opštem slučaju, samo aproksimacija ponašanja polaznog sistema. Posledice aproksimacija su neprecizna analiza jer opis polaznog sistema nije veran i analiza koju za neke programe nije moguće završiti zbog nedostatka resursa ili u konačnom vremenu. 
+Neodlučivost \textit{halting problema} (problema ispitivanja ispravnosti programa) predstavlja ograničenje za automatizaciju provere ispravnosti programa. Posledica neodlučivosti je da se osobine polaznog sistema mogu verno opisati neodlučivim teorijama, ali proces dokazivanja nije moguće automatizovati baš zbog neodlučivosti teorija. Delimično rešenje ovog problema je u korišćenju interaktivnih dokazivača teorema (eng.~\textit{interactive theorem provers}) kao što su Isabelle i Coq. Korišćenjem ovih sistema moguće je pouzdano interaktivno dokazati razne osobine ispravnosti programa. Proverom samog dokaza dodatno se obezbeđuje najviši stepen pouzdanosti i sigurnosti u dokaz ispravnosti. Problem sa ovim sistemima je što zahtevaju ljudski rad zbog čega se ne koriste za čitave programe, već za njihove delove ili kompleksne osobine \cite{mvj}. 
+Potpuna automatizacija procesa verifikacije moguća je ako se polazni sistem opiše nekom odlučivom teorijom, ali često pod pretpostavkom neograničenih resursa. Neograničeno vreme, kao i bilo koji drugi neograničeni resurs u praksi nisu mogući. Svaki konačan opis u okviru odlučive teorije je, u opštem slučaju, samo aproksimacija ponašanja polaznog sistema. Posledice aproksimacija su neprecizna analiza jer opis polaznog sistema nije veran, kao i analiza koju za neke programe nije moguće završiti zbog nedostatka resursa ili u konačnom vremenu. 
 Kvalitet analize tj. dobijanje preciznijih rezultata u konačnom vremenu i sa konačnim resursima, može se poboljšati dodavanjem obeležja (eng.~\textit{annotations}). Obeležjima se dodaju informacije koje je teško ili nemoguće automatski izvesti. Takođe se dodaju i informacije koje je moguće automatski izvesti ali se dodavanjem tih informacija štedi na vremenu potrebnom za analizu. Obeležjima se najčešće zadaju invarijante petlji, kao i preduslovi i postuslovi funkcija \cite{mvj}. 
 Potpuno automatizovani pristupi verifikaciji programa su simboličko izvršavanje, apstraktna interpretacija i proveravanje modela. 
 
@@ -548,17 +561,17 @@ Datoteka \textit{jm1} sadrži informacije o programima napisanim u programskom j
 
 \textbf{NUM\_UNIQUE\_OPERANDS} $\eta_2$ Broj jedinstvenih operanada u programu
 
-\textbf{HALSTEAD\_LEVEL} $L = (2*\eta_2)/(\eta_1*N_2)$
+\textbf{HALSTEAD\_LEVEL} $L = (2 \cdot \eta_2)/(\eta_1 \cdot N_2)$
 
-\textbf{HALSTEAD\_VOLUME} $V = (N_1+N_2)*(log_2(\eta_1+\eta_2))$ % = N*log_2(n)$
+\textbf{HALSTEAD\_VOLUME} $V = (N_1+N_2) \cdot (log_2(\eta_1+\eta_2))$ % = N*log_2(n)$
 
 \textbf{HALSTEAD\_LENGTH} $N = N_1+N_2$
 
-\textbf{HALSTEAD\_CONTENT} $I = L*V$
+\textbf{HALSTEAD\_CONTENT} $I = L \cdot V$
 
-\textbf{HALSTEAD\_DIFFICULTY} $D = 1/L = (\eta_1/2)*(N_2/\eta_2))$
+\textbf{HALSTEAD\_DIFFICULTY} $D = 1/L = (\eta_1/2) \cdot (N_2/\eta_2))$
 
-\textbf{HALSTEAD\_EFFORT} $E = V/L = D*V$
+\textbf{HALSTEAD\_EFFORT} $E = V/L = D \cdot V$
 
 \textbf{HALSTEAD\_ERROR\_EST} $B = V/3000$
 
@@ -591,7 +604,7 @@ U cilju dobijanja najboljeg modela klasifikacije, konstruisani su klasifikatori 
 
 
 Upoznavanje sa podacima je neizostavan korak u procesu dobijanja kvalitetnog klasifikacionog modela. Od prirode podataka zavisi koji algoritmi se mogu koristiti za dobijanje modela, kao i kakve transformacije podataka su potrebne ili neophodne da bi dobijeni modeli bili verodostojni.
-Zbog toga je najpre potrebno upoznati se sa raspoloživim podacima. Broj podataka i atributi su poznati iz dela \ref{sec:kor_podaci}. Jedna od prvih provera je da li postoje podaci sa nedostajućim vrednostima. Takvih podataka nema u korišćenom korpusu, tako da neće biti više reči na ovu temu. Takođe je potrebno proveriti raspodelu klasa među podacima. Na slici \ref{fig:raspodela} vidi se da su podaci prilično neravnomerno raspoređeni. Podaci koji nemaju grešku su daleko zastupljeniji od podataka koji imaju grešku. Od 10878 podataka, čak 8776 podataka su podaci koji imaju grešku, a 2102 nema grešku i ovo može predstavljati problem. Ovakva pojava predstavlja problem neizbalansiranih klasa. Modeli trenirani nad podacima koji imaju ovako velike razlike u raspodeli klasa mogu davati pristrasne rezultate tj. težiti da novim instancama dodele zastupljeniju klasu (u ovom slučaju je to klasa programa koji nemaju greške). Kako su podaci od interesa programi kod kojih greška postoji takvo ponašanje modela nije poželjno. Problem neizbalansiranih klasa se može rešiti na nekoliko načina. U ovom radu problem je rešen dodavanjem novih instanci. Postoji nekoliko koraka urađenih pre dodavanja novih instanci kojima je potrebno posvetiti više pažnje.  
+Zbog toga je najpre potrebno upoznati se sa raspoloživim podacima. Broj podataka i atributi su poznati iz dela \ref{sec:kor_podaci}. Jedna od prvih provera je da li postoje podaci sa nedostajućim vrednostima. Takvih podataka nema u korišćenom korpusu, tako da neće biti više reči na ovu temu. Takođe je potrebno proveriti raspodelu klasa među podacima. Na slici \ref{fig:raspodela} vidi se da su podaci prilično neravnomerno raspoređeni. Podaci koji nemaju grešku su daleko zastupljeniji od podataka koji imaju grešku. Od 10878 podataka, čak 8776 podataka nema grešku, a preostalih 2102 ima grešku što može predstavljati problem. Ovakva pojava predstavlja problem neizbalansiranih klasa. Modeli trenirani nad podacima koji imaju ovako velike razlike u raspodeli klasa mogu davati pristrasne rezultate tj. težiti da novim instancama dodele zastupljeniju klasu (u ovom slučaju je to klasa programa koji nemaju greške). Kako su podaci od interesa programi kod kojih greška postoji takvo ponašanje modela nije poželjno. Problem neizbalansiranih klasa se može rešiti na nekoliko načina. U ovom radu problem je rešen dodavanjem novih instanci. Postoji nekoliko koraka urađenih pre dodavanja novih instanci kojima je potrebno posvetiti više pažnje.  
 
 \begin{figure}[!ht]
   \centering
@@ -627,14 +640,16 @@ Nakon osnovnog upoznavanja sa podacima i urađene standardizacije mogu se konstr
 		train_test_split(X, y, test_size=0.4, random_state=42)
 \end{lstlisting}
 
-\item Zatim se iz odgovarajućeg paketa učitava i kreira klasifikacioni model. Što se tiče modela zasnovanih na algoritmu $k$ najbližih suseda u ovoj tezi se za vrednosti parametra $k$ uzimaju $k=3$ i $k=15$. Do konkretnih vrednosti se došlo konstruisanjem modela za vrednosti $k$ = 1..25 i poređenjem tačnosti dobijenih modela. Modeli dobijeni za vrednosti $k=3$ i $k=15$ su modeli koji su imali najveću ili skoro najveću tačnost za neparnu vrednost parametra $k$. 
+\item Zatim se iz odgovarajućeg paketa učitava i kreira klasifikacioni model. Što se tiče modela zasnovanih na algoritmu $k$ najbližih suseda u ovoj tezi se za vrednosti parametra $k$ uzimaju $k=3$ i $k=15$. Do konkretnih vrednosti se došlo konstruisanjem modela za vrednosti $k$ = 1..25 i poređenjem tačnosti dobijenih modela. Modeli dobijeni za vrednosti $k=3$ i $k=15$ su modeli koji su imali najveću ili skoro najveću tačnost za neparnu vrednost parametra $k$. Za model zasnovan na algoritmu logističke regresije parametar \textit{random\_state} koji se koristi za generisanje pseudoslučajnih brojeva postavljen je na nulu. Pored toga vrednosti parametara \textit{solver} i \textit{max\_iter} su promenjene tako da budu u skladu sa narednom verzijom biblioteke, čime su eliminisana upozorenja. Modelu zasnovanom na algoritmu slučajne šume je parametar \textit{random\_state} takođe postavljen na nulu, a parametar \textit{n\_estimators} je promenjen u skladu sa narednom verzijom biblioteke.
+ 
 \begin{lstlisting}[language=Python, basicstyle=\tiny]
 	# from sklearn.neighbors import KNeighborsClassifier
-	# clf = KNeighborsClassifier(n_neighbors=15)
+	# clf=KNeighborsClassifier(n_neighbors=15)
 	# from sklearn.linear_model import LogisticRegression
-	# clf = LogisticRegression(random_state=0)
+	# clf=LogisticRegression(random_state=0, 
+	#                          solver='lbfgs', max_iter=150)
 	from sklearn.ensemble import RandomForestClassifier
-	clf = RandomForestClassifier(n_jobs=2, random_state=0)
+	clf=RandomForestClassifier(random_state=0, n_estimators=100)
 \end{lstlisting}
 
 \item Klasifikator uči model na osnovu trening podataka pomoću metoda \textit{fit}. 
@@ -649,7 +664,10 @@ Nakon osnovnog upoznavanja sa podacima i urađene standardizacije mogu se konstr
 
 \end{enumerate}
 
-Na slici \ref{fig:confmatr} mogu se videti tačnosti i matrice konfuzije za svaki od tri klasifikaciona modela. Na prvi pogled se vidi da sva tri algoritma daju modele sličnih tačnosti: 0,805, 0,810 i 0,810 (10-slojnom unakrsnom validacijom su dobijene tačnosti modela 0,776, 0,797 i 0,775). Pošto je tačnost modela broj u opsegu [0-1] za sve modele bi se moglo reći da su prihvatljivi. Tačnost modela može često da zavara i sama po sebi nije dovoljna da bi se donela presuda o kvalitetu modela pa je zato potrebno detaljnije analizirati dobijene rezultate. Dobijeni modeli sadrže relativno veliki broj (oko 700) lažno negativnih predviđanja. Ovakvi rezultati pokazuju da dobijeni modeli zapravo nisu dobri. Zadatak modela je otkrivanje programa koji imaju grešku, a u praksi će velikom broju programa sa greškom biti pogrešno dodeljena klasa programa bez greške. Primećeno ponašanje modela je posledica naizbalansiranosti klasa (kao što je napomenuto u delu \ref{sec:upoznavanje}). 
+Na slici \ref{fig:confmatr} mogu se videti tačnosti i matrice konfuzije za svaki od tri klasifikaciona modela. Sva tri algoritma daju modele sličnih tačnosti: 0,805, 0,810 i 0,810 (10-slojnom unakrsnom validacijom su dobijene tačnosti modela 0,775, 0,797 i 0,776). Međutim, imajući u vidu da zastupljenija klasa čini oko 81\% podataka može se smatrati da ovi modeli ništa nisu naučili. %   Pošto je tačnost modela broj u opsegu [0-1] za sve modele bi se moglo reći da su prihvatljivi. Tačnost modela može često da zavara i sama po sebi nije dovoljna da bi se donela presuda o kvalitetu modela pa je zato potrebno detaljnije analizirati dobijene rezultate. 
+%Osim toga, dobijeni modeli sadrže relativno veliki broj (oko 700) lažno negativnih predviđanja. Ovakvi rezultati pokazuju da dobijeni modeli zapravo nisu dobri. Zadatak modela je otkrivanje programa koji imaju grešku, a u praksi će velikom broju programa sa greškom biti pogrešno dodeljena klasa programa bez greške. Primećeno ponašanje modela je posledica naizbalansiranosti klasa (kao što je napomenuto u delu \ref{sec:upoznavanje}). 
+
+Sledeći korak u potrazi za boljim modelima je rešavanje problema neizbalansiranih klasa dodavanjem novih instanci. 
 
 \begin{figure}[!ht]
     \centering
@@ -676,8 +694,9 @@ Na slici \ref{fig:confmatr} mogu se videti tačnosti i matrice konfuzije za svak
     \label{fig:confmatr}
 \end{figure}
 
-Informacije na osnovu kojih se može izvršiti nešto detaljnija analiza modela prikazane su na slici \ref{fig:dodatno1} i one su dobijene kao rezultat poziva metoda \textit{classification\_report}. Ovde se može videti da je preciznost predviđanja u slučaju programa čija je klasa 1 (tj. programa koji sadrže grešku) u proseku oko 60\% čime je potvrđeno ranije uočeno nepoželjno ponašanje modela. 
+% Informacije na osnovu kojih se može izvršiti nešto detaljnija analiza modela prikazane su na slici \ref{fig:dodatno1} i one su dobijene kao rezultat poziva metoda \textit{classification\_report}. Ovde se može videti da je preciznost predviđanja u slučaju programa čija je klasa 1 (tj. programa koji sadrže grešku) u proseku oko 60\% čime je potvrđeno ranije uočeno nepoželjno ponašanje modela. 
 
+\begin{comment}
 \begin{figure}[!ht]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -702,6 +721,7 @@ Informacije na osnovu kojih se može izvršiti nešto detaljnija analiza modela 
     \caption{Preciznost, odziv, f1-mera i podrška za klasifikatore zasnovane na različitim algoritmima}
     \label{fig:dodatno1}
 \end{figure}
+\end{comment}
 
 
 \subsection{Dodavanje novih instanci - Oversampling} 
@@ -717,7 +737,7 @@ U Python-u je dodavanje novih instanci podržano u okviru paketa \textit{imbalan
 	X_resampled, y_resampled = SMOTE(kind="svm").fit_sample(X, y)
 \end{lstlisting}
 
-Nakon dodavanja novih podataka potrebno je ponovo proći postupak obučavanja modela. Odgovarajuće matrice konfuzije prikazane su na slici \ref{fig:confmatrovers}. Procenjene tačnosti modela na osnovu podele skupa podataka na trening i test skup iznose 0,814, 0,711 i 0,859, a na osnovu 10-slojne unakrsne validacije 0,811, 0,642 i 0,834. Ono što iskače u prvi plan je vidno lošija tačnost modela zasnovanog na algoritmu logističke regresije što se posebno može primetiti evaluacijom pomoću tehnike unakrsne validacije. Takođe, modeli zasnovani na algoritmima $k$ najbližih suseda i slučajne šume deluju stabilnije prilikom obe vrste evaluacije. 
+Nakon dodavanja novih podataka potrebno je ponovo proći postupak obučavanja modela. Odgovarajuće matrice konfuzije prikazane su na slici \ref{fig:confmatrovers}. Procenjene tačnosti modela na osnovu podele skupa podataka na trening i test skup iznose 0,823, 0,715 i 0,848, a na osnovu 10-slojne unakrsne validacije 0,832, 0,650 i 0,800. Ono što iskače u prvi plan je vidno lošija tačnost modela zasnovanog na algoritmu logističke regresije što se posebno može primetiti evaluacijom pomoću tehnike unakrsne validacije. Takođe, modeli zasnovani na algoritmima $k$ najbližih suseda i slučajne šume deluju stabilnije prilikom obe vrste evaluacije. 
 
 \begin{figure}[!ht]
     \centering
@@ -744,7 +764,7 @@ Nakon dodavanja novih podataka potrebno je ponovo proći postupak obučavanja mo
     \label{fig:confmatrovers}
 \end{figure}
 
-Dodatne informacije o modelima prikazane su na slici \ref{fig:dodatno2}. Ponovo je interesantna preciznost, ovaj put modela \ref{fig:kn3} i \ref{fig:randfor3}. U slučaju klase 0 preciznost iznosi 0,85 za oba algoritma, a u slučaju klase 1 bolje rezultate daje model zasnovan na algoritmu slučajne šume (0,87 naspram 0,78). Zbog toga što je klasa od interesa klasa 1 (programi koji sadrže grešku) trenutno najbolji model je model zasnovan na algoritmu slučajne šume. Osim toga, na osnovu dobijenih rezultata deluje da model zasnovan na algoritmu logističke regresije ne uspeva dobro da prikaže prirodu podataka. Još jednu transformaciju je potrebno uraditi pre konačne presude.
+Dodatne informacije o modelima prikazane su na slici \ref{fig:dodatno2}. Ponovo je interesantna preciznost, ovaj put modela \ref{fig:kn3} i \ref{fig:randfor3}. U slučaju klase 0 preciznost iznosi 0,86 za $k$ najbližih suseda i 0,85 za slučajne šume, a u slučaju klase 1 bolje rezultate daje model zasnovan na algoritmu slučajne šume (0,87 naspram 0,79). Zbog toga što je klasa od interesa klasa 1 (programi koji sadrže grešku) trenutno najbolji model je model zasnovan na algoritmu slučajne šume. Osim toga, na osnovu dobijenih rezultata deluje da model zasnovan na algoritmu logističke regresije ne uspeva dobro da prikaže prirodu podataka. Još jednu transformaciju je potrebno uraditi pre konačne presude.
 
 \begin{figure}[!ht]
     \centering
@@ -784,17 +804,18 @@ Dodatne informacije o modelima prikazane su na slici \ref{fig:dodatno2}. Ponovo 
 
 Na slici \ref{fig:znacaj} prikazan je rezultat poziva metoda \textit{feature\_importances\_}. Na $x$ osi se nalaze indeksi atributa, a na $y$ osi značaj atributa. U cilju poboljšanja tačnosti i/ili brzine modela na osnovu značaja atributa biće sačuvano 10 najznačajnijih atributa a ostali će biti odbačeni. Tih 10 najznačajnijih atributa, u rastućem poretku su: \textit{HALSTEAD\_VOLUME, 
 HALSTEAD\_LENGTH, 
-NUM\_OPERATORS, \\
-NUM\_UNIQUE\_OPERATORS, 
-NUM\_UNIQUE\_OPERANDS, \\HALSTEAD\_CONTENT, 
-NUM\_OPERANDS, LOC\_EXECUTABLE, \\
+NUM\_UNIQUE\_OPERATORS, \\
+NUM\_UNIQUE\_OPERANDS, 
+HALSTEAD\_CONTENT,
+NUM\_OPERATORS, 
+NUM\_OPERANDS, LOC\_EXECUTABLE, 
 LOC\_BLANK i LOC\_TOTAL}.
 
 \subsection{Konačni izgled modela}
 
-Slika \ref{fig:confmatroversfeatsel} pokazuje da se izborom atributa dobijaju modeli nešto lošije tačnosti u odnosu na modele obučavane nad podacima na kojima nije vršen izbor atributa. To potvrđuju i rezultati 10-slojne unakrsne validacije 0,785, 0,567 i 0,829. Slika \ref{fig:dodatno3} pokazuje da su i preciznosti modela takođe lošije nakon izbora atributa. Najmanja razlika u preciznosti (a takođe i u tačnosti modela) je kod modela zasnovanog na algoritmu slučajne šume. 
+Slika \ref{fig:confmatroversfeatsel} pokazuje da izborom atributa samo model zasnovan na algoritmu slučajne šume dobija na tačnosti, ali neznatno (0,854 u odnosu na 0,848). Lošije rezultate ostvaruju modeli zasnovani na algoritmima $k$ najbližih suseda (0,787 u odnosu na 0,823) i logističke regresije (0,656 u odnosu na 0,715). To potvrđuju i rezultati 10-slojne unakrsne validacije 0,840, 0,564 i 0,780. Slika \ref{fig:dodatno3} pokazuje da su preciznosti sva tri modela nešto lošije nakon izbora atributa. Najveća razlika se vidi kod modela zasnovanog na algoritmu logističke regresije. Najmanju razliku u preciznosti (a takođe i u tačnosti modela) ima model zasnovan na algoritmu slučajne šume. 
 
-Na osnovu do sada viđenog može se zaključiti da je model koji najviše odgovara podacima model koji je zasnovan na algoritmu slučajnih šuma. Izborom atributa nisu dobijeni bolji rezultati u smislu tačnosti modela, ali rezultati nisu ni mnogo lošiji u odnosu na model dobijen nad podacima kod kojih nije rađen izbor atributa. Zbog toga, u nadi da će to dovesti do uštede u vremenu obučavanja, prilikom obučavanja konačnog modela biće primenjen izbor atributa. Konačan model koji će se koristiti za klasifikaciju nepoznatih programa biće model zasnovan na algoritmu slučajnih šuma, obučavaće se nad svim raspoloživim podacima pri čemu će nad podacima biti urađen izbor atributa.
+Na osnovu do sada viđenog može se zaključiti da je model koji najviše odgovara podacima model koji je zasnovan na algoritmu slučajnih šuma. Izborom atributa nisu dobijeni posebno bolji rezultati u smislu tačnosti modela, ali rezultati nisu ni mnogo lošiji u odnosu na model dobijen nad podacima kod kojih nije rađen izbor atributa. Zbog toga, u nadi da će to dovesti do uštede u vremenu obučavanja, prilikom obučavanja konačnog modela biće primenjen izbor atributa. Konačan model koji će se koristiti za klasifikaciju nepoznatih programa biće model zasnovan na algoritmu slučajnih šuma, obučavaće se nad svim raspoloživim podacima pri čemu će nad podacima biti urađen izbor atributa.
 
 \begin{figure}[!ht]
     \centering
@@ -831,7 +852,7 @@ Na osnovu do sada viđenog može se zaključiti da je model koji najviše odgova
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{logreg_final}
+        \includegraphics[width=\textwidth]{logreg_final.png}
         \caption{logistička regresija}
         \label{fig:logreg_final}
     \end{subfigure}
@@ -858,8 +879,7 @@ Kako se atributi sa kojima se radi mogu podeliti u dve grupe (atributi koji se o
 
 \begin{description}
 \item[Izračunavanje atributa koji se odnose na Halstedove metrike]
-
-Halstedove metrike se koriste da bi se izmerili veličina softverskog proizvoda, kao i cena i napor potrebni za njegov razvoj. Ove metrike se zasnivaju na broju operatora i broju operanada izvornog koda (operatori i operandi o kojima je ovde reč nisu definisani na isti način kako se operatori i operandi definišu u programskom jeziku, već su to širi pojmovi koji obuhvataju
+Halstedove \\metrike se koriste da bi se izmerili veličina softverskog proizvoda, kao i cena i napor potrebni za njegov razvoj. Ove metrike se zasnivaju na broju operatora i broju operanada izvornog koda (operatori i operandi o kojima je ovde reč nisu definisani na isti način kako se operatori i operandi definišu u programskom jeziku, već su to širi pojmovi koji obuhvataju
 i neke dodatke). Preciznije, u pitanju su četiri atributa koda: broj jedinstvenih operatora, broj jedinstvenih operanada, ukupan broj operatora i ukupan broj operanada.  Smernice za izračunavanje operanada i operatora za programski jezik C izgledaju ovako \cite{halstead}:
 \begin{description}
 \item[Operandi]
@@ -916,7 +936,9 @@ Imena korišćenih programa su oblika: ime programa, nakon čega sledi jedan ili
 
 Na osnovu prethodno definisanih svojstava programa poznato je koji programi sa takmičenja imaju grešku, a koji programi nemaju grešku (programi sa greškom imaju prefiks \textit{false} ispred makar jednog od svojstava). Poznavanje klasa je neophodna informacija za testiranje performansi modela na novim podacima. Da bi bilo moguće primeniti klasifikacioni model na korpus podataka sa takmičenja, potrebno je transformisati podatke na isti način kao i prilikom obučavanja modela - standardizacijom i izborom atributa. 
 
-Na slici \ref{fig:confmfinal} je prikazana matrica konfuzije dobijena primenom konačnog modela klasifikacije na programe sa takmičenja. Rezultati dobijeni primenom modela na podacima sa takmičenja su lošiji u odnosu na rezultate dobijene na podacima za testiranje. Tačnost modela je oko 25\% lošija. Dodatni problem predstavlja činjenica da je većini programa dodeljena klasa 0 - klasa programa bez greške. Od 199 programa sa greškom samo 47 je ispravno klasifikovan. Tek 123 od ukupno 571 programa (sa i bez greške) je označeno kao programi koji sadrže grešku. Nasuprot tome čak 152 programa koji zapravo sadrže grešku označeni su kao programi koji grešku ne sadrže. Kako su programi sa greškom programi od interesa, ovakvo ponašanje je problematično. Nešto detaljnije (ili bar razumljivije) informacije prikazane su na slici \ref{fig:extrafinal} gde se vidi da je i preciznost za obe klase (a posebno za klasu programa sa greškom) lošija u odnosu na preciznost modela primenjenog na podacima za testiranje. Odziv za klasu programa sa greškom iznosi svega 0,24 što je prilično loše.
+Na slici \ref{fig:confmfinal} je prikazana matrica konfuzije dobijena primenom konačnog modela klasifikacije na programe sa takmičenja u verifikaciji. Ostvarena tačnost modela iznosi 0,604 što je oko 25\% lošije u odnosu na rezultate dobijene nad podacima za testiranje. %Rezultati dobijeni primenom modela na podacima sa takmičenja su lošiji u odnosu na rezultate dobijene na podacima za testiranje. Tačnost modela iznosi 0,604 je oko 25\% lošija. 
+Od ukupno 571 programa sa takmičenja 372 nema grešku, a preostalih 199 ima. 
+Pored pomenute tačnosti, dodatni problem predstavlja činjenica da je većini programa (čak 514) dodeljena klasa 0 - klasa programa bez greške. Od svih programa sa greškom samo 15 je ispravno klasifikovan. Tek 57 programa je označeno kao programi koji sadrže grešku. Nasuprot tome čak 184 programa koji zapravo sadrže grešku označeni su kao programi koji grešku ne sadrže. Kako su programi sa greškom programi od interesa, ovakvo ponašanje je problematično. Nešto detaljnije (ili bar razumljivije) informacije prikazane su na slici \ref{fig:extrafinal} gde se vidi da je i preciznost za obe klase (a posebno za klasu programa sa greškom) lošija u odnosu na preciznost modela primenjenog na podacima za testiranje. Odziv za klasu programa sa greškom iznosi svega 0,08 što je prilično loše.
 
 \begin{figure}[!ht]
   \centering
@@ -936,16 +958,8 @@ Jedna od ideja za ovaj rad bila je da se u slučaju da model dobro klasifikuje p
 
 Dobijeni rezultati, koliko god bili obeshrabrujući, imaju smisla. Pretpostavka je da su programi korišćeni za obučavanje modela zapravo preuzeti iz industrijskih aplikacija. Ovi programi su raznovrsni, ali su dati samo u obliku atributa te stoga njihov izgled ostaje nepoznat. 
 
-Programi korišćeni u evaluaciji su specijalno napravljeni za takmičenje u verifikaciji i kao takvi sadrže drugačije osobine i konstrukcije koje se ne mogu primeniti na programe iz klase koja je korišćena za obučavanje. Programi korišćeni za evaluaciju su prilično homogeni. Razlike između programa koji imaju i onih koji nemaju grešku su minimalne, kao na primer da jedan program ima znak < a drugi $\leq$ (tj. <= u kodu). Iz ovakvih razlika se ne može izvesti neki poseban zaključak osim da u slučaju znaka < postoji greška, a u slučaju znaka $\leq$ greška ne postoji. Takve informacije se ne mogu smisleno generalizovati. Još jedan razlog za slabije ponašanje modela je priroda korišćenih atributa. Oni se zasnivaju na linijama koda, komentara, broju operatora i broju operanada. Iz tog ugla razlika između dva programa, onog sa greškom i onog bez greške, je u tome što jedan od programa sadrži jedan karakter = više. Navedene razlike su previše suptilne da bi bile uhvaćene metodama mašinskog učenja pa je u takvim situacijama potrebno koristiti sofisticirane alate verifikacije softvera.
+Programi korišćeni u evaluaciji su specijalno napravljeni za takmičenje u verifikaciji i kao takvi sadrže drugačije osobine i konstrukcije koje se ne mogu primeniti na programe iz klase koja je korišćena za obučavanje. Programi korišćeni za evaluaciju su prilično homogeni. Razlike između programa koji imaju i onih koji nemaju grešku su minimalne, kao na primer da jedan program ima znak < a drugi $\leq$ (tj. <= u kodu). Iz ovakvih razlika se ne može izvesti neki poseban zaključak osim da u slučaju znaka < postoji greška, a u slučaju znaka $\leq$ greška ne postoji. Takve informacije se ne mogu smisleno generalizovati. Još jedan razlog za slabije ponašanje modela je priroda korišćenih atributa. Oni se zasnivaju na linijama koda, komentara, broju operatora i broju operanada. Iz tog ugla razlika između dva programa, onog sa greškom i onog bez greške, je u tome što jedan od programa sadrži jedan karakter = više. Navedene razlike su previše suptilne da bi na osnovu datih podataka bile uhvaćene metodama mašinskog učenja pa je u takvim situacijama potrebno koristiti sofisticirane alate verifikacije softvera.
 
-
-%---------------------
-
-% \chapter{Eksperimentalni rezultati}
-
-% \section{Pokretanje verifikacijskih alata i merenje performansi}
-
-% \section{Primena izabranog modela na nove podatke}
 
 %--------------------------
 %\chapter{Primeri korišćenja klasičnih \LaTeX{} elemenata}
@@ -1020,23 +1034,24 @@ Programi korišćeni u evaluaciji su specijalno napravljeni za takmičenje u ver
 %\item Osnovi programiranja
 %\end{enumerate}
 
-%\pangrami
-
-% ------------------------------------------------------------------------------
-
-
-
-
-
-% ------------------------------------------------------------------------------
-
-%\pangrami
-
-%\pangrami
 
 % ------------------------------------------------------------------------------
 \chapter{Zaključak}
 \label{chp:zaključak}
+
+U ovom radu je opisan pokušaj poboljšanja efikasnosti verifikacije softvera korišćenjem metoda nadgledanog učenja. Predstavljen je postupak obučavanja, evaluacije i unapređenja klasifikacionih modela, čiji je zadatak da predvide da li program sadrži grešku u kodu ili ne, zasnovanih na algoritmima $k$ najbližih suseda, logističke regresije i slučajne šume. 
+%Za obučavanje modela korišćene su informacije o programima za koje je poznato da li sadrže grešku   u programskom jeziku Python. 
+%Evaluacijom modela i poređenjem njihovih performansi model zasnovan na algoritmu slučajne šume se pokazao kao najpogodniji. 
+Implementiran je program koji na osnovu izvornih kodova programa napisanih u programskom jeziku C izračunava atribute koji se koriste kao ulazi klasifikacionih modela. Program je upotrebljen da bi se iz korpusa programa korišćenih na takmičenju u verifikaciji izračunali atributi, nakon čega su izračunati atributi iskorišćeni kao ulaz u klasifikacioni model. 
+Nažalost, rezultati su bili nezadovoljavajući pošto je model loše klasifikovao programe.
+%Dobijeni rezultati su, nažalost, bili nezadovoljavajući tj. model je loše klasifikovao programe. 
+
+Dobijeni rezultati ne znače da se mašinskim učenjem ne može poboljšati efikasnost verifikacije. Naprotiv, postoji mnogo prostora za unapređenje rada. Korpus korišćen za obučavanje modela sadrži samo atribute programa. Pitanje je šta bi se dogodilo ako bi u fazi obučavanja bili dostupni čitavi programi. Sami atributi ne govore ništa o prirodi korišćenih programa, niti iz kojih oblasti su uzeti. Može se pretpostaviti da nisu svi programi podjednako pogodni za obučavanje modela. Pored korišćenih programa, moguće je i da korišćeni atributi nisu adekvatni za rešavanje ovog problema. Zbog toga bi bilo poželjno pokušati sa nekim drugim metrikama. Eksperimentisanje sa različitim vrednostima parametara prilikom obučavanja modela je jedna od opcija. U potrazi za boljim rezultatima trebalo bi isprobati i neke druge algoritme klasifikacije. % ili možda razvoj nekog novog algoritma. 
+
+
+
+%priroda programa
+%Prostor za napredak: celi programi umesto atributa, druge metrike, drugi algoritmi klasifikacije, drugi metodi mašinskog učenja?, novi algoritmi klasifikacije...
 
 
 % ------------------------------------------------------------------------------
