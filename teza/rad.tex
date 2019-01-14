@@ -415,7 +415,7 @@ Autor Pythona je Holanđanin Gido Van Rosum (hol. Guido Van Rossum). Ideju o Pyt
 % https://legacy.python.org/doc/essays/foreword/  
 % https://www.python.org/doc/versions/   		
 
-\subsection{SciPy ekosistem}
+\subsection{Ekosistem SciPy}
  
 \textbf{SciPy} je ekosistem slobodnog softvera za matematiku, nauku i inženjerstvo. Njegovu osnovu čini programski jezik Python i grupa paketa od kojih su za mašinsko učenje najznačajniji \cite{scipy}:
 \begin{enumerate}[1)]
@@ -534,14 +534,30 @@ Ako simboličko izvršavanje pokaže da neka putanja zadovoljava uslove ispravno
 \label{chp:implementacija}
 
 Postupak automatizovane verifikacije softvera zahteva veliku količinu vremena i resursa. 
-U želji da se u ovom procesu uštedi na resursima i vremenu izvršavanja korišćena je binarna klasifikacija. Pritom rezultati binarne klasifikacije treba dovoljno tačno da predviđaju da li programi sadrže greške. Na osnovu korpusa podataka za koje je poznato da li sadrže grešku ili ne kreirana su tri klasifikaciona modela, svaki zasnovan na različitom algoritmu. Od dobijenih modela izabran je model koji najviše odgovara podacima tj. model koji daje najtačnije rezultate. Ovaj model je evaluiran na specifičnim programima korišćenim na takmičenju iz verifikacije. 
+U želji da se u ovom procesu uštedi na resursima i vremenu izvršavanja korišćena je binarna klasifikacija. Pritom rezultati binarne klasifikacije treba dovoljno tačno da predviđaju da li programi sadrže greške. 
+
+Na osnovu korpusa podataka koji sadrži atribute i informaciju o prisustvu greške u programskim kodovima kreirana su tri klasifikaciona modela, svaki zasnovan na različitom algoritmu. Od dobijenih modela izabran je model koji najviše odgovara podacima tj. model koji daje najtačnije rezultate. Zatim je implementiran program koji na osnovu programskog koda napisanog u C-u izračunava atribute koda korišćene u fazi obučavanja modela. Na taj način se dobijeni prediktivni model može primeniti na proizvoljne programe. Izračunavanje atributa proizvoljnih programa je omogućilo da se model evaluira na specifičnim programima korišćenim na takmičenju iz verifikacije (za ove programe su bili dostupni njihovi kodovi i informacija o prisustvu greške, ali ne i atributi).
 
 \section{Korišćeni podaci}
 \label{sec:kor_podaci}
 
-Kao skup podataka za obučavanje modela klasifikacije korišćen je korpus podataka \textit{jm1.arff} koji se nalazi na repozitorijumu \textit{PROMISE}. Repozitorijum \textit{PROMISE} (eng.~\textit{PROMISE Software Engineering Repository}) sadrži kolekciju javno dostupnih skupova podataka i alata koji treba da olakšaju istraživačima konstrukciju prediktivnih modela \cite{promise}. 
+Kao skup podataka za obučavanje modela klasifikacije korišćen je korpus podataka \textit{jm1.arff} koji se nalazi na repozitorijumu \textit{PROMISE} (eng.~\textit{PROMISE Software Engineering Repository}). Repozitorijum sadrži skupove podataka relevantne za istraživanja u oblasti softverskog inženjerstva. Najveći deo skupova podataka koristi se za predviđanje defekata u softveru. U tom slučaju korišćeni podaci su programi predstavljeni atributima i njihovim vrednostima. Pored ovih podataka na repozitorijumu se nalaze i podaci sa metrikama relevantnim za predviđanje cene softvera (eng.~\textit{software cost estimation}), predviđanje uspešnosti ponovne upotrebljivosti softvera (eng.~\textit{predicting successful reuse}), praćenje zahteva (eng.~\textit{requirements tracing}), kao i transakcioni podaci (eng.~\textit{transaction data}) i podaci za neka numerička izračunavanja (eng.~\textit{data for numerical computation library}) \cite{promise}.
 
-Datoteka \textit{jm1} sadrži informacije o programima napisanim u programskom jeziku C, njihovim karakteristikama i o tome da li sadrže grešku ili ne. Sastoji se od 10878 objekata, od kojih svaki ima 22 atributa. Za potrebe ovog rada korišćeno je 18 atributa.  Izostavljeni su atributi \textit{cyclomatic complexity}, \textit{design complexity}, \textit{essential complexity} i \textit{branch count}. Ovi atributi su izostavljeni jer za njih nije pronađen jedinstven opis, a izborom atributa je utvrđeno da ne spadaju u 10 najbitnijih atributa. Atributi su izostavljani tek nakon što je utvrđeno da njihovo izostavljanje neće značajno uticati na kvalitet modela klasifikacije - model dobijen bez ovih atributa ima preciznost svega 0,02 manju od modela koji koristi sve atribute. Zbog toga je procenjeno da je bolje poboljšavati model na druge načine. Sedamnaest atributa tipa \textit{numeric} se odnosi na razne karakteristike koda, a osamnaesti je atribut klase (da li program ima ili nema grešku) \cite{jm1, SLOC}: 
+%Repozitorijum \textit{PROMISE} (eng.~\textit{PROMISE Software Engineering Repository}) sadrži kolekciju javno dostupnih skupova podataka i alata koji treba da olakšaju istraživačima konstrukciju prediktivnih modela \cite{promise}. 
+
+%Datoteka \textit{jm1} sadrži informacije o programima napisanim u programskom jeziku C, njihovim karakteristikama i o tome da li sadrže grešku ili ne. 
+
+Datoteka \textit{jm1} predstavlja NASA-in softver, napisan u programskom jeziku C, koji se koristi u okviru sklapanja, transporta i lansiranja svemirskih raketa i letelica. Objekti u datoteci odgovaraju funkcijama pomenutog softvera. Funkcije imaju između 1 i 3442 linije koda, srednja vrednost broja linija iznosi 42,03 a medijana 23. Ove funkcije su opisane Halstedovim metrikama (eng.~\textit{Halstead metrics}) zasnovanim na brojevima operatora i operanada, kao i metrikama zasnovanim na brojevima linija koda. Halsted je tvrdio da je veća verovatnoća da k\^od težak za čitanje sadrži grešku, pri čemu se složenost čitanja koda procenjuje prebrojavanjem koncepata funkcije (na primer, prebrojavanjem jedinstvenih operatora). Datoteka \textit{jm1} sadrži i informacije o postojanju defekta u funkcijama (detalji o tome šta spada pod pojam defekta nisu dati) \cite{jm1, ground_system, halstead77}. 
+
+
+%cm1 - instrument svemirske letelice (eng.~\textit{A NASA spacecraft instrument})
+%jm1 - 
+%pc1 - softver za letenje satelita koji se kreću u zemljinoj orbiti
+%kc1 - sistem za skladištenje
+%kc2 - obrada naučnih podataka
+
+
+Datoteka se sastoji od 10878 objekata, od kojih svaki ima 22 atributa. Za potrebe ovog rada korišćeno je 18 atributa.  Izostavljeni su atributi \textit{cyclomatic complexity}, \textit{design complexity}, \textit{essential complexity} i \textit{branch count}. Ovi atributi su izostavljeni jer za njih nije pronađen jedinstven opis, a izborom atributa je utvrđeno da ne spadaju u 10 najbitnijih atributa. Atributi su izostavljani tek nakon što je utvrđeno da njihovo izostavljanje neće značajno uticati na kvalitet modela klasifikacije - model dobijen bez ovih atributa ima preciznost svega 0,02 manju od modela koji koristi sve atribute. Zbog toga je procenjeno da je bolje poboljšavati model na druge načine. Sedamnaest atributa tipa \textit{numeric} se odnosi na razne karakteristike koda, a osamnaesti je atribut klase (da li program ima ili nema grešku) \cite{jm1, SLOC}: 
 
 \textbf{LOC\_BLANK} Broj praznih linija u izvornom kodu programa
 
@@ -615,7 +631,7 @@ Zbog toga je najpre potrebno upoznati se sa raspoloživim podacima. Broj podatak
 	 
 \subsection{Transformacija atributa}
 
-Od prirode raspoloživih podataka zavisi koja transformacija atributa će se primeniti. Zato je potrebno videti kako atributi izgledaju i koje vrednosti uzimaju.
+Od prirode raspoloživih podataka zavisi koja transformacija atributa će se primeniti. Zato je potrebno videti kako atributi izgledaju i koje vrednosti uzimaju. 
 
 \begin{figure}[!ht]
   \centering
@@ -624,7 +640,7 @@ Od prirode raspoloživih podataka zavisi koja transformacija atributa će se pri
   \label{fig:atr_opsezi}
 \end{figure}
 
-Slika \ref{fig:atr_opsezi} pokazuje da se opsezi vrednosti atributa dosta razlikuju. Zbog toga je potrebno izvršiti standardizaciju podataka kako atributi sa visokim vrednostima ne bi previše uticali na rezultat klasifikacije. 
+Slika \ref{fig:atr_opsezi} prikazuje kako se opsezi vrednosti pet prikazanih atributa dosta razlikuju. Na primer, vrednosti atributa \textit{HALSTEAD\_LEVEL} su brojevi u intervalu [0, 1] i one su izrazito male ako se porede sa vrednostima drugih prikazanih atributa. Razlika je posebno primetna ako se posmatraju vrednosti atributa \textit{HALSTEAD\_PROG\_TIME} (za drugi objekat sa slike vrednost ovog atributa iznosi oko 1,7 miliona!). Zbog toga je potrebno izvršiti standardizaciju podataka. U suprotnom, atributi sa visokim vrednostima bi previše uticali na rezultat klasifikacije. 
 
 \subsection{Treniranje modela klasifikacije i njihove ocene}
 

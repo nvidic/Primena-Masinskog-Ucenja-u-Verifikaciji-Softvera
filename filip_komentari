@@ -1,0 +1,57 @@
+- Nije jasno opisano o kakvim greškama se radi u korpusu niti kakvi su
+ to programi (5 linija, 500 linija, 5000 linija).
+->
+Kao skup podataka za obučavanje modela klasifikacije korišćen je korpus podataka
+jm1.arff koji se nalazi na repozitorijumu PROMISE (eng. PROMISE Software
+Engineering Repository). Repozitorijum sadrži skupove podataka relevantne za istraživanja
+u oblasti softverskog inženjerstva. Najveći deo skupova podataka koristi
+se za predviđanje defekata u softveru. U tom slučaju korišćeni podaci su programi
+predstavljeni atributima i njihovim vrednostima. Pored ovih podataka na repozitorijumu
+se nalaze i podaci sa metrikama relevantnim za predviđanje cene softvera
+(eng. software cost estimation), predviđanje uspešnosti ponovne upotrebljivosti softvera
+(eng. predicting successful reuse), praćenje zahteva (eng. requirements tracing),
+kao i transakcioni podaci (eng. transaction data) i podaci za neka numerička izračunavanja
+(eng. data for numerical computation library) [32].
+
+Datoteka jm1 predstavlja NASA-in softver, napisan u programskom jeziku C,
+koji se koristi u okviru sklapanja, transporta i lansiranja svemirskih raketa i letelica.
+Objekti u datoteci odgovaraju funkcijama pomenutog softvera. Funkcije imaju između
+1 i 3442 linije koda, srednja vrednost broja linija iznosi 42,03 a medijana 23.
+Ove funkcije su opisane Halstedovim metrikama (eng. Halstead metrics) zasnovanim
+na brojevima operatora i operanada, kao i metrikama zasnovanim na brojevima
+linija koda. Halsted je tvrdio da je veća verovatnoća da kôd težak za čitanje sadrži
+grešku, pri čemu se složenost čitanja koda procenjuje prebrojavanjem koncepata
+funkcije (na primer, prebrojavanjem jedinstvenih operatora). Datoteka jm1 sadrži i
+informacije o postojanju defekta u funkcijama (detalji o tome šta spada pod pojam
+defekta nisu dati) [3, 5, 28].
+
+- Slika 4.3 nešto pokušava da priaže, ali to je vrlo šturo.
+->
+Slika 4.3 prikazuje kako se opsezi vrednosti pet prikazanih atributa dosta razlikuju.
+Na primer, vrednosti atributa HALSTEAD_LEVEL su brojevi u intervalu
+[0, 1] i one su izrazito male ako se porede sa vrednostima drugih prikazanih
+atributa. Razlika je posebno primetna ako se posmatraju vrednosti atributa HALSTEAD_
+PROG_TIME (za drugi objekat sa slike vrednost ovog atributa iznosi oko
+1,7 miliona!). Zbog toga je potrebno izvršiti standardizaciju podataka. U suprot-
+nom, atributi sa visokim vrednostima bi previše uticali na rezultat klasifikacije.
+
+
+- Otišao sam na PROMISE sajt i tamo video da se nude fajlovi sa već
+izvučenim atributima, a u radu se opisuje program za izvlačenje
+vrednosti atributa iz C koda. Celu eksperimentalnu postavku bi trebalo
+jasnije opisati na početku poglavlja 4.
+->
+Na osnovu korpusa podataka koji sadrži atribute i informaciju o prisustvu
+greške u programskim kodovima kreirana su tri klasifikaciona modela, svaki
+zasnovan na različitom algoritmu. Od dobijenih modela izabran je model koji
+najviše odgovara podacima tj. model koji daje najtačnije rezultate. Zatim je
+implementiran program koji na osnovu programskog koda napisanog u C-u izračunava
+atribute koda korišćene u fazi obučavanja modela. Na taj način se dobijeni prediktivni
+model može primeniti na proizvoljne programe. Izračunavanje atributa proizvoljnih
+programa je omogućilo da se model evaluira na specifičnim programima korišćenim
+na takmičenju iz verifikacije (za ove programe su bili dostupni njihovi kodovi i
+informacija o prisustvu greške, ali ne i atributi).
+
+- Na slici 16 se prikazuju brojevi atributa, a u tekstu su atributi
+imenovani. Povezati jasnije.
+-> dodata imena atributa na slici
