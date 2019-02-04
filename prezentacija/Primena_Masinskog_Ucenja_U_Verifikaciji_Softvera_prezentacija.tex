@@ -83,16 +83,16 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[Short title]{Primena Mašinskog Učenja U Verifikaciji Softvera} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[]{Primena Mašinskog Učenja U Verifikaciji Softvera} % The short title appears at the bottom of every slide, the full title is only on the title page
 
-\author{John Smith} % Your name
-\institute[UCLA] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+\author{Nikola Vidič} % Your name
+\institute[Matematički fakultet] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
-University of California \\ % Your institution for the title page
+Matematički fakultet \\ % Your institution for the title page
 \medskip
-\textit{john@smith.com} % Your email address
+% \textit{john@smith.com} % Your email address
 }
-\date{\today} % Date, can be changed to a custom date
+\date{08.02.2019} % \today  Date, can be changed to a custom date
 
 \begin{document}
 
@@ -101,7 +101,7 @@ University of California \\ % Your institution for the title page
 \end{frame}
 
 \begin{frame}
-\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+\frametitle{Pregled} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 \end{frame}
 
@@ -110,148 +110,260 @@ University of California \\ % Your institution for the title page
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{First Section} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{Uvod/Motivacija} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 
-\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+
+% -----------------------------------------------
 
 \begin{frame}
-\frametitle{Paragraphs of Text}
-Sed iaculis dapibus gravida. Morbi sed tortor erat, nec interdum arcu. Sed id lorem lectus. Quisque viverra augue id sem ornare non aliquam nibh tristique. Aenean in ligula nisl. Nulla sed tellus ipsum. Donec vestibulum ligula non lorem vulputate fermentum accumsan neque mollis.\\~\\
-
-Sed diam enim, sagittis nec condimentum sit amet, ullamcorper sit amet libero. Aliquam vel dui orci, a porta odio. Nullam id suscipit ipsum. Aenean lobortis commodo sem, ut commodo leo gravida vitae. Pellentesque vehicula ante iaculis arcu pretium rutrum eget sit amet purus. Integer ornare nulla quis neque ultrices lobortis. Vestibulum ultrices tincidunt libero, quis commodo erat ullamcorper id.
+	\frametitle{Uvod}
+     \hfil\hfil\includegraphics[width=5cm]{mobilni}\newline
+     \null\hfil\hfil\makebox[5cm]{Mobilni telefon}\newline
+     \vfil
+     \hfil\hfil\includegraphics[width=5cm]{tesla}\hfil\hfil
+       \includegraphics[width=5cm]{faces}\newline
+     \null\hfil\hfil\makebox[5cm]{Tesla Autopilot}
+       \hfil\hfil\makebox[5cm]{NVIDIA Neuronska Mreža}
 \end{frame}
 
-%------------------------------------------------
-
+% -----------------------------------------------
+\section{Verifikacija softvera}
 \begin{frame}
-\frametitle{Bullet Points}
+\frametitle{Verifikacija softvera}
 \begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-\item Nam cursus est eget velit posuere pellentesque
-\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+\item Specifikacija 
+\item[]
+\item Verifikacija 
+\item[]
+\item Validacija
 \end{itemize}
 \end{frame}
 
-%------------------------------------------------
 
+\section{Dinamička i Statička verifikacija}
 \begin{frame}
-\frametitle{Blocks of Highlighted Text}
-\begin{block}{Block 1}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
-\end{block}
+\frametitle{Dinamička i Statička verifikacija}
+\begin{itemize}
+\item Dinamička verifikacija
+\item[]
+\item Statička verifikacija
+\end{itemize}
 
-\begin{block}{Block 2}
-Pellentesque sed tellus purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum quis magna at risus dictum tempor eu vitae velit.
-\end{block}
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{engine}
+\end{figure}
 
-\begin{block}{Block 3}
-Suspendisse tincidunt sagittis gravida. Curabitur condimentum, enim sed venenatis rutrum, ipsum neque consectetur orci, sed blandit justo nisi ac lacus.
-\end{block}
 \end{frame}
 
-%------------------------------------------------
+
+\section{Mašinsko učenje}
+\begin{frame}
+\frametitle{Mašinsko učenje}
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth, height=3cm]{machine-learning}
+\end{figure}
+
+\begin{itemize}
+\item Proučavanje procesa generalizacije 
+\item[]
+\item Konstrukcija sistema sposobnih da poboljšaju svoje performanse na osnovu iskustva
+\end{itemize}
+
+\end{frame}
+
 
 \begin{frame}
-\frametitle{Multiple Columns}
-\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+\frametitle{Mašinsko učenje}
 
-\column{.45\textwidth} % Left column and width
-\textbf{Heading}
-\begin{enumerate}
-\item Statement
-\item Explanation
-\item Example
-\end{enumerate}
+\begin{itemize}
+\item Nadgledano učenje
+\item[]
+\item Klasifikacija
+\end{itemize}
 
-\column{.5\textwidth} % Right column and width
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
+\end{frame}
+
+
+\section{Implementacija}
+%
+%  SLAJD O IZGLEDU EKSPERIMENTALNOG DELA
+%
+%
+
+
+\begin{frame}
+\frametitle{Implementacija}
+\framesubtitle{Programski jezik}
+
+\begin{columns}[c]
+
+\column{.45\textwidth}
+\begin{itemize}
+\item Python
+\item[]
+\item Scikit-learn
+\end{itemize}
+
+\column{.5\textwidth}
+\begin{figure}
+\includegraphics[width=0.6\linewidth]{python}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.6\linewidth, height=1.5cm]{sklearn}
+\end{figure}
 
 \end{columns}
-\end{frame}
 
-%------------------------------------------------
-\section{Second Section}
-%------------------------------------------------
+\end{frame}
 
 \begin{frame}
-\frametitle{Table}
-\begin{table}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\caption{Table caption}
-\end{table}
-\end{frame}
+\frametitle{Implementacija}
+\framesubtitle{Korišćeni podaci}
 
-%------------------------------------------------
+\begin{itemize}
+\item Funkcije NASA-inog programa za sklapanje, transport i lansiranje svemirskih raketa i letelica
+\item[]
+\item 10878 objekata
+\item[]
+\item 1 do 3442 linije koda (prosek 42.03, medijana 23)
+\end{itemize}
+
+\end{frame}
 
 \begin{frame}
-\frametitle{Theorem}
-\begin{theorem}[Mass--energy equivalence]
-$E = mc^2$
-\end{theorem}
+\frametitle{Implementacija}
+\framesubtitle{Algoritmi klasifikacije}
+
+\begin{itemize}
+\item K najbližih suseda
+\item[]
+\item Logistička regresija
+\item[]
+\item Slučajne šume
+\end{itemize}
+
 \end{frame}
-
-%------------------------------------------------
-
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Verbatim}
-\begin{example}[Theorem Slide Code]
-\begin{verbatim}
-\begin{frame}
-\frametitle{Theorem}
-\begin{theorem}[Mass--energy equivalence]
-$E = mc^2$
-\end{theorem}
-\end{frame}\end{verbatim}
-\end{example}
-\end{frame}
-
-%------------------------------------------------
 
 \begin{frame}
-\frametitle{Figure}
-Uncomment the code on this slide to include your own image from the same directory as the template .TeX file.
-%\begin{figure}
-%\includegraphics[width=0.8\linewidth]{test}
-%\end{figure}
+\frametitle{Implementacija}
+\framesubtitle{Obučavanje modela}
+
+\begin{itemize}
+\item Podela na trening i test skup
+\item[]
+\item K-slojna unakrsna validacija
+\item[]
+\item Tačnost oko 0.80
+\end{itemize}
+
 \end{frame}
-
-%------------------------------------------------
-
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Citation}
-An example of the \verb|\cite| command to cite within the presentation:\\~
-
-This statement requires citation \cite{p1}.
-\end{frame}
-
-%------------------------------------------------
 
 \begin{frame}
-\frametitle{References}
-\footnotesize{
-\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
-\bibitem[Smith, 2012]{p1} John Smith (2012)
-\newblock Title of the publication
-\newblock \emph{Journal Name} 12(3), 45 -- 678.
-\end{thebibliography}
-}
+\frametitle{Implementacija}
+\framesubtitle{Dodavanje novih instanci}
+
+\begin{itemize}
+\item Problem neizbalansiranih klasa
+\item[]
+\item Nove instance dobijene interpolacijom
+\item[]
+\item Tačnosti modela: 0.823 (k najbližih suseda), 0.715 (logistička regresija) i 0.848 (slučajne šume)
+\item[]
+\item Preciznost u slučaju klase programa sa greškom: 0,87 ((slučajne šume) naspram 0,79 (k najbližih suseda).
+\end{itemize}
+
 \end{frame}
 
-%------------------------------------------------
+\begin{frame}
+\frametitle{Implementacija}
+\framesubtitle{Izbor atributa}
+
+\begin{itemize}
+\item Kvalitetniji modeli, ušteda resursa?
+\item[]
+\item NUM\_OPERATORS, NUM\_OPERANDS, LOC\_TOTAL
+\item[]
+\item Tačnost, preciznost, odziv - slični kao za prethodni model
+\end{itemize}
+
+\end{frame}
 
 \begin{frame}
-\Huge{\centerline{The End}}
+\frametitle{Implementacija}
+\framesubtitle{Konačni model}
+
+\begin{itemize}
+\item Obučavan nad svim podacima
+\item[]
+\item Tačnost, preciznost i odziv - svi oko 0.85
+\item[]
+\item Bilo bi lepo da testiramo model nad novim podacima
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementacija}
+\framesubtitle{Program koji na osnovu C koda izračunava atribute}
+
+\begin{itemize}
+\item Biblioteka pycparser 
+\item[]
+\item AST stablo
+\item[]
+\item Regularni izrazi
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementacija}
+\framesubtitle{Testiranje}
+
+%\begin{columns}[c] 
+
+%\column{.45\textwidth} % Left column and width
+\begin{itemize}
+\item Programi sa takmičenja u verifikaciji
+\item[]
+\item 571 program
+
+\end{itemize}
+
+%\column{.5\textwidth} % Right column and width
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{confm}
+\end{figure}
+
+%\end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Prostor za poboljšanje}
+
+\begin{itemize}
+\item Čitavi programi dostupni za obučavanje
+\item[]
+\item Druge metrike
+\item[]
+\item Parametri modela
+\item[]
+\item Drugi algoritmi
+\item[]
+\item ...
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\Huge{\centerline{Hvala!}}
 \end{frame}
 
 %----------------------------------------------------------------------------------------

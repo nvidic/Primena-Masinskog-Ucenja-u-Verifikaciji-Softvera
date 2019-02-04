@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.31)  14 JAN 2019 17:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.31)  28 JAN 2019 17:04
 entering extended mode
 **"C:/Users/Dell/Desktop/Primena Masinskog Ucenja u Verifikaciji Softvera/preze
 ntacija/Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.tex"
@@ -102,8 +102,8 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@dimlist=\toks15
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
-File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+("C:\Program Files\MiKTeX 2.9\tex\latex\extsizes\size14.clo"
+File: size14.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgfcore.sty"
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
@@ -673,6 +673,16 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@lastruleclass=\count159
 \@thisrulewidth=\dimen199
 )
+
+Package hyperref Warning: Composite letter `\textasciicaron+c'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 88.
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+c'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 97.
+
 No file Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.aux.
 \openout1 = `Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.aux'
 .
@@ -699,23 +709,23 @@ LaTeX Font Info:    ... okay on input line 97.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(10.95003pt, 342.2953pt, 10.95003pt)
+* h-part:(L,W,R)=(14.09984pt, 335.99568pt, 14.09984pt)
 * v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
 * \paperwidth=364.19536pt
 * \paperheight=273.14662pt
-* \textwidth=342.2953pt
+* \textwidth=335.99568pt
 * \textheight=244.6939pt
-* \oddsidemargin=-61.31996pt
-* \evensidemargin=-61.31996pt
+* \oddsidemargin=-58.17015pt
+* \evensidemargin=-58.17015pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
-* \topskip=11.0pt
+* \topskip=14.0pt
 * \footskip=14.22636pt
 * \marginparwidth=4.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=12.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -854,102 +864,21 @@ No file Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.nav.
 No file Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.toc.
 [2
 
-] [3
+]
 
-] [4
+Package hyperref Warning: Composite letter `\textasciicaron+c'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 121.
 
-] [5
+
+Package hyperref Warning: Composite letter `\textasciicaron+c'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 121.
+
+[3
 
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 173.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 173.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 173.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\sansmathaccent\ot1mathkerncmss.fd"
-File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
-thkerncmss.
-)
-[6
-
-] [7
-
-] [8
-
-]
-\openout4 = `Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.vrb'
-.
-
- (Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.vrb) [9
-
-] [10
-
-]
-\openout4 = `Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.vrb'
-.
-
- (Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.vrb
-
-LaTeX Warning: Citation `p1' on page 11 undefined on input line 4.
-
-) [11
-
-] [12
-
- <C:/Program Files/MiKTeX 2.9/tex/latex/beamer/beamericonarticle.pdf>] [13
-
-]
-\tf@nav=\write6
-\openout6 = `Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.nav'
-.
-
-\tf@toc=\write7
-\openout7 = `Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.toc'
-.
-
-\tf@snm=\write8
-\openout8 = `Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.snm'
-.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 259.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 259.
- (Primena_Masinskog_Ucenja_U_Verifikaciji_Softvera_prezentacija.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 259.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 259.
-
-
-Package rerunfilecheck Warning: File `Primena_Masinskog_Ucenja_U_Verifikaciji_S
-oftvera_prezentacija.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Primena_Masinskog_Ucenja_U_Verifika
-ciji_Softvera_prezentacija.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  157B875EBF9FF915E7658288F766A620;167.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
-Here is how much of TeX's memory you used:
- 17396 strings out of 492970
- 334433 string characters out of 3135857
- 411178 words of memory out of 3000000
- 20837 multiletter control sequences out of 15000+200000
- 13140 words of font info for 47 fonts, out of 3000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 56i,15n,69p,914b,821s stack positions out of 5000i,500n,10000p,200000b,50000s
-
-!pdfTeX error: pdflatex (file mathkerncmssi10): Font mathkerncmssi10 at 657 not
- found
+!pdfTeX error: pdflatex (file C:/Users/Dell/Desktop/Primena Masinskog Ucenja u 
+Verifikaciji Softvera/prezentacija/tire.jpg): reading JPEG image failed (no JPE
+G header found)
  ==> Fatal error occurred, no output PDF file produced!
