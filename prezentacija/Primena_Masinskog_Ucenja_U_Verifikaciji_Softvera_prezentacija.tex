@@ -92,7 +92,7 @@ Matematički fakultet \\ % Your institution for the title page
 \medskip
 % \textit{john@smith.com} % Your email address
 }
-\date{08.02.2019} % \today  Date, can be changed to a custom date
+\date{08.02.2019.} % \today  Date, can be changed to a custom date
 
 \begin{document}
 
@@ -100,17 +100,17 @@ Matematički fakultet \\ % Your institution for the title page
 \titlepage % Print the title page as the first slide
 \end{frame}
 
-\begin{frame}
-\frametitle{Pregled} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-\end{frame}
+%\begin{frame}
+%\frametitle{Pregled} % Table of contents slide, comment this block out to remove it
+%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+%\end{frame}
 
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{Uvod/Motivacija} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%\section{Uvod/Motivacija} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 
 %\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
@@ -130,7 +130,7 @@ Matematički fakultet \\ % Your institution for the title page
 \end{frame}
 
 % -----------------------------------------------
-\section{Verifikacija softvera}
+%\section{Verifikacija softvera}
 \begin{frame}
 \frametitle{Verifikacija softvera}
 \begin{itemize}
@@ -143,7 +143,7 @@ Matematički fakultet \\ % Your institution for the title page
 \end{frame}
 
 
-\section{Dinamička i Statička verifikacija}
+%\section{Dinamička i Statička verifikacija}
 \begin{frame}
 \frametitle{Dinamička i Statička verifikacija}
 \begin{itemize}
@@ -158,8 +158,20 @@ Matematički fakultet \\ % Your institution for the title page
 
 \end{frame}
 
+%\section{Cilj rada}
+\begin{frame}
+\frametitle{Cilj rada}
 
-\section{Mašinsko učenje}
+\begin{itemize}
+\item Da se dobije na efikasnosti u verifikaciji uz pomoć mašinskog učenja
+\item[]
+%\item Kreiraju se klasifikacioni modeli za određivanje da li program sadrži grešku ili ne
+\end{itemize}
+
+\end{frame}
+
+
+%\section{Mašinsko učenje}
 \begin{frame}
 \frametitle{Mašinsko učenje}
 
@@ -170,7 +182,7 @@ Matematički fakultet \\ % Your institution for the title page
 \begin{itemize}
 \item Proučavanje procesa generalizacije 
 \item[]
-\item Konstrukcija sistema sposobnih da poboljšaju svoje performanse na osnovu iskustva
+\item Konstrukcija prilagodljivih sistema sposobnih da poboljšaju svoje performanse na osnovu iskustva
 \end{itemize}
 
 \end{frame}
@@ -188,7 +200,21 @@ Matematički fakultet \\ % Your institution for the title page
 \end{frame}
 
 
-\section{Implementacija}
+%\section{Eksperimentalni deo}
+\begin{frame}
+\frametitle{Eksperimentalni deo}
+
+\begin{itemize}
+\item Obučavanje, evaluacija i unapredjenje klasifikacionih modela, čiji je zadatak da predvide da li program sadrži grešku u kodu ili ne
+\item[]
+\item Implementacija programa koji na osnovu izvornog koda izračunava atribute korišćene za obučavanje modela
+\item[]
+\item Testiranje modela na nepoznatim programima
+\end{itemize}
+
+\end{frame}
+
+%\section{Implementacija}
 %
 %  SLAJD O IZGLEDU EKSPERIMENTALNOG DELA
 %
@@ -196,8 +222,7 @@ Matematički fakultet \\ % Your institution for the title page
 
 
 \begin{frame}
-\frametitle{Implementacija}
-\framesubtitle{Programski jezik}
+\frametitle{Programski jezik}
 
 \begin{columns}[c]
 
@@ -222,8 +247,7 @@ Matematički fakultet \\ % Your institution for the title page
 \end{frame}
 
 \begin{frame}
-\frametitle{Implementacija}
-\framesubtitle{Korišćeni podaci}
+\frametitle{Podaci korišćeni za obučavanje modela}
 
 \begin{itemize}
 \item Funkcije NASA-inog programa za sklapanje, transport i lansiranje svemirskih raketa i letelica
@@ -236,8 +260,7 @@ Matematički fakultet \\ % Your institution for the title page
 \end{frame}
 
 \begin{frame}
-\frametitle{Implementacija}
-\framesubtitle{Algoritmi klasifikacije}
+\frametitle{Algoritmi klasifikacije}
 
 \begin{itemize}
 \item K najbližih suseda
@@ -250,10 +273,11 @@ Matematički fakultet \\ % Your institution for the title page
 \end{frame}
 
 \begin{frame}
-\frametitle{Implementacija}
-\framesubtitle{Obučavanje modela}
+\frametitle{Evaluacija modela}
 
 \begin{itemize}
+%\item Standardizacija
+%\item[]
 \item Podela na trening i test skup
 \item[]
 \item K-slojna unakrsna validacija
@@ -264,8 +288,7 @@ Matematički fakultet \\ % Your institution for the title page
 \end{frame}
 
 \begin{frame}
-\frametitle{Implementacija}
-\framesubtitle{Dodavanje novih instanci}
+\frametitle{Dodavanje novih instanci}
 
 \begin{itemize}
 \item Problem neizbalansiranih klasa
@@ -274,42 +297,41 @@ Matematički fakultet \\ % Your institution for the title page
 \item[]
 \item Tačnosti modela: 0.823 (k najbližih suseda), 0.715 (logistička regresija) i 0.848 (slučajne šume)
 \item[]
-\item Preciznost u slučaju klase programa sa greškom: 0,87 ((slučajne šume) naspram 0,79 (k najbližih suseda).
+\item Preciznost u slučaju klase programa sa greškom: 0,87 (slučajne šume) naspram 0,79 (k najbližih suseda).
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}
-\frametitle{Implementacija}
-\framesubtitle{Izbor atributa}
+\frametitle{Izbor atributa}
 
 \begin{itemize}
-\item Kvalitetniji modeli, ušteda resursa?
+\item Kvalitetniji modeli?
 \item[]
-\item NUM\_OPERATORS, NUM\_OPERANDS, LOC\_TOTAL
-\item[]
-\item Tačnost, preciznost, odziv - slični kao za prethodni model
+%\item NUM\_OPERATORS, NUM\_OPERANDS, LOC\_TOTAL
+%\item[]
+\item Tačnost, preciznost, odziv - slični kao kod modela bez izbora atributa
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}
-\frametitle{Implementacija}
-\framesubtitle{Konačni model}
+\frametitle{Konačni model}
 
 \begin{itemize}
+\item Zasniva se na algoritmu slučajne šume
+\item[]
 \item Obučavan nad svim podacima
 \item[]
 \item Tačnost, preciznost i odziv - svi oko 0.85
 \item[]
-\item Bilo bi lepo da testiramo model nad novim podacima
+\item Poželjno je testirati model nad novim podacima
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}
-\frametitle{Implementacija}
-\framesubtitle{Program koji na osnovu C koda izračunava atribute}
+\frametitle{Program koji na osnovu C koda izračunava atribute}
 
 \begin{itemize}
 \item Biblioteka pycparser 
@@ -322,8 +344,7 @@ Matematički fakultet \\ % Your institution for the title page
 \end{frame}
 
 \begin{frame}
-\frametitle{Implementacija}
-\framesubtitle{Testiranje}
+\frametitle{Testiranje modela}
 
 %\begin{columns}[c] 
 
@@ -348,11 +369,11 @@ Matematički fakultet \\ % Your institution for the title page
 \frametitle{Prostor za poboljšanje}
 
 \begin{itemize}
+\item Parametri modela
+\item[]
 \item Čitavi programi dostupni za obučavanje
 \item[]
 \item Druge metrike
-\item[]
-\item Parametri modela
 \item[]
 \item Drugi algoritmi
 \item[]
